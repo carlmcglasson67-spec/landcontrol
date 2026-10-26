@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+const updated = '2026-10-26';
+const quotes = [
+  "For the first time, the public will be able to see not just who owns a field, but who holds the right to develop it. That changes every negotiation on the edge of every town in England and Wales.",
+  "The 60-day clock is the detail land teams will get wrong. A grant is obvious. A written variation to an option signed in 2022 is not, and it carries the same criminal liability.",
+  "The raw HMLR dataset will be free. The value is in what it reveals over time: which developers are assembling where, and which rights are quietly running out.",
+  "April 2028 is the start, not the finish. A dataset that refreshes monthly is a pipeline, and the organisations that read it first will buy land first.",
+];
+const schema = {"@context":"https://schema.org","@type":"Organization",name:"LandControl",url:"https://landcontrol.co.uk/",logo:"https://landcontrol.co.uk/brand/landcontrol-mark.svg",email:"contact@landcontrol.co.uk",founder:{"@type":"Person",name:"Carl McGlasson"},contactPoint:{"@type":"ContactPoint",contactType:"Press",email:"contact@landcontrol.co.uk",availableLanguage:"en-GB"}};
+---
+<Base title="Press Centre · LandControl" description="Media resources on the HMLR contractual control regime: same-day commentary, founder bio, quotable lines, statistics, regulatory timeline and brand assets.">
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(schema)}></script></Fragment>
+  <header class="wrap hero"><div class="grid">
+    <p class="crumb"><a href="/">LandControl</a><span>/</span><span style="color:var(--red)">Press Centre</span></p>
+    <h1>Press <em>Centre.</em></h1>
+    <p class="lede"><strong>Journalists: LandControl can provide same-day commentary on contractual-control regulation, HMLR implementation and land-agreement data.</strong> Email contact@landcontrol.co.uk with your deadline in the subject line.</p>
+    <div class="facts"><div><span class="num">Same day</span><span>Commentary turnaround</span></div><div><span class="num">E &amp; W</span><span>Coverage: England and Wales</span></div><div><span class="num">Independent</span><span>Not affiliated with HMLR or UK Government</span></div></div>
+  </div></header>
+
+  <section class="wrap band" id="about"><div class="grid">
+    <div class="head"><p class="eyebrow">About LandControl</p><h2>Development intelligence for the new land market.</h2></div>
+    <div class="body">
+      <p>LandControl is an independent information and technology service built around the Provision of Information (Contractual Control) (Registered Land) Regulations 2026. From 6 April 2027 the regulations require options, conditional contracts, pre-emption rights and qualifying promotion rights over registered land in England and Wales to be reported to HM Land Registry; from April 2028 HMLR publishes that information as a monthly public dataset.</p>
+      <p>LandControl explains the regime in plain English for the professionals it affects, provides free tools for the deadlines and scope tests, and is building the intelligence layer on top of the public dataset: alerts, opportunity discovery and competitor intelligence for housebuilders, land promoters, lenders and analysts.</p>
+      <p>LandControl is not affiliated with HM Land Registry, the Ministry of Housing, Communities and Local Government or any part of the UK Government. Content is for general information and is not legal advice.</p>
+    </div>
+    <div class="rail">
+      <div class="card red"><p class="eyebrow">Media contact</p><h4>contact@landcontrol.co.uk</h4><p>Put the outlet and deadline in the subject line. Interviews by phone or video, quotes by email, data on request.</p></div>
+      <div class="card"><p class="eyebrow">Boilerplate</p><p>LandControl is an independent UK information and technology service covering the contractual control regime for registered land in England and Wales. It publishes guidance, tools and a live implementation tracker, and is building development-intelligence products on the HM Land Registry contractual control dataset due in April 2028. landcontrol.co.uk</p></div>
+    </div>
+  </div></section>
+
+  <section class="wrap band" id="founder"><div class="grid">
+    <div class="head"><p class="eyebrow">Founder</p><h2>Carl McGlasson.</h2></div>
+    <div class="body">
+      <p>Carl McGlasson is the founder of LandControl. He is based in West Cumbria, where he runs a group of businesses spanning property services, holiday-let management and a property investment company, alongside Pervonio, the digital and software agency through which LandControl was built.</p>
+      <p>He started LandControl after reading the contractual control regulations and recognising that, for the first time, the control of development land in England and Wales would become visible to anyone who knew where to look. His background before business was in social work, which he credits for an instinct to read legislation closely and ask who it actually affects.</p>
+      <p>He is available for comment on the practical impact of the regime on developers, land promoters, landowners and conveyancers, on HMLR implementation, and on what the 2028 dataset will reveal about the UK land market.</p>
+    </div>
+    <div class="rail"><div class="card"><p class="eyebrow">Available for</p><ul class="check"><li><span>Broadcast and print interviews</span></li><li><span>Written comment to deadline</span></li><li><span>Panel and conference appearances</span></li><li><span>Data and analysis on request from April 2028</span></li></ul></div></div>
+  </div></section>
+
+  <section class="wrap band" id="panel"><div class="grid">
+    <div class="head"><p class="eyebrow">Expert panel</p><h2>Being assembled.</h2><p class="lede">We are appointing an external review panel: a regulated conveyancer with strategic-land experience, a planning professional and a chartered surveyor. Names will appear here with their review role on each guide. Practitioners interested in joining should email the media contact.</p></div>
+  </div></section>
+
+  <section class="wrap band" id="stats"><div class="grid">
+    <div class="head"><p class="eyebrow">Latest statistics</p><h2>The numbers that define the regime.</h2><p class="lede">Market statistics derived from the HMLR dataset begin with its first release, expected after 6 April 2028. Until then, these are the statutory figures.</p></div>
+    <div class="stats-press">
+      <div><span class="big num">60</span><span>calendar days to report each grant, assignment, variation, exercise or expiry</span></div>
+      <div><span class="big num">18</span><span>months: minimum control period for a right to be in scope</span></div>
+      <div><span class="big num">15</span><span>years: minimum unexpired leasehold term for in-scope land</span></div>
+      <div><span class="big num">4</span><span>right types caught: option, conditional contract, pre-emption, promotion</span></div>
+      <div><span class="big num">6</span><span>narrow exemptions, read restrictively</span></div>
+      <div><span class="big num">12×</span><span>a year the public dataset refreshes, at minimum</span></div>
+    </div>
+  </div></section>
+
+  <section class="wrap band" id="research"><div class="grid">
+    <div class="head"><p class="eyebrow">Research reports</p><h2>In preparation.</h2><p class="lede">First report, due Q1 2027: <em>Who holds the options? A pre-publication survey of contractual control in the North West.</em> Reports are published here and announced to the Contractual Control Alert list.</p></div>
+  </div></section>
+
+  <section class="wrap band why" id="quotes"><div class="grid">
+    <div class="head"><p class="eyebrow">Quotes available for journalists</p><h2>Attributable to Carl McGlasson, founder, LandControl.</h2><p class="lede">Use as written or ask for a tailored line on your angle.</p></div>
+    <div class="quotes">{quotes.map(q => <blockquote><p>“{q}”</p><cite>Carl McGlasson, founder, LandControl</cite></blockquote>)}</div>
+  </div></section>
+
+  <section class="wrap band" id="brand"><div class="grid">
+    <div class="head"><p class="eyebrow">Brand and logo assets</p><h2>Use the mark as supplied. Don’t recolour it.</h2></div>
+    <div class="assets">
+      <a href="/brand/landcontrol-mark.svg" download><span class="prev light"><img src="/brand/landcontrol-mark.svg" alt="LandControl mark, black and red"></span><strong>Mark, black/red (SVG)</strong><span>For light backgrounds</span></a>
+      <a href="/brand/landcontrol-mark-white.svg" download><span class="prev dark"><img src="/brand/landcontrol-mark-white.svg" alt="LandControl mark, white and red"></span><strong>Mark, white/red (SVG)</strong><span>For dark backgrounds</span></a>
+      <a href="/brand/landcontrol-logo-original.png" download><span class="prev light"><img src="/brand/landcontrol-logo-original.png" alt="LandControl logo with wordmark"></span><strong>Logo with wordmark (PNG)</strong><span>Print and web</span></a>
+    </div>
+    <p class="small" style="grid-column:1/-1;margin-top:.5rem">Name: “LandControl”, one word, capital L and C. Colours: black #121212, paper #F7F6F4, red #C8102E. Typeface: Bricolage Grotesque.</p>
+  </div></section>
+
+  <section class="wrap band" id="timeline"><div class="grid">
+    <div class="head"><p class="eyebrow">Regulatory timeline</p><h2>Six dates every story needs.</h2><p class="lede">The full milestone list with sources is on the <a href="/tracker/">live implementation tracker</a>, which is updated whenever government publishes.</p></div>
+    <div class="tl">
+      <div><span class="num">8 Jun 2026</span><strong>Regulations made.</strong><p class="small">SI 2026/615. Rights granted from this date are caught.</p></div>
+      <div class="hot"><span class="num">6 Apr 2027</span><strong>In force.</strong><p class="small">HMLR digital service opens; 60-day reporting begins.</p></div>
+      <div class="hot"><span class="num">6 Oct 2027</span><strong>Transitional deadline.</strong><p class="small">All rights granted 8 Jun 2026 to 5 Apr 2027 must be submitted.</p></div>
+      <div><span class="num">6 Apr 2028</span><strong>Publication.</strong><p class="small">First public dataset, then at least monthly.</p></div>
+    </div>
+  </div></section>
+</Base>
+<style>
+.stats-press{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.stats-press div{background:var(--card);padding:1.5rem;display:grid;gap:.4rem}
+.stats-press .big{font-family:var(--display);font-weight:800;font-size:2.8rem;letter-spacing:-.04em;line-height:1;color:var(--red)}
+.stats-press span:last-child{font-size:.92rem;color:var(--ink-2)}
+@media(max-width:800px){.stats-press{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.stats-press{grid-template-columns:1fr}}
+.quotes{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.quotes blockquote{margin:0;border-left:3px solid var(--red);padding:.25rem 0 .25rem 1.25rem;display:grid;gap:.6rem}
+.quotes p{font-family:var(--display);font-weight:600;font-size:1.3rem;letter-spacing:-.015em;line-height:1.3;color:var(--paper)}
+.quotes cite{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-style:normal;color:var(--red)}
+@media(max-width:800px){.quotes{grid-template-columns:1fr}}
+.assets{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.assets a{display:grid;gap:.4rem;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--rule);box-shadow:var(--shadow);padding:1rem;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.assets a:hover{transform:translateY(-4px);box-shadow:var(--shadow-hi)}
+.assets .prev{display:grid;place-items:center;aspect-ratio:4/3;max-width:100%;margin-bottom:.5rem}
+.assets .prev.light{background:#f7f6f4}
+.assets .prev.dark{background:#121212}
+.assets img{max-height:60%;max-width:70%}
+.assets strong{font-family:var(--display)}
+.assets span:last-child{font-size:.85rem;color:var(--ink-2)}
+@media(max-width:800px){.assets{grid-template-columns:1fr}}
+.tl{grid-column:1/-1}
+</style>
