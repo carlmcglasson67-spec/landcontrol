@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# AI search crawlers: explicitly welcome
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://landcontrol.co.uk/sitemap-index.xml

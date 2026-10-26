@@ -1,0 +1,418 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="LandControl — Development intelligence for the new land market" description="From April 2027 contractual control agreements over registered land must be reported to HM Land Registry. LandControl turns the 2028 public dataset into alerts, opportunities and competitor intelligence." bodyClass="">
+<header class="wrap hero">
+  <div class="scan" aria-hidden="true"></div>
+  <div class="grid">
+    <p class="kicker"><span class="live">Regulations in force 6 April 2027</span><span>England &amp; Wales</span><span>Registered land</span><span><a href="/new-era/" style="color:var(--red);text-decoration:none">The new era →</a></span></p>
+    <h1>Find the land your competitors <em>haven’t.</em></h1>
+    <p class="lede">Know where developers are moving before the planning application appears. From April 2028 HM Land Registry publishes every option, conditional contract and promotion agreement over registered land, monthly. LandControl turns that feed into alerts, opportunities and competitor intelligence your land team opens every Monday.</p>
+    <div class="count"><span class="big num" id="cd">—</span><span class="lab">days until the duty bites</span></div>
+    <div class="dates">
+      <div><span class="num">8 Jun 2026</span><span>Regulations made. Rights granted from here are caught.</span></div>
+      <div><span class="num">6 Apr 2027</span><span>Duty in force. HMLR digital service opens.</span></div>
+      <div><span class="num">6 Oct 2027</span><span>Backlog deadline for Jun 2026 – Apr 2027 grants.</span></div>
+      <div><span class="num">Apr 2028</span><span>First public dataset, then at least monthly.</span></div>
+    </div>
+    <div class="stats rv">
+      <div><span class="big num">60</span><span>calendar days to report each event</span></div>
+      <div><span class="big num">4</span><span>right types caught: option, conditional, pre-emption, promotion</span></div>
+      <div><span class="big num">1</span><span>regulated conveyancer per submission, no exceptions</span></div>
+      <div><span class="big num">12×</span><span>a year the public dataset refreshes, minimum</span></div>
+    </div>
+  </div>
+</header>
+<div class="ticker" aria-hidden="true"><div><span>Alerts</span><span>Opportunity discovery</span><span>Competitor intelligence</span><span>AI search</span><span>Option agreements</span><span>Conditional contracts</span><span>Pre-emption rights</span><span>Promotion agreements</span><span>60 calendar days</span><span>6 April 2027</span><span>6 October 2027</span><span>Public dataset April 2028</span><span>Registered land only</span><span>England &amp; Wales</span><span>Regulated conveyancer</span><span>GeoJSON · Shapefile · BNG</span><span>Option agreements</span><span>Conditional contracts</span><span>Pre-emption rights</span><span>Promotion agreements</span><span>60 calendar days</span><span>6 April 2027</span><span>6 October 2027</span><span>Public dataset April 2028</span><span>Registered land only</span><span>England &amp; Wales</span><span>Regulated conveyancer</span><span>GeoJSON · Shapefile · BNG</span></div></div>
+
+<section class="wrap band" id="timeline">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">The Provision of Information (Contractual Control) (Registered Land) Regulations 2026</p>
+      <h2>Four dates. One of them has already passed.</h2>
+      <p class="lede">The red line shows where today sits. Everything to its left is already law.</p>
+    </div>
+    <div class="tl rv">
+      <div class="prog" id="prog" aria-hidden="true"></div>
+      <div><span class="num">8 Jun 2026</span><strong>Made.</strong><p class="small">The regulations have retrospective reach. A right granted on or after this date must be reported once the service opens, even though the duty itself is not yet in force.</p></div>
+      <div class="hot"><span class="num">6 Apr 2027</span><strong>In force.</strong><p class="small">New grants, assignments, written variations and exercises from this date each start a 60-calendar-day clock. Submission is digital, through an individually regulated conveyancer.</p></div>
+      <div class="hot"><span class="num">6 Oct 2027</span><strong>Transitional cut-off.</strong><p class="small">Six months after launch. Every in-scope right granted between 8 June 2026 and 5 April 2027 must be on the register by this date.</p></div>
+      <div><span class="num">6 Apr 2028</span><strong>Publication.</strong><p class="small">HMLR publishes the contractual control dataset as soon as possible after this date, and at least monthly thereafter. Location, grantee, type, duration, dates.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap band" id="deadline">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">Deadline calculator</p>
+      <h2>When does this right have to be on the register?</h2>
+      <p class="lede">Pick the event and the date. The rule that applies, and the day it lands, come back instantly.</p>
+    </div>
+    <div class="calc rv">
+      <div class="row">
+        <label>Trigger event
+          <select id="event">
+            <option value="grant">Right granted</option>
+            <option value="assign">Right assigned to a new party</option>
+            <option value="vary">Right varied in writing</option>
+            <option value="exercise">Right exercised</option>
+          </select>
+        </label>
+        <label>Date of the event
+          <input type="date" id="date" value="2027-05-14" min="2000-01-01" max="2040-12-31">
+        </label>
+      </div>
+      <label>Was the underlying right originally granted before 8 June 2026?
+        <select id="pre">
+          <option value="no">No, granted on or after 8 June 2026</option>
+          <option value="yes">Yes, it is an older agreement</option>
+        </select>
+      </label>
+      <p class="small">Calendar days, not working days. A guide to the regulations, not legal advice. Confirm with your conveyancer.</p>
+    </div>
+    <div class="result rv" aria-live="polite">
+      <p class="eyebrow" id="r-label">Submit to HMLR by</p>
+      <p class="big" id="r-date">—</p>
+      <div class="bar" aria-hidden="true"><i id="r-bar"></i></div>
+      <p id="r-why" class="prose small" style="color:var(--ink)"></p>
+      <p class="rule" id="r-rule"></p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap band" id="scope">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">Scope · SI 2026/615, regulation 3</p>
+      <h2>What has to be reported, and what doesn’t.</h2>
+      <p class="lede">The regime targets control short of ownership. Four tests decide whether a right is caught, six narrow exemptions take some out, and the guidance says to read the exemptions restrictively: anything with a development purpose is probably in.</p>
+    </div>
+    <div class="tests rv">
+      <div><span class="k">Test 1</span><h4>Registered land</h4><p>England and Wales. Registered freehold, or registered leasehold with more than 15 years unexpired when the right is granted. Unregistered land is outside the regime.</p></div>
+      <div><span class="k">Test 2</span><h4>A contractual control right</h4><p>An option, a conditional contract, a pre-emption right, or a right under a promotion agreement that controls how the land is used, developed or disposed of. Absolute or conditional, whole or part of a title.</p></div>
+      <div><span class="k">Test 3</span><h4>Held for an undertaking</h4><p>The grantee holds the right for the purposes of a business, charity or other organised activity. A private individual buying a neighbour’s paddock for themselves is not caught.</p></div>
+      <div><span class="k">Test 4</span><h4>18 months or more</h4><p>The total period of control, including extensions, is at least 18 months. Shorter rights are exempt, which is why 17-month options are about to become popular and why HMLR says it will look at substance.</p></div>
+    </div>
+    <div class="two">
+      <div>
+        <h3>Caught <span class="pill">In scope</span></h3>
+        <ul class="list">
+          <li><span><strong>Option agreements</strong> giving the grantee the right to call for a transfer or a lease of 15 years or more.</span></li>
+          <li><span><strong>Conditional contracts</strong>, typically conditional on planning, where completion can be required by the grantee.</span></li>
+          <li><span><strong>Pre-emption rights</strong>: rights of first refusal over a future disposal.</span></li>
+          <li><span><strong>Promotion agreement rights</strong> where the promoter can control use, development or sale, including hybrid promotion-and-option structures.</span></li>
+          <li><span><strong>Later events</strong> on any of the above from 6 April 2027: assignment to a new party, a written variation that changes the type, scope, land, duration or exercise conditions, exercise, and expiry or determination where the right was previously reported.</span></li>
+          <li><span><strong>Older agreements</strong> signed before 8 June 2026 are pulled in by any of those later events.</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exempt <span class="pill out">Read narrowly</span></h3>
+        <ul class="list out">
+          <li><span><strong>Security.</strong> Rights granted solely to secure a loan or other financial instrument, and security for overage owed to a former owner.</span></li>
+          <li><span><strong>Short leases.</strong> Leasehold estates with 15 years or less to run when the right is granted.</span></li>
+          <li><span><strong>Non-development rights.</strong> Rights granted exclusively for purposes other than development. The guidance warns that a right which in substance relates to future development stays in scope however it is drafted.</span></li>
+          <li><span><strong>Short-lived rights.</strong> Total control period under 18 months.</span></li>
+          <li><span><strong>Section 106 rights.</strong> Rights relating exclusively to infrastructure, amenities or services tied to a planning permission.</span></li>
+          <li><span><strong>National security or defence</strong> contracts, and agreements made to facilitate or finance an in-scope agreement.</span></li>
+          <li><span><strong>Ordinary transactions.</strong> Sales, leases, mortgages, and overage or clawback deals in their own right, which were excluded after consultation.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="head" style="margin-top:clamp(2rem,4vw,3.5rem)">
+      <p class="eyebrow">What goes in the submission · parts 3 and 5 of the guidance</p>
+      <h2>Ten things per right.</h2>
+      <p class="lede">Collected once at grant, then again on every assignment, variation or exercise. Items marked ∗ are verified but never published.</p>
+    </div>
+    <div class="fields rv">
+      <div><p class="k">Parties</p><p class="v">Grantor and grantee</p><p class="d">Full names of both. Criminal liability for the submission sits with the grantee.</p></div>
+      <div><p class="k">Identifiers</p><p class="v">Company or charity number</p><p class="d">Companies House or Charity Commission number for any organisation. This is how the dataset resolves who really holds control.</p></div>
+      <div><p class="k">Individuals ∗</p><p class="v">Date and place of birth</p><p class="d">Required where the grantor is a person, for identity verification only. Not published.</p></div>
+      <div><p class="k">Right</p><p class="v">Type of right</p><p class="d">Option, conditional contract, pre-emption, promotion. Plus the date, parties and title of the underlying agreement.</p></div>
+      <div><p class="k">Exercise</p><p class="v">When, or on what conditions</p><p class="d">The date the right can be exercised, or the trigger (typically grant of planning).</p></div>
+      <div><p class="k">Duration</p><p class="v">Control period</p><p class="d">The initial period and every extension, renewal or termination provision. This is what powers expiry intelligence from 2028.</p></div>
+      <div><p class="k">Land</p><p class="v">Title numbers</p><p class="d">Every registered title affected, and whether the whole or part. Part-title rights need machine-readable geometry: GeoJSON or Shapefile on British National Grid, not a scanned plan.</p></div>
+      <div><p class="k">Address</p><p class="v">Address and postcode</p><p class="d">Of the land, for the geographic search HMLR is building the dataset around.</p></div>
+      <div><p class="k">Strata</p><p class="v">Airspace and sub-surface</p><p class="d">Whether the land includes airspace or subterranean estates held separately from the surface.</p></div>
+    </div>
+    <div class="conseq rv">
+      <div class="c1"><p class="eyebrow">If it isn’t reported</p><h3>Two consequences, one of them criminal.</h3></div>
+      <div class="c2"><p><strong>Section 225, Levelling-up and Regeneration Act 2023.</strong> Failing to provide the information, or knowingly or recklessly providing false or misleading information, is an offence. It applies to the grantee, and to companies, partnerships and the officers acting for them. An indemnity from the landowner does not move the liability.</p></div>
+      <div class="c3"><p><strong>No protection on the register.</strong> HM Land Registry may refuse to enter a notice or restriction protecting a right until the information has been provided. For a developer that is the difference between an option that binds a buyer and one that doesn’t.</p></div>
+    </div>
+    <div class="head" style="margin-top:clamp(2rem,4vw,3.5rem)">
+      <p class="eyebrow">Primary documents</p>
+      <h2>Read the sources, not the summaries.</h2>
+      <p class="lede">Everything on this page comes from these. We re-read them whenever HMLR changes anything, and the news stream will say when they do.</p>
+    </div>
+    <div class="docs rv">
+      <a href="https://www.legislation.gov.uk/uksi/2026/615"><span class="k">Statutory instrument</span><strong>SI 2026/615: The Provision of Information (Contractual Control) (Registered Land) Regulations 2026</strong><span>Made 8 June 2026, in force 6 April 2027. Regulation 3 defines the rights; the schedule lists the information.</span></a>
+      <a href="https://www.legislation.gov.uk/ukpga/2023/55/section/221/2023-12-26"><span class="k">Primary legislation</span><strong>Levelling-up and Regeneration Act 2023, Part 11, sections 221 to 225</strong><span>The powers to require and publish contractual control information, and the section 225 offence.</span></a>
+      <a href="https://www.gov.uk/government/publications/contractual-control-agreements/contractual-control-agreements"><span class="k">MHCLG guidance</span><strong>Contractual control agreements: guidance for developers, landowners and conveyancers</strong><span>Non-statutory. Who must comply, what to provide, when, and how the data is published. Published 9 March 2026.</span></a>
+      <a href="https://www.gov.uk/guidance/hm-land-registry-new-reporting-rules-for-contractual-control-rights"><span class="k">HM Land Registry</span><strong>New reporting rules for contractual control rights</strong><span>HMLR’s own note for conveyancers: timetable, the digital service, spatial data formats, the practice guide to come.</span></a>
+      <a href="https://hmlandregistry.blog.gov.uk/2026/09/17/help-shape-our-new-contractual-control-service/"><span class="k">HMLR blog · Sept 2026</span><strong>Help shape our new contractual control service</strong><span>What user research has changed in the submission service, and how to take part.</span></a>
+      <a href="https://www.gov.uk/government/consultations/contractual-controls-on-land-consultation/outcome/contractual-controls-on-land-consultation-government-response"><span class="k">Consultation response</span><strong>Contractual controls on land: government response</strong><span>Why overage and unregistered land were left out, and what respondents said about confidentiality.</span></a>
+      <a href="https://assets.publishing.service.gov.uk/media/65b1289ff2718c000dfb1c95/Contractual_controls_consultation_stage_impact_assessment.pdf"><span class="k">Impact assessment · PDF</span><strong>Contractual controls consultation stage impact assessment</strong><span>The government’s own estimate of agreement volumes, costs to firms and HMLR, and the options it rejected.</span></a>
+      <a href="https://assets.publishing.service.gov.uk/media/65b128a8f2718c000dfb1c96/Land_Transparency_SI.pdf"><span class="k">Draft SI · PDF</span><strong>Land Transparency SI, consultation draft (Jan 2024)</strong><span>The earlier draft. Useful for seeing what changed before the regulations were made.</span></a>
+      <a href="https://api.parliament.uk/procedure/WorkPackages/7716"><span class="k">Parliament</span><strong>Procedural record: laying and approval of the Regulations</strong><span>Dates laid, committee consideration, and approval in both Houses.</span></a>
+    </div>
+    <div class="head" style="margin-top:clamp(2rem,4vw,3.5rem)">
+      <p class="eyebrow">Commentary</p>
+      <h2>What the law firms are telling their clients.</h2>
+    </div>
+    <div class="docs rv firms">
+      <a href="https://www.brownejacobson.com/insights/new-transparency-rules-for-contractual-control-rights-over-registered-land-guide-for-developers"><span class="k">Browne Jacobson</span><strong>Guide for developers</strong><span>Confidentiality carve-outs, who owns each disclosure event, budgeting conveyancer costs.</span></a>
+      <a href="https://www.macfarlanes.com/insights/102n0v7/transparency-of-land-control-contractual-control-agreements/"><span class="k">Macfarlanes</span><strong>Transparency of land control</strong><span>Trigger events, retrospectivity, and the registers firms should set up now.</span></a>
+      <a href="https://www.jonesday.com/en/insights/2026/07/uk-issues-the-provision-of-information-contractual-control-registered-land-regulations-2026"><span class="k">Jones Day</span><strong>UK issues the Regulations</strong><span>Cross-border view for funds and institutional investors.</span></a>
+      <a href="https://www.cripps.co.uk/thinking/strategic-land-under-the-spotlight-the-new-contractual-control-regulations/"><span class="k">Cripps</span><strong>Strategic land under the spotlight</strong><span>Promotion agreements and hybrid structures.</span></a>
+      <a href="https://www.mishcon.com/news/contractual-control-register-coming-into-force"><span class="k">Mishcon de Reya</span><strong>Contractual control register coming into force</strong><span>Practical steps and the market impact on site assembly.</span></a>
+      <a href="https://www.traverssmith.com/knowledge/knowledge-container/transparency-in-the-real-estate-sector-registering-contractual-controls/"><span class="k">Travers Smith</span><strong>Registering contractual controls</strong><span>Legal briefing on the LURA powers and what they capture.</span></a>
+      <a href="https://www.burnetts.co.uk/legal-news/new-hm-land-registry-reporting-requirements-for-developers-and-landowners/"><span class="k">Burnetts · Carlisle</span><strong>New HMLR reporting requirements</strong><span>The Cumbrian view, for developers and landowners in the North West.</span></a>
+      <a href="https://www.lexisnexis.co.uk/legal/news/hm-land-registry-publishes-guidance-on-new-reporting-rules-for-contractual-control-rights"><span class="k">LexisNexis</span><strong>HMLR publishes guidance</strong><span>News note on the spatial-data requirement and identity details.</span></a>
+    </div>
+    <p class="small" style="grid-column:1/-1;margin-top:.5rem">External links open the publisher’s site. Commentary is the authors’ own and may predate the final Regulations.</p>
+  </div>
+</section>
+
+<section class="wrap band mapband" id="dataset">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">The 2028 dataset</p>
+      <h2>What the public will see.</h2>
+      <p class="lede">Today a developer can hold an option over a field for years while the title shows only the farmer. From April 2028 the register shows the grantee, the right and how long it runs. Neighbours, rivals and planning authorities will all be reading it.</p>
+    </div>
+    <div class="reveal rv" aria-label="Before and after the register">
+      <div class="doc before">
+        <p class="dh"><span>Title register extract</span><span>Today</span></p>
+        <div class="dr"><span>Title number</span><span>CU 412 887</span></div>
+        <div class="dr"><span>Tenure</span><span>Freehold</span></div>
+        <div class="dr"><span>Proprietor</span><span>XYZ Farms Limited</span></div>
+        <div class="dr"><span>Address</span><span>Land west of Burgh Road, Carlisle</span></div>
+        <div class="dr"><span>Charges</span><span>Unilateral notice (UN1) in favour of a party</span></div>
+        <p class="dn">A unilateral notice tells you <em>something</em> exists. Not who, not what, not for how long.</p>
+      </div>
+      <div class="arrow" aria-hidden="true"><span></span></div>
+      <div class="doc after">
+        <p class="dh"><span>Contractual control dataset</span><span>From Apr 2028</span></p>
+        <div class="dr"><span>Where</span><span>CU 412 887, part · 11.5 ha polygon (BNG)</span></div>
+        <div class="dr"><span>Who</span><span>Barratt Developments PLC · 00604574</span></div>
+        <div class="dr"><span>What</span><span>Option agreement</span></div>
+        <div class="dr"><span>How long</span><span>7 years + 2-year extension</span></div>
+        <div class="dr"><span>When</span><span>Granted 17 Jul 2027</span></div>
+        <div class="dr"><span>Changes</span><span>Assignments, variations, exercise</span></div>
+        <p class="dn">Published monthly, free, structured, searchable by location.</p>
+      </div>
+    </div>
+    <p class="small" style="grid-column:1/-1;margin-top:.5rem">Illustrative extract. Title number, parties and terms are examples.</p>
+  </div>
+</section>
+
+<section class="wrap band" id="who">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">Who this lands on</p>
+      <h2>Four groups, four different problems.</h2>
+    </div>
+    <div class="aud rv">
+      <a class="cardlink" href="/professionals/housebuilders/"><span class="who">Grantees</span><h3>Housebuilders and promoters</h3><p>You hold the duty. Every option book becomes a compliance register with 60-day clocks on each grant, assignment and variation. HMLR can refuse to enter a notice or restriction protecting a right that hasn't been reported.</p><p class="need">Needs: a register with clocks.</p><p class="go">Read the housebuilder guide →</p></a>
+      <a class="cardlink" href="/professionals/landowners/"><span class="who">Grantors</span><h3>Landowners</h3><p>You'll see what rights developers hold over your neighbours' land, and they'll see yours. Expect firmer negotiation on ransom strips, access and strategic parcels.</p><p class="need">Needs: the map.</p><p class="go">Read the landowner guide →</p></a>
+      <a class="cardlink" href="/professionals/conveyancers/"><span class="who">Submitters</span><h3>Conveyancers</h3><p>Only an individually regulated conveyancer can submit. Firms need a process for identifying in-scope grants since 8 June 2026 and feeding the HMLR digital service from April 2027.</p><p class="need">Needs: a clean intake.</p><p class="go">Read the conveyancer guide →</p></a>
+      <a class="cardlink" href="/professionals/lenders/"><span class="who">Readers</span><h3>Land buyers and analysts</h3><p>From 2028 there is a monthly, national, structured feed of who controls development land. Competitor land banks, expiring options and site assembly all become visible.</p><p class="need">Needs: the signal, not the feed.</p><p class="go">Read the analyst guide →</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap band why" id="why">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">Why teams keep paying</p>
+      <h2>Not a map of HMLR data. A reason to open it every week.</h2>
+      <p class="lede">The raw dataset will be free and every PropTech platform will plot it. LandControl is built around the four things that change what a land team does on Monday morning.</p>
+    </div>
+    <div class="pillars">
+      <div><span class="n">01</span><h3>Alerts</h3><p>New option in your patch. Assignment to a rival. Variation extending a control period. Right expiring in 24 months with no planning submitted. Each one lands in your inbox the week HMLR publishes it, filtered to the regions and developers you care about.</p><p class="ex">“Barratt took control of 42 acres east of Carlisle. Allocated residential. No application yet.”</p></div>
+      <div><span class="n">02</span><h3>Opportunity discovery</h3><p>Sites where control is about to lapse, allocated land nobody has optioned, landowners whose neighbour just signed with a promoter. Scored and ranked, so the first call of the week is the right one.</p><p class="ex">“14 allocated sites, 5 to 30 acres, within 25 miles, control expiring before 2030, no planning.”</p></div>
+      <div><span class="n">03</span><h3>Competitor intelligence</h3><p>Pick the housebuilders and promoters you compete with. See their controlled acreage by region, what they added this month, what they let go, and what they are quietly assembling. Grantees resolved to parent groups, so SPVs don’t hide anything.</p><p class="ex">“Persimmon up 210 acres in the North West this quarter. Vistry flat. Three new promoters in Lancashire.”</p></div>
+      <div><span class="n">04</span><h3>AI search</h3><p>Ask the question the way a land director would ask it, and get sites, not a filter panel. Every answer cites the HMLR record, the title and the planning history it came from.</p><p class="ex">“Which developers are increasing controlled acreage fastest in Cumbria, and where?”</p></div>
+    </div>
+    <div class="hooks">
+      <div><p class="eyebrow">For land teams and promoters</p><p class="h">LandControl finds the land opportunities your competitors haven’t found yet.</p></div>
+      <div><p class="eyebrow">For corporate buyers, lenders and analysts</p><p class="h">Know where developers are moving before the planning application appears.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap band" id="products">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">Product roadmap</p>
+      <h2>What ships, and when.</h2>
+      <p class="lede">Register first, because the duty arrives in 2027. Then the intelligence layer on the first monthly release in 2028, with history compounding from day one.</p>
+    </div>
+    <div class="site rv" aria-label="Example site record">
+      <p class="t"><span>Edge of Carlisle</span><small>Example record</small></p>
+      <div class="r"><span class="k">Registered owner</span><span>XYZ Farms Ltd</span></div>
+      <div class="r"><span class="k">Controlled by</span><span>Barratt Developments PLC</span></div>
+      <div class="r"><span class="k">Right</span><span>Option agreement</span></div>
+      <div class="r"><span class="k">Granted</span><span>17 Jul 2027</span></div>
+      <div class="r"><span class="k">Control period</span><span>7 years, to Jul 2034</span></div>
+      <div class="r"><span class="k">Area</span><span>28.4 acres · 11.5 ha</span></div>
+      <div class="r"><span class="k">Local plan</span><span>Allocated residential</span></div>
+      <div class="r"><span class="k">Planning apps, 1 mile</span><span>14 (3 live)</span></div>
+      <div class="r"><span class="k">Est. capacity</span><span>~310 units</span></div>
+      <div class="r"><span class="k">Momentum</span><span class="score"><i></i><span>82 / 100</span></span></div>
+      <span class="alert"><b>Alert ·</b> Taylor Wimpey took control of 35 acres 2.1 miles east last month.</span>
+      <p class="small" style="color:inherit;opacity:.55;margin-top:.6rem">Illustrative. Figures are examples, not a real record.</p>
+    </div>
+    <div class="mods rv">
+      <div><span class="when">2027</span><h3>Control register for land teams</h3><p>Every option, conditional contract and promotion right in your book, with its 60-day clocks, filing status and conveyancer. Built for the grantee, who carries the duty.</p></div>
+      <div><span class="when">2028</span><h3>Control map</h3><p>HMLR's monthly dataset on a map of England and Wales, matched to title polygons, local plan allocations, constraints, planning history and Companies House.</p></div>
+      <div><span class="when">2028</span><h3>Competitor watch</h3><p>Pick the housebuilders and promoters you care about. Every Monday: new rights, assignments, variations and exercises in your regions, with site capacity and planning status.</p></div>
+      <div><span class="when">2028</span><h3>Expiry intelligence</h3><p>Rights approaching the end of their control period, with no planning submitted. Alerts 24, 18 and 12 months out so you can approach the landowner first.</p></div>
+      <div><span class="when">2028</span><h3>Developer land banks</h3><p>Grantees resolved to parent groups so controlled acreage rolls up: Barratt Redrow vs Persimmon vs Vistry by region and quarter. For analysts, lenders and funds.</p></div>
+      <div><span class="when">2029</span><h3>API and plain-English queries</h3><p>Send a title number, get back ownership, controls, planning, constraints, expiry and a risk score. Or just ask: allocated sites of 5 to 30 acres where control lapses within three years.</p></div>
+    </div>
+
+    <div class="pricing">
+      <div class="grid">
+        <div class="head">
+          <p class="eyebrow">Indicative pricing</p>
+          <h2>Priced for people who deal in land, not clicks.</h2>
+          <p class="lede">Bands we're planning against, not a published tariff. Ex VAT. Enterprise and API agreements are negotiated.</p>
+        </div>
+        <div class="tiers rv">
+          <div class="tier">
+            <p class="n">Register</p>
+            <p class="p">£99<small>per agreement, or monthly by volume</small></p>
+            <p class="for">In-house land and legal teams managing the 2027 duty.</p>
+            <ul><li>Every right, every clock</li><li>60/45/30-day alerts</li><li>Filing status and conveyancer</li><li>Export for HMLR submission</li></ul>
+            <a class="buy" data-plan="reg" href="#briefing">Start founding access</a><p class="note">Founding price £99/mo · cancel anytime</p>
+          </div>
+          <div class="tier">
+            <p class="n">Solo</p>
+            <p class="p">£149<small>to £199 per month, one seat</small></p>
+            <p class="for">Land agents and sole promoters working a patch.</p>
+            <ul><li>Control map, England &amp; Wales</li><li>Search by grantee, area, right</li><li>Saved sites and notes</li><li>Monthly dataset refresh</li></ul>
+            <a class="buy" data-plan="solo" href="#briefing">Register interest</a><p class="note">Opens on the first HMLR release, April 2028</p>
+          </div>
+          <div class="tier feat">
+            <p class="n">Professional <span class="pill">Most teams</span></p>
+            <p class="p">£399<small>to £599 per month, up to 3 seats</small></p>
+            <p class="for">Regional developers and promoters who need to move first.</p>
+            <ul><li>Everything in Solo</li><li>Competitor watch, one region</li><li>Expiry alerts 24/18/12 months</li><li>Weekly activity digest</li></ul>
+            <a class="buy" data-plan="pro" href="#briefing">Register interest</a><p class="note">Opens on the first HMLR release, April 2028</p>
+          </div>
+          <div class="tier">
+            <p class="n">Developer team</p>
+            <p class="p">£1,000<small>to £2,000 per month, 10 seats</small></p>
+            <p class="for">National housebuilders and strategic land teams.</p>
+            <ul><li>Everything in Professional</li><li>National competitor watch</li><li>Land-bank roll-ups by group</li><li>Exports and reporting</li></ul>
+            <a class="buy" data-plan="team" href="#briefing">Register interest</a><p class="note">Opens on the first HMLR release, April 2028</p>
+          </div>
+        </div>
+        <div class="ent rv">
+          <div><p class="n">Enterprise and API</p><p class="d">Data feeds and integrations for lenders, funds, valuers and PropTech. Title number in, ownership, controls, planning, expiry and risk score out.</p></div>
+          <p class="p">£25k–150k<small>per year, negotiated</small></p>
+          <a class="buy ent-btn" href="#briefing" data-plan="enterprise">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap band signup" id="briefing">
+  <div class="grid">
+    <div class="t">
+      <p class="eyebrow">Contractual Control Alert</p>
+      <h2>HMLR guidance changes, deadline updates and regulatory developments, as they happen.</h2>
+      <p style="margin-top:1rem;max-width:52ch;color:rgba(255,255,255,.75)">HMLR technical guidance as it lands, the practice guide when it's published, and first access to the register for in-house land teams before the 6 October 2027 backlog deadline.</p>
+      <form id="signup">
+        <label for="email" style="position:absolute;left:-9999px">Work email</label>
+        <input type="email" id="email" placeholder="you@firm.co.uk" required>
+        <select id="role" aria-label="Your role" required><option value="">I am a…</option><option>Developer / housebuilder</option><option>Land promoter</option><option>Conveyancer / solicitor</option><option>Surveyor</option><option>Landowner</option><option>Lender / analyst / investor</option><option>Other</option></select>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="msg" id="msg" hidden>Subscribed. You’ll hear from us the next time HMLR moves.</p>
+    </div>
+    <div class="side">
+      <div><span>Next issue</span><b>1 Nov 2026</b></div>
+      <div><span>Frequency</span><b>Monthly, plus HMLR alerts</b></div>
+      <div><span>Cost</span><b>Free</b></div>
+      <div><span>Unsubscribe</span><b>One click</b></div>
+    </div>
+  </div>
+</section>
+<script is:inline>
+(function(){
+  var MADE=new Date(2026,5,8), FORCE=new Date(2027,3,6), TRANS=new Date(2027,9,6), PUB=new Date(2028,3,6);
+  var today=new Date(); today.setHours(0,0,0,0);
+  function fmt(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+  function addDays(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x;}
+  function daysUntil(d){return Math.round((d-today)/86400000);}
+
+  /* countdown */
+  var cd=document.getElementById('cd'), left=daysUntil(FORCE);
+  cd.textContent=left>0?left:'0';
+  if(left<=0){cd.nextElementSibling.textContent='the duty is in force';}
+
+
+  /* motion: count-up and scroll reveal */
+  var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!rm){
+    var target=left>0?left:0, t0=null;
+    function tick(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-p,3);cd.textContent=Math.round(target*e);if(p<1)requestAnimationFrame(tick);}
+    requestAnimationFrame(tick);
+    if('IntersectionObserver' in window){
+      var els=document.querySelectorAll('.rv');
+      els.forEach(function(el){ if(el.getBoundingClientRect().top>window.innerHeight*0.9){el.classList.add('pre');} });
+      var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.remove('pre');x.target.classList.add('in');io.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px'});
+      els.forEach(function(el){io.observe(el);});
+      var stats=document.querySelectorAll('.stats .big');
+      var so=new IntersectionObserver(function(en){en.forEach(function(x){if(!x.isIntersecting)return;var el=x.target,txt=el.textContent,n=parseInt(txt,10),suf=txt.replace(/^\d+/,'');var s0=null;(function run(ts){if(!s0)s0=ts;var p=Math.min(1,(ts-s0)/1100);el.textContent=Math.round(n*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(run);})(performance.now());so.unobserve(el);});},{threshold:.5});
+      stats.forEach(function(el){so.observe(el);});
+    }
+  }
+
+  /* timeline progress: four equal columns, today interpolated inside its span */
+  var marks=[MADE,FORCE,TRANS,PUB], pct=0;
+  for(var i=0;i<3;i++){ if(today>=marks[i]&&today<marks[i+1]){ pct=(i+(today-marks[i])/(marks[i+1]-marks[i]))/4*100; } }
+  if(today>=PUB) pct=100;
+  if(today<MADE) pct=0;
+  var prog=document.getElementById('prog');
+  requestAnimationFrame(function(){setTimeout(function(){prog.style.width=pct.toFixed(2)+'%';},200);});
+
+  /* calculator */
+  var ev=document.getElementById('event'), dt=document.getElementById('date'), pre=document.getElementById('pre');
+  var rl=document.getElementById('r-label'), rd=document.getElementById('r-date'), rw=document.getElementById('r-why'), rr=document.getElementById('r-rule'), rb=document.getElementById('r-bar');
+  function calc(){
+    var v=dt.value; if(!v){return;}
+    var p=v.split('-'); var d=new Date(+p[0],+p[1]-1,+p[2]);
+    var e=ev.value, older=pre.value==='yes';
+    var out, bar=0;
+    if(e==='grant' && d<MADE){
+      out={cls:'ok',label:'No duty on grant',date:'Not reportable',why:'The right was granted before the regulations were made on 8 June 2026, so the grant itself is outside the regime. A later assignment, written variation or exercise on or after 6 April 2027 would be reportable within 60 days of that event.',rule:'Transitional provisions · pre-8 Jun 2026 grants'};
+    } else if(e!=='grant' && d<FORCE){
+      out={cls:'ok',label:'Not a trigger',date:'Not reportable',why:'Assignments, variations and exercises only become reportable events on or after 6 April 2027. '+(older?'An older agreement is caught only by an event on or after that date.':'Check whether the original grant (8 June 2026 onward) needs reporting by 6 October 2027.'),rule:'Trigger events run from 6 Apr 2027'};
+    } else if(e==='grant' && d<FORCE){
+      var w=daysUntil(TRANS);
+      out={cls:'red',label:'Submit to HMLR by',date:fmt(TRANS),why:'Granted during the transitional window (8 June 2026 to 5 April 2027). The HMLR digital service opens on 6 April 2027 and every transitional right must be submitted within six months of launch.',rule:'Transitional deadline · 6 Oct 2027 · '+(w>=0?w+' days from today':'deadline passed')};
+      bar=Math.max(0,Math.min(100,(today-d)/(TRANS-d)*100));
+    } else {
+      var dl=addDays(d,60), left=daysUntil(dl);
+      out={cls:'red',label:'Submit to HMLR by',date:fmt(dl),why:'The event falls after the regulations came into force, so the full regime applies: 60 calendar days from the date of the '+({grant:'grant',assign:'assignment',vary:'variation',exercise:'exercise'})[e]+'. Submission must be made digitally by an individually regulated conveyancer.',rule:'60 calendar days · '+fmt(d)+' + 60 · '+(left>=0?left+' days from today':'deadline passed')};
+      bar=Math.max(0,Math.min(100,(today-d)/(dl-d)*100));
+    }
+    rl.textContent=out.label; rd.textContent=out.date; rd.className='big '+out.cls; rw.textContent=out.why; rr.textContent=out.rule;
+    rb.style.width=bar.toFixed(1)+'%';
+  }
+  ev.addEventListener('change',calc); dt.addEventListener('change',calc); dt.addEventListener('input',calc); pre.addEventListener('change',calc);
+  calc();
+
+  /* Stripe Payment Links: paste the live URLs here; empty = fall back to the briefing form */
+  var LINKS={reg:'',solo:'',pro:'',team:'',enterprise:'mailto:contact@landcontrol.co.uk?subject=LandControl%20Enterprise'};
+  document.querySelectorAll('a.buy').forEach(function(a){var k=a.getAttribute('data-plan');if(LINKS[k]){a.setAttribute('href',LINKS[k]);if(LINKS[k].indexOf('http')===0){a.setAttribute('target','_blank');a.setAttribute('rel','noopener');}}});
+  var f=document.getElementById('signup');
+  f.addEventListener('submit',function(x){x.preventDefault();document.getElementById('msg').hidden=false;f.querySelector('button').textContent='Joined';});
+})();
+</script>
+</Base>

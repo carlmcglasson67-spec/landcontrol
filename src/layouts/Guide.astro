@@ -1,0 +1,41 @@
+---
+import Base from './Base.astro';
+import Trust from '../components/Trust.astro';
+interface Props { title: string; description: string; section: string; sectionHref: string; eyebrow?: string; h1: string; lede: string; facts?: [string,string][]; sources?: [string,string][]; updated: string; related?: {href:string;label:string;who?:string}[]; }
+const { title, description, section, sectionHref, eyebrow, h1, lede, facts = [], sources = [], updated, related = [] } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+const crumbs = [{name:'LandControl',item:'https://landcontrol.co.uk/'},{name:section,item:new URL(sectionHref,Astro.site).toString()},{name:h1,item:url}];
+const breadcrumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":crumbs.map((c,i)=>({"@type":"ListItem",position:i+1,name:c.name,item:c.item}))};
+const article = {"@context":"https://schema.org","@type":"Article",headline:title,description,url,dateModified:updated,inLanguage:"en-GB",author:{"@type":"Organization",name:"LandControl Research",url:"https://landcontrol.co.uk/"},publisher:{"@type":"Organization",name:"LandControl",url:"https://landcontrol.co.uk/"},about:"Contractual control agreements, HM Land Registry, England and Wales"};
+---
+<Base title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(article)}></script>
+  </Fragment>
+  <header class="wrap hero">
+    <div class="grid">
+      <p class="crumb"><a href="/">LandControl</a><span>/</span><a href={sectionHref}>{section}</a><span>/</span><span style="color:var(--red)">{eyebrow ?? section}</span></p>
+      <h1 set:html={h1}></h1>
+      <p class="lede">{lede}</p>
+      {facts.length > 0 && <div class="facts">{facts.map(([a,b]) => <div><span class="num">{a}</span><span>{b}</span></div>)}</div>}
+    </div>
+  </header>
+  <section class="wrap band">
+    <div class="grid">
+      <Trust updated={updated} sources={sources} />
+      <div class="body"><slot /></div>
+      <div class="rail">
+        <slot name="rail" />
+        {sources.length > 0 && <div class="card"><p class="eyebrow">Primary sources</p><ul class="srcs">{sources.map(([t,h]) => <li><a href={h} rel="noopener">{t}</a></li>)}</ul></div>}
+        <div class="card black"><p class="eyebrow">Contractual Control Alert</p><h4>HMLR guidance changes, deadline updates and regulatory developments, as they happen.</h4><a class="btn" href="/#briefing">Subscribe</a></div>
+      </div>
+    </div>
+  </section>
+  {related.length > 0 && <section class="wrap band"><div class="grid"><div class="head"><p class="eyebrow">Related</p><h2>Keep reading.</h2></div><div class="others">{related.map(r => <a href={r.href}>{r.who && <span class="who">{r.who}</span>}<strong>{r.label}</strong><span class="go">Read →</span></a>)}</div></div></section>}
+</Base>
+<style>
+.srcs{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.5rem;font-size:.88rem}
+.srcs a{color:var(--ink);text-decoration-color:var(--rule)}
+.srcs a:hover{color:var(--red)}
+</style>

@@ -1,0 +1,20 @@
+---
+interface Props { updated: string; sources?: [string,string][]; }
+const { updated, sources = [] } = Astro.props;
+const d = new Date(updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<aside class="trust" aria-label="Editorial information">
+  <div><span class="k">Written by</span><span>LandControl Research</span></div>
+  <div><span class="k">Legal review</span><span>External regulated-conveyancer review pending. Not legal advice.</span></div>
+  <div><span class="k">Last reviewed</span><span><time datetime={updated}>{d}</time></span></div>
+  <div><span class="k">Primary sources</span><span>HM Land Registry · MHCLG · legislation.gov.uk{sources.length ? ' · see list below' : ''}</span></div>
+  <div class="status"><span class="k">Regulatory status</span><span>Regulations made 8 Jun 2026 · In force 6 Apr 2027 · HMLR guidance updated 30 Sep 2026 · Practice guide pending</span></div>
+</aside>
+<style>
+.trust{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);font-size:.85rem;margin-bottom:2rem}
+.trust>div{background:var(--card);padding:.9rem 1rem;display:grid;gap:.2rem}
+.trust .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.trust .status{grid-column:1/-1;background:var(--panel)}
+@media(max-width:800px){.trust{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.trust{grid-template-columns:1fr}}
+</style>

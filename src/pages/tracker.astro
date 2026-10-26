@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import Trust from '../components/Trust.astro';
+const updated = '2026-10-26';
+const items = [
+  { s:'done', d:'26 Oct 2023', t:'Levelling-up and Regeneration Act 2023 receives Royal Assent', n:'Part 11 (sections 221–225) creates the power to require and publish contractual control information.', l:'https://www.legislation.gov.uk/ukpga/2023/55/section/221/2023-12-26' },
+  { s:'done', d:'24 Jan – 20 Mar 2024', t:'MHCLG consultation on contractual controls', n:'Consultation on scope, timing and the public dataset. Overage and unregistered land later excluded.', l:'https://www.gov.uk/government/consultations/contractual-controls-on-land-consultation' },
+  { s:'done', d:'9 Mar 2026', t:'Draft Regulations laid before Parliament; MHCLG guidance published', n:'The Provision of Information (Contractual Control) (Registered Land) Regulations 2026 and the non-statutory guidance.', l:'https://www.gov.uk/government/publications/contractual-control-agreements' },
+  { s:'done', d:'8 Jun 2026', t:'Regulations made (SI 2026/615)', n:'Retrospective reach begins: rights granted from this date are reportable once the service opens.', l:'https://www.legislation.gov.uk/uksi/2026/615' },
+  { s:'done', d:'17 Sep 2026', t:'HMLR opens user research on the submission service', n:'HMLR invites conveyancers to shape the digital service; workflow already simplified in response to feedback.', l:'https://hmlandregistry.blog.gov.uk/2026/09/17/help-shape-our-new-contractual-control-service/' },
+  { s:'done', d:'30 Sep 2026', t:'HMLR guidance: new reporting rules for contractual control rights', n:'Confirms the regulated-conveyancer rule, 60-day clocks, and GeoJSON/Shapefile on British National Grid for part-title rights.', l:'https://www.gov.uk/guidance/hm-land-registry-new-reporting-rules-for-contractual-control-rights' },
+  { s:'wait', d:'Expected before Apr 2027', t:'HMLR Practice Guide', n:'The operational guide for conveyancers: submission steps, evidence, mapping tool. Promised, not yet published.', l:'' },
+  { s:'wait', d:'Expected before Apr 2027', t:'Technical specification for the digital service', n:'File formats, validation rules, and whether an API or Business Gateway route exists for high-volume submitters.', l:'' },
+  { s:'due', d:'6 Apr 2027', t:'Regulations in force; HMLR digital service launches', n:'60-day reporting begins for grants, assignments, variations, exercise and expiry.', l:'' },
+  { s:'due', d:'6 Oct 2027', t:'Transitional deadline', n:'Every in-scope right granted between 8 June 2026 and 5 April 2027 must be submitted.', l:'' },
+  { s:'due', d:'After 6 Apr 2028', t:'First public dataset published', n:'Then at least monthly. Location, grantee, type, duration, dates.', l:'' },
+];
+const schema = {"@context":"https://schema.org","@type":"WebPage",name:"Contractual Control Regulations: Live Implementation Tracker",url:"https://landcontrol.co.uk/tracker/",dateModified:updated,publisher:{"@type":"Organization",name:"LandControl"}};
+---
+<Base title="Contractual Control Regulations: Live Implementation Tracker · LandControl" description="One page tracking every milestone of the HMLR contractual control regime: what is made, what is published, what is still pending, and the dates that bind. Updated whenever government changes something.">
+  <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(schema)}></script></Fragment>
+  <header class="wrap hero"><div class="grid">
+    <p class="crumb"><a href="/">LandControl</a><span>/</span><span style="color:var(--red)">Tracker</span></p>
+    <h1>Contractual Control Regulations: live implementation <em>tracker.</em></h1>
+    <p class="lede">Every milestone in the regime, with its status and primary source. We update this page whenever HM Land Registry or MHCLG publish, change or delay anything. Link to it; it won’t move.</p>
+    <div class="facts"><div><span class="num">6</span><span>milestones complete</span></div><div><span class="num">2</span><span>documents pending from HMLR</span></div><div><span class="num">3</span><span>statutory dates ahead</span></div></div>
+  </div></header>
+  <section class="wrap band"><div class="grid">
+    <Trust updated={updated} />
+    <ol class="track">
+      {items.map(i => <li class={i.s}><span class="st">{i.s==='done'?'Done':i.s==='wait'?'Pending':'Statutory date'}</span><span class="dt num">{i.d}</span><div><strong>{i.t}</strong><p>{i.n}</p>{i.l && <a href={i.l} rel="noopener">Source →</a>}</div></li>)}
+    </ol>
+    <p class="small" style="grid-column:1/-1;margin-top:1rem">Changes to this page are logged. Suggest a correction: contact@landcontrol.co.uk.</p>
+  </div></section>
+</Base>
+<style>
+.track{grid-column:1/-1;list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.track li{background:var(--card);display:grid;grid-template-columns:8rem 11rem 1fr;gap:1.25rem;padding:1.25rem 1.5rem;align-items:start;transition:background .3s}
+.track li:hover{background:var(--panel)}
+.track .st{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .5rem;justify-self:start;border:1px solid var(--rule)}
+.track .done .st{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.track .wait .st{color:var(--red);border-color:var(--red)}
+.track .due .st{background:var(--red);color:#fff;border-color:var(--red)}
+.track .dt{font-size:.9rem;font-weight:500;padding-top:.25rem}
+.track strong{font-family:var(--display);font-size:1.1rem;letter-spacing:-.01em;display:block;margin-bottom:.3rem}
+.track p{font-size:.92rem;color:var(--ink-2)}
+.track a{font-family:var(--mono);font-size:.78rem;color:var(--red);text-decoration:none;display:inline-block;margin-top:.4rem}
+@media(max-width:800px){.track li{grid-template-columns:1fr;gap:.4rem}}
+</style>

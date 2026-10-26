@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Land buyers and analysts · LandControl" description="From April 2028 HM Land Registry publishes the contractual control dataset free, in a structured searchable form, at least monthly. Ownership was always vi">
+<header class="wrap hero photo mapph">
+  <div class="ph" aria-hidden="true"></div>
+  <div class="grid">
+    <p class="crumb"><a href="/">LandControl</a><span>/</span><a href="/professionals/">Professionals</a><span>/</span><span style="color:var(--red)">Readers</span></p>
+    <h1>A monthly, national feed of who controls development land. Here is what to do with it.</h1>
+    <p class="lede">From April 2028 HM Land Registry publishes the contractual control dataset free, in a structured searchable form, at least monthly. Ownership was always visible. Control was not. That is the gap this data closes, and the gap existing land platforms have never been able to fill.</p>
+    <div class="facts"><div><span class="num">First release</span><span>After 6 Apr 2028</span></div><div><span class="num">Cadence</span><span>Monthly minimum</span></div><div><span class="num">Cost</span><span>Free</span></div><div><span class="num">Coverage</span><span>Registered land, E&amp;W</span></div><div><span class="num">Not included</span><span>Price, unregistered land</span></div></div>
+  </div>
+</header>
+<section class="wrap band">
+  <div class="grid">
+    <div class="head"><p class="eyebrow">What to do now</p><h2>Four moves, in order.</h2></div>
+    <div class="steps"><div><p class="n">01</p><h4>Map the control layer</h4><p>Join the dataset to title polygons, local plan allocations, constraints and planning history. A field under option, allocated residential, with no application yet, is a story.</p></div><div><p class="n">02</p><h4>Resolve the grantee</h4><p>Grantees are companies, often SPVs. Match company numbers through Companies House to parent groups so Barratt, Persimmon and Vistry roll up as land banks, not as 300 subsidiaries.</p></div><div><p class="n">03</p><h4>Watch the events</h4><p>Assignments, variations and exercises are reported as they happen. A variation extending a control period, or an assignment to a new promoter, is signal.</p></div><div><p class="n">04</p><h4>Track the expiries</h4><p>Every record carries a duration. Rights ending with no planning submitted are the sites a competing promoter should be looking at two years out.</p></div></div>
+  </div>
+</section>
+<section class="wrap band">
+  <div class="grid">
+    <div class="body"><h3>What the dataset contains</h3>
+<p>Location and extent of the land affected, the identity of the grantee, the type and duration of the right, and the date it was granted or exercised, plus subsequent assignments, variations and exercise events. HMLR has designed the submission service to capture machine-readable geometry for part-title rights specifically so the dataset can be searched geographically.</p>
+<h3>What it does not contain</h3>
+<p>Consideration. No option fees, purchase formulas or promotion splits. No unregistered land. No overage or clawback. No agreements that predate 8 June 2026 unless later varied, assigned or exercised. Read it as a map of control, not a market of prices.</p>
+<h3>Why the raw feed is not the product</h3>
+<p>Searchland, LandTech and Nimbus will add a contractual-controls layer within weeks of the first release; the data is free and they already have the mapping. The value sits in what is derived: resolved corporate groups, expiry pipelines, momentum scores, week-on-week activity by developer and region, and a history that starts in April 2028 and compounds. A platform that ingests from month one and never misses a drop holds something a late entrant cannot rebuild.</p>
+<h3>Who pays for the derived view</h3>
+<ul>
+<li>Strategic land teams: competitor activity in their regions, every Monday.</li>
+<li>Promoters and agents: rights expiring within 24 months with no planning progress.</li>
+<li>Equity analysts, lenders and funds: controlled acreage by group, quarter on quarter, as a leading indicator of housebuilder pipelines.</li>
+<li>Valuers and PropTech: title number in, control status and risk out, by API.</li>
+</ul>
+<h3>Start before the data exists</h3>
+<p>The ingestion schema, the Companies House resolver and the planning-data joins can all be built against today’s public datasets. The only thing missing is the control layer, and it arrives on a known date.</p></div>
+    <div class="rail"><div class="card red"><p class="eyebrow">Our 2028 products</p><h4>Competitor watch, expiry intelligence, land banks</h4><p>Derived signals on top of the public feed, from the first monthly release.</p><a class="btn" href="/#products">See what we’re building</a></div><div class="card black"><p class="eyebrow">Pricing</p><h4>Professional from £399</h4><p>Competitor watch and expiry alerts for one region.</p><a class="btn" href="/#products">See pricing</a></div><div class="card"><p class="eyebrow">Checklist</p><ul class="check"><li><span>Title polygons and local plan allocations loaded</span></li><li><span>Companies House group resolver</span></li><li><span>Planning applications feed joined</span></li><li><span>Expiry pipeline logic</span></li><li><span>Alert routing by region and developer</span></li><li><span>Ingestion scheduled for the first release</span></li></ul></div></div>
+  </div>
+</section>
+<section class="wrap band">
+  <div class="grid">
+    <div class="head"><p class="eyebrow">The other three</p><h2>Same regulations, different seat.</h2></div>
+    <div class="others"><a href="/professionals/housebuilders/"><span class="who">Grantees</span><strong>Housebuilders and promoters</strong><span class="go">Read the guide →</span></a><a href="/professionals/landowners/"><span class="who">Grantors</span><strong>Landowners</strong><span class="go">Read the guide →</span></a><a href="/professionals/conveyancers/"><span class="who">Submitters</span><strong>Conveyancers</strong><span class="go">Read the guide →</span></a></div>
+  </div>
+</section>
+</Base>

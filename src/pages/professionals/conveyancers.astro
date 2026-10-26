@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Conveyancers · LandControl" description="Submissions go through HM Land Registry’s new digital service and must be made by an individually regulated conveyancer: a solicitor, licensed conveyancer ">
+<header class="wrap hero photo mapph">
+  <div class="ph" aria-hidden="true"></div>
+  <div class="grid">
+    <p class="crumb"><a href="/">LandControl</a><span>/</span><a href="/professionals/">Professionals</a><span>/</span><span style="color:var(--red)">Submitters</span></p>
+    <h1>Only you can press submit. Build the intake before April 2027.</h1>
+    <p class="lede">Submissions go through HM Land Registry’s new digital service and must be made by an individually regulated conveyancer: a solicitor, licensed conveyancer or legal executive personally authorised for land registration work. Not a supervised fee-earner, not the client.</p>
+    <div class="facts"><div><span class="num">Service opens</span><span>6 Apr 2027</span></div><div><span class="num">Who submits</span><span>Individually regulated</span></div><div><span class="num">Backlog due</span><span>6 Oct 2027</span></div><div><span class="num">Part-title plans</span><span>GeoJSON or Shapefile</span></div><div><span class="num">Practice guide</span><span>Pending</span></div></div>
+  </div>
+</header>
+<section class="wrap band">
+  <div class="grid">
+    <div class="head"><p class="eyebrow">What to do now</p><h2>Four moves, in order.</h2></div>
+    <div class="steps"><div><p class="n">01</p><h4>Identify affected clients</h4><p>Developers, promoters, strategic land funds. Every in-scope agreement completed since 8 June 2026 needs collating now, ready for the service opening.</p></div><div><p class="n">02</p><h4>Design the intake</h4><p>Agreement type, parties with company numbers, titles, dates, duration, extensions, exercise conditions, land affected. Capture it at completion, not six months later.</p></div><div><p class="n">03</p><h4>Sort the spatial data</h4><p>Where a right affects part of a title HMLR wants a machine-readable file on British National Grid. Get it from the surveyor at contract stage. Scanned PDFs are refused.</p></div><div><p class="n">04</p><h4>Confirm the regulated submitter</h4><p>Decide which named individuals will file, and how their authorisation is evidenced. HMLR has said unregulated staff cannot submit even under supervision.</p></div></div>
+  </div>
+</section>
+<section class="wrap band">
+  <div class="grid">
+    <div class="body"><h3>Why this departs from normal HMLR practice</h3>
+<p>Most Land Registry applications can be lodged by a wide cohort of staff inside a conveyancing firm. The contractual control service is restricted to individually regulated conveyancers acting in their own capacity. Firms that rely on paralegal-heavy registration teams need a different workflow for these submissions.</p>
+<h3>What HMLR has said about the service</h3>
+<p>HM Land Registry is developing the service with conveyancers and has run user research since mid-2026. Feedback about the number of steps led them to combine related contract details into a single workflow. HMLR will also provide online mapping tools so a conveyancer can identify affected land without uploading a spatial file where that is simpler. A further practice guide with technical detail is promised; it has not been published yet.</p>
+<h3>Data you will need per right</h3>
+<ul>
+<li>Type of right: option, conditional contract, pre-emption, or qualifying promotion right.</li>
+<li>Grantor and grantee, with company registration numbers where companies. Individuals may need date and place of birth for identification.</li>
+<li>Registered title numbers affected, and whether the whole or part.</li>
+<li>Date of grant, control period, extension provisions, and the conditions on which the right can be exercised.</li>
+<li>Spatial extent, as GeoJSON or Shapefile on British National Grid, where only part of a title is affected.</li>
+</ul>
+<h3>Deadlines you now own on the client’s behalf</h3>
+<p>Rights granted 8 June 2026 to 5 April 2027: submit by 6 October 2027. Rights granted, assigned, varied or exercised on or after 6 April 2027: 60 calendar days from the event. Build both into your matter management, because the consequence of missing one is HMLR refusing the notice or restriction that protects your client’s right.</p>
+<h3>Fee opportunity</h3>
+<p>Each reportable event is chargeable work. A firm with a clear intake, a named regulated submitter and a spatial-data process will win the developer clients who have 40 options to file by October 2027 and no idea where their plans are.</p></div>
+    <div class="rail"><div class="card red"><p class="eyebrow">Our 2027 product</p><h4>Clean intake, ready to file</h4><p>Clients maintain the register; you receive each right as a complete, structured pack with the spatial file attached.</p><a class="btn" href="/#products">See what we’re building</a></div><div class="card black"><p class="eyebrow">Tool</p><h4>Deadline calculator</h4><p>Check a transitional or 60-day deadline in seconds.</p><a class="btn" href="/#deadline">Open the calculator</a></div><div class="card"><p class="eyebrow">Checklist</p><ul class="check"><li><span>Named individually regulated submitters</span></li><li><span>Client list with in-scope agreements since 8 June 2026</span></li><li><span>Intake form capturing every required field</span></li><li><span>Surveyor process for GeoJSON or Shapefile</span></li><li><span>Matter diary entries for 6 Oct 2027 and 60-day events</span></li><li><span>Watch for the HMLR practice guide</span></li></ul></div></div>
+  </div>
+</section>
+<section class="wrap band">
+  <div class="grid">
+    <div class="head"><p class="eyebrow">The other three</p><h2>Same regulations, different seat.</h2></div>
+    <div class="others"><a href="/professionals/housebuilders/"><span class="who">Grantees</span><strong>Housebuilders and promoters</strong><span class="go">Read the guide →</span></a><a href="/professionals/landowners/"><span class="who">Grantors</span><strong>Landowners</strong><span class="go">Read the guide →</span></a><a href="/professionals/lenders/"><span class="who">Readers</span><strong>Land buyers and analysts</strong><span class="go">Read the guide →</span></a></div>
+  </div>
+</section>
+</Base>
