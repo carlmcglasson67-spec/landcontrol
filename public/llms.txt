@@ -1,0 +1,41 @@
+# LandControl
+
+> Independent guides, tools and alerts on the UK contractual control regime: The Provision of Information (Contractual Control) (Registered Land) Regulations 2026 (SI 2026/615), made 8 June 2026, in force 6 April 2027. Covers options, conditional contracts, rights of pre-emption and promotion agreements over registered land in England and Wales, reporting to HM Land Registry, and the public dataset from April 2028. Not affiliated with HM Land Registry or the UK Government. Not legal advice.
+
+Key facts: rights granted 8 June 2026 to 5 April 2027 must be reported before 6 October 2027; from 6 April 2027 grants, assignments, written variations and endings are reported within 60 days; the grantee is responsible; an individually regulated conveyancer must submit; part-title rights need a Shapefile or GeoJSON in British National Grid; failure without reasonable excuse is an offence under section 225 of the Levelling-up and Regeneration Act 2023.
+
+## Core guide
+- [Contractual control agreements: the complete guide](https://landcontrol.co.uk/contractual-control-agreements/)
+
+## Agreements
+- [Option agreements](https://landcontrol.co.uk/agreements/option-agreements/)
+- [Conditional contracts](https://landcontrol.co.uk/agreements/conditional-contracts/)
+- [Pre-emption rights](https://landcontrol.co.uk/agreements/pre-emption-rights/)
+- [Promotion agreements](https://landcontrol.co.uk/agreements/promotion-agreements/)
+- [Exemptions](https://landcontrol.co.uk/agreements/exemptions/)
+
+## Compliance
+- [The 60-day deadline](https://landcontrol.co.uk/compliance/60-day-deadline/)
+- [The transitional period (6 October 2027)](https://landcontrol.co.uk/compliance/transitional-period/)
+- [Assignments and variations](https://landcontrol.co.uk/compliance/variations-and-assignments/)
+- [Penalties and consequences](https://landcontrol.co.uk/compliance/penalties-and-consequences/)
+
+## HM Land Registry
+- [Practice guide 84 summarised](https://landcontrol.co.uk/hmlr/practice-guide-84/)
+- [The nine HMLR scenarios](https://landcontrol.co.uk/hmlr/contractual-control-scenarios/)
+- [Information required](https://landcontrol.co.uk/hmlr/information-required/)
+- [Who can submit](https://landcontrol.co.uk/hmlr/who-can-submit/)
+- [Spatial data: GeoJSON, Shapefile, British National Grid](https://landcontrol.co.uk/spatial-data/geojson-shapefile-british-national-grid/)
+
+## Tools
+- [Agreement checker](https://landcontrol.co.uk/agreement-checker/)
+- [Deadline calculator](https://landcontrol.co.uk/deadline-calculator/)
+- [Transitional period checker](https://landcontrol.co.uk/transitional-period-checker/)
+- [Readiness checklist](https://landcontrol.co.uk/readiness-checklist/)
+- [Implementation tracker](https://landcontrol.co.uk/tracker/)
+
+## Audiences
+- [Housebuilders and promoters](https://landcontrol.co.uk/professionals/housebuilders/)
+- [Landowners](https://landcontrol.co.uk/professionals/landowners/)
+- [Conveyancers](https://landcontrol.co.uk/professionals/conveyancers/)
+- [Lenders and analysts](https://landcontrol.co.uk/professionals/lenders/)

@@ -69,7 +69,7 @@ import Base from '../layouts/Base.astro';
           <option value="yes">Yes, it is an older agreement</option>
         </select>
       </label>
-      <p class="small">Calendar days, not working days. A guide to the regulations, not legal advice. Confirm with your conveyancer.</p>
+      <p class="small">Calendar days, not working days. A guide to the regulations, not legal advice. Confirm with your conveyancer. More triggers, calendar export and the full rules in the <a href="/deadline-calculator/" style="color:var(--red)">full deadline calculator</a>.</p>
     </div>
     <div class="result rv" aria-live="polite">
       <p class="eyebrow" id="r-label">Submit to HMLR by</p>
@@ -171,6 +171,28 @@ import Base from '../layouts/Base.astro';
       <a href="https://www.lexisnexis.co.uk/legal/news/hm-land-registry-publishes-guidance-on-new-reporting-rules-for-contractual-control-rights"><span class="k">LexisNexis</span><strong>HMLR publishes guidance</strong><span>News note on the spatial-data requirement and identity details.</span></a>
     </div>
     <p class="small" style="grid-column:1/-1;margin-top:.5rem">External links open the publisher’s site. Commentary is the authors’ own and may predate the final Regulations.</p>
+  </div>
+</section>
+
+<section class="wrap band" id="guides">
+  <div class="grid">
+    <div class="head">
+      <p class="eyebrow">The library</p>
+      <h2>Every question the regime raises, answered against the primary text.</h2>
+      <p class="lede">Read against SI 2026/615 and HM Land Registry’s Practice guide 84. Every page dated, sourced and kept current.</p>
+    </div>
+    <div class="hub">
+      <a href="/contractual-control-agreements/" class="lead"><span class="n num">Start here</span><strong>Contractual control agreements: the complete guide</strong><span class="d">The whole regime on one page: the four rights, the five tests, exemptions, deadlines, penalties and the 2028 dataset.</span><span class="go">Read the guide →</span></a>
+      <a href="/hmlr/practice-guide-84/"><span class="n num">HMLR · 26 Oct 2026</span><strong>Practice guide 84, in plain English</strong><span class="d">What HMLR’s operational rulebook says, section by section, and what it leaves open.</span><span class="go">Read →</span></a>
+      <a href="/compliance/transitional-period/"><span class="n num">Compliance</span><strong>The backlog due in October 2027</strong><span class="d">Rights granted from 8 June 2026 to 5 April 2027, and how older deals get caught.</span><span class="go">Read →</span></a>
+      <a href="/agreements/exemptions/"><span class="n num">Agreements</span><strong>Every exemption, and its edge</strong><span class="d">18 months, overage, security, s106 and the 100 m² test, read as narrowly as HMLR does.</span><span class="go">Read →</span></a>
+      <a href="/hmlr/contractual-control-scenarios/"><span class="n num">HMLR</span><strong>The nine HMLR scenarios</strong><span class="d">Investment options, golden brick, lease options and more: what each one decides.</span><span class="go">Read →</span></a>
+    </div>
+    <div class="others" style="margin-top:1.25rem">
+      <a href="/agreements/"><span class="who">Agreement types</span><strong>Options, conditional contracts, pre-emptions, promotion</strong><span class="go">Open →</span></a>
+      <a href="/compliance/"><span class="who">Deadlines and duties</span><strong>60 days, 6 October 2027, penalties</strong><span class="go">Open →</span></a>
+      <a href="/spatial-data/"><span class="who">Mapping the land</span><strong>GeoJSON, Shapefile, British National Grid</strong><span class="go">Open →</span></a>
+    </div>
   </div>
 </section>
 
@@ -328,14 +350,15 @@ import Base from '../layouts/Base.astro';
       <p style="margin-top:1rem;max-width:52ch;color:rgba(255,255,255,.75)">HMLR technical guidance as it lands, the practice guide when it's published, and first access to the register for in-house land teams before the 6 October 2027 backlog deadline.</p>
       <form id="signup">
         <label for="email" style="position:absolute;left:-9999px">Work email</label>
-        <input type="email" id="email" placeholder="you@firm.co.uk" required>
+        <input type="email" id="email" placeholder="you@firm.co.uk" required autocomplete="email">
+        <input type="text" name="company" id="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
         <select id="role" aria-label="Your role" required><option value="">I am a…</option><option>Developer / housebuilder</option><option>Land promoter</option><option>Conveyancer / solicitor</option><option>Surveyor</option><option>Landowner</option><option>Lender / analyst / investor</option><option>Other</option></select>
         <button type="submit">Subscribe</button>
       </form>
       <p class="msg" id="msg" hidden>Subscribed. You’ll hear from us the next time HMLR moves.</p>
     </div>
     <div class="side">
-      <div><span>Next issue</span><b>1 Nov 2026</b></div>
+      <div><span>Next issue</span><b>1 Dec 2026</b></div>
       <div><span>Frequency</span><b>Monthly, plus HMLR alerts</b></div>
       <div><span>Cost</span><b>Free</b></div>
       <div><span>Unsubscribe</span><b>One click</b></div>
@@ -390,13 +413,15 @@ import Base from '../layouts/Base.astro';
     var e=ev.value, older=pre.value==='yes';
     var out, bar=0;
     if(e==='grant' && d<MADE){
-      out={cls:'ok',label:'No duty on grant',date:'Not reportable',why:'The right was granted before the regulations were made on 8 June 2026, so the grant itself is outside the regime. A later assignment, written variation or exercise on or after 6 April 2027 would be reportable within 60 days of that event.',rule:'Transitional provisions · pre-8 Jun 2026 grants'};
+      out={cls:'ok',label:'No duty on grant',date:'Not reportable',why:'The right was granted before the regulations were made on 8 June 2026, so the grant itself is outside the regime. An assignment, or a written variation that changes the reportable information, on or after 6 April 2027 would be reportable within 60 days, as would applying for a notice or restriction.',rule:'Transitional provisions · pre-8 Jun 2026 grants'};
     } else if(e!=='grant' && d<FORCE){
       out={cls:'ok',label:'Not a trigger',date:'Not reportable',why:'Assignments, variations and exercises only become reportable events on or after 6 April 2027. '+(older?'An older agreement is caught only by an event on or after that date.':'Check whether the original grant (8 June 2026 onward) needs reporting by 6 October 2027.'),rule:'Trigger events run from 6 Apr 2027'};
     } else if(e==='grant' && d<FORCE){
       var w=daysUntil(TRANS);
-      out={cls:'red',label:'Submit to HMLR by',date:fmt(TRANS),why:'Granted during the transitional window (8 June 2026 to 5 April 2027). The HMLR digital service opens on 6 April 2027 and every transitional right must be submitted within six months of launch.',rule:'Transitional deadline · 6 Oct 2027 · '+(w>=0?w+' days from today':'deadline passed')};
+      out={cls:'red',label:'Submit to HMLR before',date:fmt(TRANS),why:'Granted during the transitional window (8 June 2026 to 5 April 2027). The HMLR digital service opens on 6 April 2027 and every transitional right must be submitted within six months of launch.',rule:'Transitional deadline · 6 Oct 2027 · '+(w>=0?w+' days from today':'deadline passed')};
       bar=Math.max(0,Math.min(100,(today-d)/(TRANS-d)*100));
+    } else if(e==='exercise' && older){
+      out={cls:'ok',label:'Usually not reportable',date:'Check first',why:'An older right that was never assigned or varied after 6 April 2027 is not on the register, so there is nothing to update when it is exercised. If it was reported, report the exercise within 60 days.',rule:'PG 84 §4.1 and §7.2'};
     } else {
       var dl=addDays(d,60), left=daysUntil(dl);
       out={cls:'red',label:'Submit to HMLR by',date:fmt(dl),why:'The event falls after the regulations came into force, so the full regime applies: 60 calendar days from the date of the '+({grant:'grant',assign:'assignment',vary:'variation',exercise:'exercise'})[e]+'. Submission must be made digitally by an individually regulated conveyancer.',rule:'60 calendar days · '+fmt(d)+' + 60 · '+(left>=0?left+' days from today':'deadline passed')};
@@ -412,7 +437,20 @@ import Base from '../layouts/Base.astro';
   var LINKS={reg:'',solo:'',pro:'',team:'',enterprise:'mailto:contact@landcontrol.co.uk?subject=LandControl%20Enterprise'};
   document.querySelectorAll('a.buy').forEach(function(a){var k=a.getAttribute('data-plan');if(LINKS[k]){a.setAttribute('href',LINKS[k]);if(LINKS[k].indexOf('http')===0){a.setAttribute('target','_blank');a.setAttribute('rel','noopener');}}});
   var f=document.getElementById('signup');
-  f.addEventListener('submit',function(x){x.preventDefault();document.getElementById('msg').hidden=false;f.querySelector('button').textContent='Joined';});
+  f.addEventListener('submit',function(x){
+    x.preventDefault();
+    var btn=f.querySelector('button'), msg=document.getElementById('msg'), em=document.getElementById('email').value, ro=document.getElementById('role').value;
+    btn.disabled=true; btn.textContent='Sending…';
+    fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em,role:ro,company:document.getElementById('company').value,page:location.pathname+(document.referrer?' ← '+document.referrer:'')})})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok&&j.ok,err:j.error};});})
+      .catch(function(){return {ok:false};})
+      .then(function(r){
+        if(r.ok){msg.textContent='Subscribed. Check your inbox: you’ll hear from us the next time HMLR moves.';msg.hidden=false;btn.textContent='Joined';return;}
+        if(r.err==='email'){msg.textContent='That email address doesn’t look right. Try again?';msg.hidden=false;btn.disabled=false;btn.textContent='Subscribe';return;}
+        var sub=encodeURIComponent('Subscribe me to the Contractual Control Alert'), body=encodeURIComponent('Email: '+em+'\nRole: '+ro);
+        msg.innerHTML='Our signup is having a moment. <a href="mailto:contact@landcontrol.co.uk?subject='+sub+'&body='+body+'" style="color:#fff">Email us to subscribe</a> and we’ll add you by hand.';msg.hidden=false;btn.disabled=false;btn.textContent='Subscribe';
+      });
+  });
 })();
 </script>
 </Base>
