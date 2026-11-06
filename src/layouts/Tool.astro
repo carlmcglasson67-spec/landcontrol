@@ -1,0 +1,40 @@
+---
+import Base from './Base.astro';
+import ToolsStrip from '../components/ToolsStrip.astro';
+interface Props { title: string; description: string; name: string; h1: string; lede: string; facts?: [string,string][]; faq?: [string,string][]; updated: string; }
+const { title, description, name, h1, lede, facts = [], faq = [], updated } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+const app = {"@context":"https://schema.org","@type":"WebApplication",name:`${name} · LandControl`,url,description,applicationCategory:"BusinessApplication",operatingSystem:"Any (browser)",offers:{"@type":"Offer",price:"0",priceCurrency:"GBP"},publisher:{"@type":"Organization",name:"LandControl",url:"https://landcontrol.co.uk/"},dateModified:updated,inLanguage:"en-GB"};
+const crumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem",position:1,name:"LandControl",item:"https://landcontrol.co.uk/"},{"@type":"ListItem",position:2,name:"Tools",item:"https://landcontrol.co.uk/tools/"},{"@type":"ListItem",position:3,name,item:url}]};
+const faqLd = faq.length ? {"@context":"https://schema.org","@type":"FAQPage","mainEntity":faq.map(([q,a])=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))} : null;
+const d = new Date(updated).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+---
+<Base title={title} description={description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(app)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(crumb)}></script>
+    {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>}
+  </Fragment>
+  <header class="wrap hero">
+    <div class="grid">
+      <p class="crumb"><a href="/">LandControl</a><span>/</span><a href="/tools/">Tools</a><span>/</span><span style="color:var(--red)">{name}</span></p>
+      <h1 set:html={h1}></h1>
+      <p class="lede">{lede}</p>
+      {facts.length > 0 && <div class="facts">{facts.map(([a,b]) => <div><span class="num">{a}</span><span>{b}</span></div>)}</div>}
+    </div>
+  </header>
+  <section class="wrap band" style="padding-top:clamp(2.5rem,5vw,4rem)">
+    <div class="grid">
+      <slot />
+      <p class="small" style="grid-column:1/-1">Built on SI 2026/615 and HM Land Registry Practice guide 84 (26 October 2026). Last checked {d}. A guide to the Regulations, not legal advice: confirm with a regulated conveyancer. LandControl is independent and not affiliated with HM Land Registry or the UK Government. Nothing you enter leaves your browser.</p>
+    </div>
+  </section>
+  <slot name="explain" />
+  {faq.length > 0 && <section class="wrap band"><div class="grid"><div class="head"><p class="eyebrow">Questions</p><h2>What people ask about this.</h2></div><div class="faq" style="grid-column:1/span 8;margin:0;padding:0;border:0">{faq.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>}
+  <section class="wrap band">
+    <div class="grid">
+      <div class="head"><p class="eyebrow">More free tools</p><h2>The rest of the toolkit.</h2></div>
+      <ToolsStrip current={Astro.url.pathname} />
+    </div>
+  </section>
+</Base>

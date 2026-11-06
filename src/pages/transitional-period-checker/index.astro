@@ -1,0 +1,82 @@
+---
+import Tool from '../../layouts/Tool.astro';
+const faq: [string,string][] = [
+  ['What is the contractual control transitional period?','The period between the Regulations being made on 8 June 2026 and coming into force on 6 April 2027. Contractual control rights granted in that window (8 June 2026 to 5 April 2027 inclusive) must be reported to HM Land Registry once the service opens, and before 6 October 2027.'],
+  ['Can I report a transitional right before 6 April 2027?','No. HMLR’s digital service opens on 6 April 2027 and information cannot be provided before then. Until that date you can protect the right with a notice or restriction in the usual way.'],
+  ['If I vary a transitional right, does that start a new 60-day clock?','Not if the variation happens before 6 April 2027: in the transitional period only the original grant is a reporting trigger, but the information you submit must reflect the variation. A written variation on or after 6 April 2027 is a trigger in its own right, with its own 60 days.'],
+  ['What if I need a notice or restriction between April and October 2027?','HMLR will generally not accept the application until the contractual control information has been provided, so the right has to be reported before you apply, which may be earlier than 6 October 2027.'],
+];
+---
+<Tool
+  title="Contractual Control Transitional Period Checker · LandControl"
+  description="Signed before 6 April 2027? Check if your option or promotion agreement is in the transitional window and when it must reach HM Land Registry."
+  name="Transitional period checker" h1="Signed before April 2027? Check the backlog rule."
+  lede="Every contractual control right granted from 8 June 2026 to 5 April 2027 has to reach HM Land Registry before 6 October 2027, through a service that only opens six months earlier. Older agreements are caught the moment they change. Check where yours sits."
+  facts={[['Window opens','8 June 2026'],['Window closes','5 April 2027'],['Service opens','6 April 2027'],['Report by','Before 6 October 2027']]}
+  faq={faq} updated="2026-11-06">
+  <div class="tool">
+    <label>Date the right was granted<input type="date" id="gd" min="1990-01-01" max="2027-12-31"></label>
+    <div class="q"><p class="qt">Has it been, or will it be, varied in writing or assigned?</p><div class="opts" id="chg"><button data-a="no" aria-pressed="true">No</button><button data-a="before">Yes, before 6 April 2027</button><button data-a="after">Yes, on or after 6 April 2027</button></div></div>
+    <label id="cdW" hidden>Date of that variation or assignment<input type="date" id="cd" min="2026-01-01" max="2045-12-31"></label>
+    <div class="q"><p class="qt">Will you apply for a notice or restriction to protect it?</p><div class="opts" id="nr"><button data-a="no" aria-pressed="true">No, or already registered</button><button data-a="yes">Yes, after 6 April 2027</button></div></div>
+    <label id="ndW" hidden>Planned application date<input type="date" id="nd" min="2027-04-06" max="2045-12-31"></label>
+  </div>
+  <div class="verdict" aria-live="polite">
+    <p class="eyebrow" id="vl">Where it sits</p>
+    <p class="big" id="vd">Enter the grant date</p>
+    <p id="vw"></p>
+    <ul class="trail" id="tr"></ul>
+    <p class="rule" id="vr"></p>
+  </div>
+  <Fragment slot="explain">
+    <section class="wrap band">
+      <div class="grid">
+        <div class="head"><p class="eyebrow">Why it matters</p><h2>Six months to clear nine months of deals.</h2><p class="lede">Every in-scope right signed in the transitional window lands on the same deadline, through a brand-new service, via a limited pool of individually regulated conveyancers. The firms that have their data ready on 6 April 2027 will file in a day; the rest will queue.</p></div>
+        <div class="steps">
+          <div><p class="n">01</p><h4>Count them now</h4><p>Pull every option, conditional contract, pre-emption and promotion agreement signed since 8 June 2026.</p></div>
+          <div><p class="n">02</p><h4>Track the changes</h4><p>What you submit must be accurate on the day you submit. Log every variation since signing.</p></div>
+          <div><p class="n">03</p><h4>Watch notice applications</h4><p>Need to register a notice after 6 April 2027? Report first. That deadline beats October.</p></div>
+          <div><p class="n">04</p><h4>Book the conveyancer</h4><p>Agree now who files each right, and when. Read <a href="/compliance/transitional-period/" style="color:inherit">the full transitional guide</a>.</p></div>
+        </div>
+      </div>
+    </section>
+  </Fragment>
+</Tool>
+<script is:inline>
+(function(){
+  var MADE=new Date(2026,5,8), FORCE=new Date(2027,3,6), TRANS=new Date(2027,9,6);
+  var today=new Date(); today.setHours(0,0,0,0);
+  var $=function(i){return document.getElementById(i);}, S={chg:'no',nr:'no'};
+  function pd(v){if(!v)return null;var p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function fmt(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+  function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+  function left(d){var n=Math.round((d-today)/86400000);return n>0?n+' days from today':n===0?'today':'passed';}
+  function out(t,w,trail,r,red){$('vd').textContent=t;$('vd').className='big'+(red?' red':'');$('vw').textContent=w;$('vr').textContent=r;$('tr').innerHTML=trail.map(function(x){return '<li>'+x+'</li>';}).join('');}
+  function opt(id){$(id).querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){$(id).querySelectorAll('button').forEach(function(y){y.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');S[id]=b.dataset.a;run();});});}
+  function run(){
+    $('cdW').hidden=S.chg==='no'; $('ndW').hidden=S.nr==='no';
+    var g=pd($('gd').value), c=pd($('cd').value), n=pd($('nd').value);
+    if(!g) return out('Enter the grant date','',[],'',false);
+    var trail=['Granted '+fmt(g)];
+    if(g>=FORCE) return out('Outside the window','Granted on or after 6 April 2027, so the standard rule applies: report within 60 days of the grant, by '+fmt(add(g,60))+'.',trail,'PG 84 §4.1 · use the deadline calculator for later events',true);
+    if(g<MADE){
+      trail.push('Before 8 June 2026: grant not reportable');
+      var dues=[];
+      if(S.chg==='after'&&c&&c>=FORCE){dues.push(add(c,60));trail.push('Changed '+fmt(c)+': trigger, due '+fmt(add(c,60)));}
+      if(S.chg==='before') trail.push('Change before 6 April 2027: not a trigger');
+      if(S.nr==='yes'){trail.push('Notice or restriction application: report first'+(n?' ('+fmt(n)+')':''));if(n)dues.push(n);}
+      if(!dues.length) return out('Not caught yet','The right pre-dates the Regulations, so the grant is not reportable. It is brought in by an assignment, or a written variation that changes the reportable information, on or after 6 April 2027 (60 days), or by an application for a notice or restriction (before you apply).',trail,'PG 84 §4.1 and §4.4',false);
+      dues.sort(function(a,b){return a-b;});
+      return out('Report by '+fmt(dues[0]),'The older right is brought into the regime by a later event. The earliest deadline is shown. If it has become short-term by then (less than 18 months left with no extensions), it may not need reporting at all.',trail,'PG 84 §4.1 and §4.4 · '+left(dues[0]),true);
+    }
+    trail.push('In the transitional window: report from 6 April 2027 and before 6 October 2027');
+    var due=TRANS, why='Report once the service opens on 6 April 2027, and before 6 October 2027.';
+    if(S.chg==='before'){trail.push('Changed before 6 April 2027: not a separate trigger, but reflect it in the submission');why+=' The submission must reflect the variation or assignment.';}
+    if(S.chg==='after'&&c&&c>=FORCE){var cd=add(c,60);trail.push('Changed '+fmt(c)+': own 60-day clock, due '+fmt(cd));if(cd<due){due=cd;why='The later change starts its own 60-day clock, which lands before 6 October 2027. One submission can cover both if it is made in time.';}}
+    if(S.nr==='yes'&&n){trail.push('Notice or restriction application on '+fmt(n)+': report before applying');if(n<due){due=n;why='HMLR will generally not accept the notice or restriction application until the information is in, so report before '+fmt(n)+'.';}}
+    return out((due===TRANS?'Report before ':'Report by ')+fmt(due),why+' Use an individually regulated conveyancer; the information must be accurate on the day it is submitted.',trail,'PG 84 §4.2 · HMLR scenario 9 · '+left(due),true);
+  }
+  opt('chg'); opt('nr'); ['gd','cd','nd'].forEach(function(i){$(i).addEventListener('change',run);$(i).addEventListener('input',run);});
+  run();
+})();
+</script>

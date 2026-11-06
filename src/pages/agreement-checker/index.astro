@@ -1,0 +1,87 @@
+---
+import Tool from '../../layouts/Tool.astro';
+const faq: [string,string][] = [
+  ['How do I know if my agreement is a contractual control agreement?','Check whether it contains a written right that controls a future transfer of freehold, or grant of a lease of more than 15 years, of registered land by the registered owner, held for a business, charitable or public purpose. Then check the exemptions: rights that can only last under 18 months, overage, finance security, section 106 infrastructure, national security, and rights held exclusively for a purpose unrelated to development.'],
+  ['Is a promotion agreement caught?','Often, yes. A right in a promotion agreement to direct or request a sale or lease is one of the four categories in Practice guide 84. If the agreement also contains an option or pre-emption, each right is assessed separately.'],
+  ['Is a lease option caught?','Only if the lease the option relates to would be for more than 15 years. HMLR’s scenarios guidance gives the example of a 12-year lease with an option to take a further lease: not reportable, because the relevant term is the lease the option relates to, and the two are not added together.'],
+  ['Is an option bought as an investment exempt?','Not necessarily. HMLR’s scenario 6 says that where the investment depends on the land rising in value, which may be linked to future development, the “not for development” exemption may not apply. It might if the holder can show a purpose wholly unrelated to development.'],
+];
+---
+<Tool
+  title="Is My Agreement Caught? Contractual Control Checker · LandControl"
+  description="Free eight-question checker: does your option, conditional contract, pre-emption or promotion agreement have to be reported to HM Land Registry?"
+  name="Agreement checker" h1="Is this right caught by the register?"
+  lede="Eight questions, in the order the Regulations ask them. Answer one at a time and the checker stops as soon as the right falls outside the regime, telling you which rule took it out."
+  facts={[['Tests','Five criteria, six exemptions'],['Based on','SI 2026/615 reg 3, PG 84 §3'],['Takes','About a minute'],['Assess','Each right separately']]}
+  faq={faq} updated="2026-11-06">
+  <div class="tool" id="chk">
+    <div class="q" data-q="written"><p class="qn">Question 1 of 8</p><p class="qt">Is the right in a written contract or deed?</p><p class="qhint">Rights given by statute or ordered by a court are outside the regime.</p><div class="opts"><button data-a="yes">Yes</button><button data-a="no">No</button></div></div>
+    <div class="q" data-q="type" hidden><p class="qn">Question 2 of 8</p><p class="qt">What does the right let the holder do?</p><p class="qhint">One contract can hold several rights. Run the checker once for each.</p><div class="opts"><button data-a="option">Require a transfer or lease (option)</button><button data-a="cond">Complete a sale or lease once conditions are met</button><button data-a="pre">First refusal if the owner sells (pre-emption)</button><button data-a="direct">Direct or request a sale or lease (promotion)</button><button data-a="other">Something else, e.g. an easement, overage, a lease of 15 years or less</button></div></div>
+    <div class="q" data-q="land" hidden><p class="qn">Question 3 of 8</p><p class="qt">What land does it affect?</p><p class="qhint">Whole or part of a title both count.</p><div class="opts"><button data-a="free">Registered freehold</button><button data-a="lease">Registered lease, more than 15 years left at grant</button><button data-a="short">Lease with 15 years or less left</button><button data-a="unreg">Unregistered land only</button></div></div>
+    <div class="q" data-q="owner" hidden><p class="qn">Question 4 of 8</p><p class="qt">Was the grantor the registered owner when the right was granted?</p><p class="qhint">For example, a buyer’s right granted by a seller who had not yet completed their own purchase.</p><div class="opts"><button data-a="yes">Yes</button><button data-a="no">No, not yet registered</button></div></div>
+    <div class="q" data-q="undertaking" hidden><p class="qn">Question 5 of 8</p><p class="qt">Who holds it, and why?</p><div class="opts"><button data-a="biz">A business, charity or public body</button><button data-a="personal">An individual, for purely personal reasons (e.g. a future home)</button></div></div>
+    <div class="q" data-q="term" hidden><p class="qn">Question 6 of 8</p><p class="qt">Counting every possible extension, could the right last 18 months or more?</p><div class="opts"><button data-a="yes">Yes, or not sure</button><button data-a="no">No, it can only last under 18 months</button></div></div>
+    <div class="q" data-q="purpose" hidden><p class="qn">Question 7 of 8</p><p class="qt">Does any of these describe the right exclusively?</p><p class="qhint">Read the exemptions narrowly: HMLR says they should be.</p><div class="opts"><button data-a="none">None of these</button><button data-a="overage">It secures overage to a former owner</button><button data-a="security">It secures a loan or financial instrument</button><button data-a="s106">Section 106 infrastructure, amenities or services only</button><button data-a="nondev">A purpose wholly unrelated to housing or development of 100 m² or more</button><button data-a="defence">National security or defence</button></div></div>
+    <div class="q" data-q="date" hidden><p class="qn">Question 8 of 8</p><p class="qt">When was it granted?</p><label>Date of grant<input type="date" id="gd" min="1990-01-01" max="2045-12-31"></label></div>
+    <button class="reset" id="rs" type="button">Start again</button>
+  </div>
+  <div class="verdict" aria-live="polite">
+    <p class="eyebrow" id="vl">Verdict</p>
+    <p class="big" id="vd">Answer question 1</p>
+    <p id="vw">The verdict updates as you answer.</p>
+    <ul class="trail" id="tr"></ul>
+    <p class="rule" id="vr"></p>
+    <a class="btn" id="go" href="/deadline-calculator/" hidden>Work out the deadline</a>
+  </div>
+</Tool>
+<script is:inline>
+(function(){
+  var MADE=new Date(2026,5,8), FORCE=new Date(2027,3,6);
+  var qs=[].slice.call(document.querySelectorAll('#chk .q')), A={}, $=function(i){return document.getElementById(i);};
+  var label={written:'Written contract',type:'Type',land:'Land',owner:'Registered owner',undertaking:'Undertaking',term:'Period',purpose:'Exemptions',date:'Granted'};
+  var outs={
+    'written:no':['Not a contractual control right','Only rights in a written contract (a deed counts) are within the Regulations. Statutory rights and court-ordered rights are excluded.','PG 84 §3.1.1'],
+    'type:other':['Probably outside the regime','The Regulations cover four kinds of right: options, conditional contracts, pre-emption rights, and rights to direct or request a sale or lease. Options over only an easement, and contracts for leases of 15 years or less, are excluded. If the agreement contains one of the four rights alongside, check that right separately.','PG 84 §3 and §3.1.2'],
+    'land:short':['Outside the regime','A contract for a lease of 15 years or less, or a transfer of a registered lease with 15 years or less to run, is not a relevant disposition. A further-lease option is judged on the term of the lease it relates to; terms are not added together.','PG 84 §3.1.2 · HMLR scenario 3'],
+    'land:unreg':['Not reportable now','Rights over land that is wholly unregistered are outside the regime at that point. If the land is later registered, or the right is then assigned or varied, check again.','PG 84 §3.1.2'],
+    'owner:no':['Not reportable on grant','The grantor was not the registered owner when the right was granted. It becomes reportable if you apply for a notice or restriction, or if it is varied or assigned after the grantor is registered, provided the other criteria are still met.','HMLR scenario 1'],
+    'undertaking:personal':['Not reportable while you hold it','A right held for purely personal purposes is not held for an undertaking. If it is later assigned to a business, such as a builder, the new holder must report it if the other criteria are met.','PG 84 §3.1.3 · HMLR scenario 2'],
+    'term:no':['Exempt: short-term','A right that can only last for less than 18 months is exempt. Make sure no extension, however conditional, could take it to 18 months or more; if one can, the exemption is lost.','PG 84 §3.2.1 · HMLR scenario 5'],
+    'purpose:overage':['Exempt: overage','Rights that secure further payments to a former landowner are exempt. If the same contract also contains an option or pre-emption for a developer, check that right separately.','PG 84 §3.2.3'],
+    'purpose:security':['Exempt: finance security','Rights necessary or incidental to security for a loan or other financial instrument are exempt.','PG 84 §3.2.4'],
+    'purpose:s106':['Probably exempt: section 106','Rights relating exclusively to infrastructure, amenities or services linked to a planning permission are exempt. Affordable housing rights are not: HMLR says the exemption does not cover the use of homes as affordable housing.','PG 84 §3.2.5 · HMLR scenario 8'],
+    'purpose:nondev':['Possibly exempt: not for development','Rights held exclusively for a purpose not relating to housing or development creating 100 m² or more of floorspace are exempt. Read this narrowly: an option bought as an investment may still be caught if its value depends on development. Keep a written record of the purpose.','PG 84 §3.2.2 · HMLR scenario 6'],
+    'purpose:defence':['Exempt: national security or defence','Rights in contracts made for national security or defence purposes are exempt.','PG 84 §3.2.6'],
+  };
+  function show(i){qs.forEach(function(q,k){q.hidden=k>i;});}
+  function fmt(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+  function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+  function verdict(t,w,r,red,go){$('vd').textContent=t;$('vd').className='big'+(red?' red':'');$('vw').textContent=w;$('vr').textContent=r;$('go').hidden=!go;
+    $('tr').innerHTML=Object.keys(A).map(function(k){return '<li>'+label[k]+': '+A[k].t+'</li>';}).join('');}
+  function run(){
+    for(var i=0;i<qs.length;i++){
+      var k=qs[i].dataset.q;
+      if(!(k in A)){show(i); if(i===0) verdict('Answer question 1','The verdict updates as you answer.','',false,false); else verdict('So far: in scope','No exclusion yet. Keep going: '+(qs.length-i)+' question'+(qs.length-i>1?'s':'')+' left.','',false,false); return;}
+      var o=outs[k+':'+A[k].v]; if(o){show(i); verdict(o[0],o[1],o[2],false,false); return;}
+    }
+    show(qs.length-1);
+    var v=A.date.v, p=v.split('-'), d=new Date(+p[0],+p[1]-1,+p[2]), msg, rule;
+    if(d<MADE){ msg='The right meets the criteria, but it was granted before 8 June 2026, so the grant is not reportable. It becomes reportable within 60 days of an assignment or a written variation that changes the reportable information on or after 6 April 2027, or before any application for a notice or restriction.'; rule='PG 84 §4.1 and §4.4'; return verdict('Caught, but not yet reportable',msg,rule,true,true); }
+    if(d<FORCE){ msg='Granted in the transitional window. Report it once the HMLR service opens on 6 April 2027 and no later than 6 October 2027, through an individually regulated conveyancer, with the information accurate on the day you submit.'; return verdict('Reportable before 6 October 2027',msg,'PG 84 §4.2',true,true); }
+    var due=add(d,60);
+    return verdict('Reportable by '+fmt(due),'60 days from the grant. The grantee is responsible; an individually regulated conveyancer must submit it digitally. Any later assignment, written variation or ending starts another 60-day clock.','PG 84 §4.1 and §6',true,true);
+  }
+  qs.forEach(function(q){
+    q.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
+      var k=q.dataset.q, idx=qs.indexOf(q);
+      qs.slice(idx).forEach(function(x){delete A[x.dataset.q]; x.querySelectorAll('button').forEach(function(y){y.setAttribute('aria-pressed','false');});});
+      if(idx<qs.length-1) $('gd').value='';
+      b.setAttribute('aria-pressed','true'); A[k]={v:b.dataset.a,t:b.textContent.replace(/\s*\(.*\)$/,'').replace(/, e\.g\..*$/,'')}; run();
+      var nx=qs[idx+1]; if(nx&&!nx.hidden){var f=nx.querySelector('button,input'); if(f&&window.innerWidth>900) f.focus({preventScroll:true});}
+    });});
+  });
+  $('gd').addEventListener('change',function(){ if(this.value){A.date={v:this.value,t:new Date(this.value).toLocaleDateString('en-GB')};} else delete A.date; run(); });
+  $('rs').addEventListener('click',function(){A={}; qs.forEach(function(x){x.querySelectorAll('button').forEach(function(y){y.setAttribute('aria-pressed','false');});}); $('gd').value=''; run(); window.scrollTo({top:$('chk').getBoundingClientRect().top+scrollY-120,behavior:'smooth'});});
+  run();
+})();
+</script>

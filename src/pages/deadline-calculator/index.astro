@@ -1,0 +1,119 @@
+---
+import Tool from '../../layouts/Tool.astro';
+const faq: [string,string][] = [
+  ['How many days do I have to report a contractual control right?','60 days from the event: the grant, an assignment, a written variation that changes the information, or the right ending. HM Land Registry describes these as calendar days, not working days. Rights granted between 8 June 2026 and 5 April 2027 have a single deadline of 6 October 2027 instead.'],
+  ['Does the 60 days include weekends and bank holidays?','HM Land Registry’s guidance for conveyancers refers to 60 calendar days, so weekends and bank holidays count. Practice guide 84 does not set out a day-counting rule, so this calculator counts 60 days from the event date and we recommend filing well before the last day.'],
+  ['Does exercising an option need to be reported?','Yes, if the option is a reportable contractual control right. When a right ends, whether by exercise, determination or expiry, wholly or partly, the grantee must confirm how it ended within 60 days. For an option, “exercised” means the option was exercised; for a conditional contract, when the disposition is made.'],
+  ['My option was signed in 2025. Do I need to do anything?','Not on grant: rights granted before 8 June 2026 are outside the regime until something happens to them. An assignment or a written variation that alters the reportable information on or after 6 April 2027 makes the right reportable within 60 days, as does applying for a notice or restriction to protect it.'],
+];
+---
+<Tool
+  title="Contractual Control Deadline Calculator (HMLR) · LandControl"
+  description="Free calculator for HMLR contractual control deadlines: 60 days from grant, assignment, variation or ending, or 6 October 2027 for transitional rights."
+  name="Deadline calculator" h1="When does this right have to be reported?"
+  lede="Pick the event, the date, and when the right was first granted. The deadline, the rule behind it and the days left come back instantly. Add it to your calendar in one click."
+  facts={[['Standard clock','60 days from the event'],['Backlog','6 October 2027'],['Service opens','6 April 2027'],['Counting','Calendar days']]}
+  faq={faq} updated="2026-11-06">
+  <div class="tool" id="calc">
+    <div class="row">
+      <label>What happened?
+        <select id="ev">
+          <option value="grant">The right was granted</option>
+          <option value="assign">The right was assigned to a new grantee</option>
+          <option value="vary">The agreement was varied in writing</option>
+          <option value="end">The right ended (exercised, determined or expired)</option>
+          <option value="notice">We are applying for a notice or restriction</option>
+        </select>
+      </label>
+      <label>Date of the event
+        <input type="date" id="dt" min="2000-01-01" max="2045-12-31">
+      </label>
+    </div>
+    <label id="origWrap">When was the right originally granted?
+      <select id="orig">
+        <option value="pre">Before 8 June 2026</option>
+        <option value="trans" selected>8 June 2026 to 5 April 2027</option>
+        <option value="post">On or after 6 April 2027</option>
+      </select>
+    </label>
+    <label id="alters">Does the variation change any reportable information (type of right, land, period, extension or termination terms, exercise conditions)?
+      <select id="alt"><option value="yes">Yes</option><option value="no">No, it changes something HMLR doesn’t ask for</option></select>
+    </label>
+    <p class="small">Every answer stays in your browser. Calendar days, counted from the day of the event.</p>
+  </div>
+  <div class="verdict" aria-live="polite">
+    <p class="eyebrow" id="vl">Submit to HMLR by</p>
+    <p class="big red" id="vd">—</p>
+    <p id="vw"></p>
+    <p class="rule" id="vr"></p>
+    <a class="btn" id="ics" href="#" download="landcontrol-deadline.ics" hidden>Add to calendar</a>
+  </div>
+  <Fragment slot="explain">
+    <section class="wrap band">
+      <div class="grid">
+        <div class="head"><p class="eyebrow">The rules behind it</p><h2>Five clocks, one regime.</h2></div>
+        <div class="steps">
+          <div><p class="n">01</p><h4>Transitional grants</h4><p>Granted 8 June 2026 to 5 April 2027: report from 6 April 2027 and by 6 October 2027, with the information correct at the date you submit.</p></div>
+          <div><p class="n">02</p><h4>New grants</h4><p>Granted on or after 6 April 2027: within 60 days of the grant.</p></div>
+          <div><p class="n">03</p><h4>Assignments and variations</h4><p>Within 60 days, from 6 April 2027. This catches agreements signed years ago, too. A variation counts only if it is in writing and changes reportable information.</p></div>
+          <div><p class="n">04</p><h4>Endings</h4><p>Exercise, determination or expiry of a reported right, wholly or partly: within 60 days, saying how it ended.</p></div>
+        </div>
+        <div class="body prose" style="grid-column:1/span 8;margin-top:2.5rem">
+          <p>A fifth trigger sits outside the clocks: if you apply to HM Land Registry for a notice or restriction to protect a right, HMLR will generally not accept the application until the contractual control information has been provided, whenever the right was granted. Full detail in <a href="/compliance/60-day-deadline/">the 60-day rule</a> and <a href="/compliance/transitional-period/">the transitional period</a>, or start from <a href="/contractual-control-agreements/">the complete guide</a>.</p>
+        </div>
+      </div>
+    </section>
+  </Fragment>
+</Tool>
+<script is:inline>
+(function(){
+  var MADE=new Date(2026,5,8), FORCE=new Date(2027,3,6), TRANS=new Date(2027,9,6);
+  var today=new Date(); today.setHours(0,0,0,0);
+  var $=function(i){return document.getElementById(i);};
+  var ev=$('ev'), dt=$('dt'), orig=$('orig'), alt=$('alt');
+  var iso=function(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+  dt.value=iso(today<FORCE?new Date(2027,4,14):today);
+  function fmt(d){return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'long',year:'numeric'});}
+  function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+  function left(d){return Math.round((d-today)/86400000);}
+  function lefttxt(d){var n=left(d);return n>0?n+' days from today':n===0?'due today':'deadline passed '+(-n)+' days ago';}
+  function set(o){
+    $('vl').textContent=o.label; $('vd').textContent=o.date; $('vd').className='big'+(o.red?' red':'');
+    $('vw').textContent=o.why; $('vr').textContent=o.rule;
+    var a=$('ics');
+    if(o.due){
+      var s=iso(o.due).replace(/-/g,''), e=iso(add(o.due,1)).replace(/-/g,'');
+      var body=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//LandControl//Deadline//EN','BEGIN:VEVENT','UID:'+s+'-'+Math.random().toString(36).slice(2)+'@landcontrol.co.uk','DTSTAMP:'+iso(today).replace(/-/g,'')+'T000000Z','DTSTART;VALUE=DATE:'+s,'DTEND;VALUE=DATE:'+e,'SUMMARY:HMLR contractual control deadline','DESCRIPTION:'+o.rule.replace(/[,;]/g,' ')+'. Calculated at landcontrol.co.uk/deadline-calculator/','BEGIN:VALARM','TRIGGER:-P14D','ACTION:DISPLAY','DESCRIPTION:HMLR contractual control deadline in 14 days','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+      a.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(body); a.hidden=false;
+    } else a.hidden=true;
+  }
+  function calc(){
+    var e=ev.value, o=orig.value;
+    $('origWrap').hidden=(e==='grant'); $('alters').hidden=(e!=='vary');
+    if(!dt.value) return;
+    var p=dt.value.split('-'), d=new Date(+p[0],+p[1]-1,+p[2]);
+    if(e==='grant'){ o = d<MADE?'pre':d<FORCE?'trans':'post'; }
+    if(e==='grant'){
+      if(o==='pre') return set({label:'On grant',date:'Not reportable',why:'Granted before the Regulations were made on 8 June 2026, so the grant itself is outside the regime. It becomes reportable if it is assigned, or varied in writing in a way that changes the reportable information, on or after 6 April 2027, or if you apply for a notice or restriction to protect it.',rule:'PG 84 §4.1 · pre-8 June 2026 grants'});
+      if(o==='trans') return set({red:true,due:add(TRANS,-1),label:'Submit to HMLR before',date:fmt(TRANS),why:'Granted in the transitional window (8 June 2026 to 5 April 2027). Information can only be submitted once the service opens on 6 April 2027, and must be in by 6 October 2027. It has to be accurate on the day you submit, so reflect any later variation. Applying for a notice or restriction after 6 April 2027 brings the deadline forward.',rule:'PG 84 §4.2 · transitional deadline · '+lefttxt(TRANS)});
+      var g=add(d,60); return set({red:true,due:g,label:'Submit to HMLR by',date:fmt(g),why:'Granted after the Regulations came into force: 60 days from the date of grant, submitted digitally by an individually regulated conveyancer.',rule:'PG 84 §4.1 · '+d.toLocaleDateString('en-GB')+' + 60 days · '+lefttxt(g)});
+    }
+    if(e==='notice'){
+      if(d<FORCE) return set({label:'Before 6 April 2027',date:'Apply as normal',why:'Information cannot be provided before the service opens on 6 April 2027, so until then you protect the right by notice or restriction in the usual way. Any transitional right still has to be reported by 6 October 2027.',rule:'HMLR scenario 9'});
+      return set({red:true,label:'Provide the information',date:'Before you apply',why:'HMLR will generally not accept an application for a notice or restriction protecting a contractual control right while the information is outstanding, and will ask whether the Regulations have been complied with. This applies whenever the right was granted, including before 8 June 2026.',rule:'PG 84 §4.4 and §9'});
+    }
+    if(d<FORCE){
+      if(o==='trans'&&e!=='end') return set({red:true,due:TRANS,label:'Not a separate trigger',date:fmt(TRANS),why:'Assignments and variations before 6 April 2027 do not start their own clock. The original grant still has to be reported by 6 October 2027, and what you submit must reflect this change.',rule:'PG 84 §4.2 · '+lefttxt(TRANS)});
+      if(o==='trans'&&e==='end') return set({label:'Ended before the regime',date:'Check with your conveyancer',why:'The right ended before the service opened. PG 84 asks for information to be accurate at the date it is provided and confirms that a right ending within a reporting period can be confirmed instead; take advice on whether anything is still required for a right that no longer exists.',rule:'PG 84 §4.2 and §4.3'});
+      return set({label:'Before 6 April 2027',date:'Not a trigger',why:'Assignments, variations and endings only become reportable events on or after 6 April 2027. A right granted before 8 June 2026 stays outside the regime until an event on or after that date.',rule:'Triggers run from 6 April 2027'});
+    }
+    if(e==='vary'&&alt.value==='no') return set({label:'This variation',date:'Not a trigger',why:'Only a written variation that alters information already required (type or scope of the right, the land, the period, extension or termination provisions, exercise conditions) is a trigger. Keep a note of why you concluded it was not.',rule:'PG 84 §4.1 and §4.3'});
+    if(e==='end'&&o==='pre') return set({label:'Older right ending',date:'Usually not reportable',why:'A right granted before 8 June 2026 that was never assigned or varied after 6 April 2027 is not on the dataset, so there is nothing to update when it ends. If it was reported (after an assignment, variation, or a notice application), report the ending within 60 days.',rule:'PG 84 §4.1 and §7.2'});
+    var due=add(d,60), what={assign:'assignment',vary:'written variation',end:'right ending'}[e];
+    var extra = o==='pre' ? ' Although the right was granted before 8 June 2026, this '+what+' on or after 6 April 2027 brings it into the regime.' : '';
+    return set({red:true,due:due,label:'Submit to HMLR by',date:fmt(due),why:'60 days from the '+what+'.'+extra+(e==='end'?' Confirm how the right ended and whether wholly or in part.':'')+' Overlapping events can go in one submission if it is updated before the deadline.',rule:'PG 84 §'+(e==='end'?'7.2':'4.1')+' · '+d.toLocaleDateString('en-GB')+' + 60 days · '+lefttxt(due)});
+  }
+  [ev,dt,orig,alt].forEach(function(x){x.addEventListener('change',calc);x.addEventListener('input',calc);});
+  calc();
+})();
+</script>

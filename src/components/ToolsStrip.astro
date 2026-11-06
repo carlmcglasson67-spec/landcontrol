@@ -1,0 +1,15 @@
+---
+interface Props { current?: string; }
+const { current } = Astro.props;
+const tools = [
+  { href: '/agreement-checker/', n: 'Tool 01', t: 'Agreement checker', d: 'Eight questions. Is this right caught by the Regulations, or does an exemption take it out?' },
+  { href: '/deadline-calculator/', n: 'Tool 02', t: 'Deadline calculator', d: 'Event and date in, the HMLR deadline out, with the rule that applies.' },
+  { href: '/transitional-period-checker/', n: 'Tool 03', t: 'Transitional period checker', d: 'Signed before April 2027? Find out if and when it has to be reported.' },
+  { href: '/readiness-checklist/', n: 'Tool 04', t: 'Readiness checklist', d: 'Every step to be ready for 6 April 2027, saved as you go. Print it for the board.' },
+];
+---
+<div class="tools-strip">
+  {tools.filter(t => t.href !== current).concat(current ? [] : []).map(t => (
+    <a href={t.href}><span class="n">{t.n}</span><strong>{t.t}</strong><span class="d">{t.d}</span></a>
+  ))}
+</div>

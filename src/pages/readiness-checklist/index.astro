@@ -1,0 +1,86 @@
+---
+import Tool from '../../layouts/Tool.astro';
+const groups: { h: string; items: [string,string][] }[] = [
+  { h: 'Find what is caught', items: [
+    ['List every agreement signed since 8 June 2026','Options, conditional contracts, pre-emption rights and promotion agreements. These are already in the transitional window.'],
+    ['List older agreements likely to change after 6 April 2027','Anything you expect to assign, extend or vary in writing. Each change starts a 60-day clock.'],
+    ['Split each contract into its separate rights','A promotion agreement with a fallback option is two rights. Each is assessed on its own.'],
+    ['Run every right through the tests and exemptions','Written contract, registered land, registered owner, undertaking, 18 months, then the exemptions. Record why any right is out.'],
+  ]},
+  { h: 'Gather the data', items: [
+    ['Exact legal names of every grantor and grantee','As they appear on the contract and at Companies House.'],
+    ['Registration number, issuing authority and country for every entity','Companies House, Charity Commission or overseas equivalent.'],
+    ['Date and place of birth for individual grantors','Not published, but required. Plan how you will ask landowners for it.'],
+    ['Contract date, parties and title or description','The document that creates the right.'],
+    ['Exercise date or conditions','Not needed for pre-emption rights.'],
+    ['Initial period of control, extensions and termination rights','From contract date to latest exercise date, ignoring extensions; then each extension and termination clause.'],
+    ['Every affected title number, including provisional numbers','Check for titles created since signing.'],
+    ['Address, postcode and any UPRN','Plus whether separately held sub-surface land or airspace is included.'],
+  ]},
+  { h: 'Map the land', items: [
+    ['Flag every right that covers only part of a title','Whole titles need no extra location data.'],
+    ['Get a GeoJSON or Shapefile in British National Grid for each part-title right','The surveyor who drew the contract plan is usually the fastest source. A scanned PDF is not enough.'],
+    ['Check each file opens and sits on the right land','Overlay it on the title plan before it goes anywhere near a submission.'],
+  ]},
+  { h: 'Set up the filing', items: [
+    ['Name an individually regulated conveyancer for each right','Personally regulated solicitor, licensed conveyancer or chartered legal executive. Unregulated staff cannot submit.'],
+    ['Agree instructions, fees and turnaround with them','Before the October 2027 rush, not during it.'],
+    ['Get Portal access sorted where you file in-house','HMLR’s “Report contractual control over land” service launches in the Portal on 6 April 2027.'],
+    ['Decide who confirms each filing is done','And where the evidence is kept.'],
+  ]},
+  { h: 'Keep it running', items: [
+    ['Diary 6 October 2027 and every 60-day deadline','Use the deadline calculator’s calendar export.'],
+    ['Add a contractual control step to your acquisitions process','Every new deal, assignment, variation and exercise.'],
+    ['Check before applying for any notice or restriction','HMLR will generally not accept it until the information is in.'],
+    ['Review confidentiality and warranty clauses in templates','Confidentiality cannot stop HMLR publishing from April 2028.'],
+    ['Brief the board on the section 225 offence','Liability can reach the company and the officers acting for it.'],
+    ['Plan for visibility from April 2028','Competitors and adjoining owners will see grantee, land and expiry dates.'],
+  ]},
+];
+const total = groups.reduce((n, g) => n + g.items.length, 0);
+const faq: [string,string][] = [
+  ['How do I prepare for the contractual control register?','Identify every in-scope right (especially those granted since 8 June 2026), gather the information HMLR will ask for, prepare spatial files for rights over part of a title, appoint an individually regulated conveyancer to submit, and build the 60-day triggers into your acquisitions process.'],
+  ['Does my checklist progress save?','Yes, in this browser only. Nothing is sent anywhere. Use Print to keep a copy or take it to a board meeting.'],
+];
+---
+<Tool
+  title="Contractual Control Readiness Checklist: 25 Steps · LandControl"
+  description="Free printable checklist for the HMLR contractual control regime: find caught rights, gather the data, map the land, appoint a conveyancer, set deadlines."
+  name="Readiness checklist" h1="Be ready for 6 April 2027."
+  lede={`${total} steps in five stages, from finding what is caught to the first public dataset in April 2028. Tick as you go: your progress is saved in this browser and the whole list prints cleanly for a board pack.`}
+  facts={[['Steps',String(total)],['Stages','Five'],['Saves','In your browser'],['Prints','Board-ready']]}
+  faq={faq} updated="2026-11-06">
+  <form class="cl" id="cl" onsubmit="return false">
+    {groups.map((g, gi) => (
+      <fieldset>
+        <legend><span class="num">0{gi + 1}</span>{g.h}</legend>
+        {g.items.map(([t, d], ii) => (
+          <label><input type="checkbox" name={`c${gi}-${ii}`}><span><b>{t}</b><i>{d}</i></span></label>
+        ))}
+      </fieldset>
+    ))}
+  </form>
+  <aside class="score" aria-live="polite">
+    <p class="eyebrow">Readiness</p>
+    <p class="big" id="pc">0%</p>
+    <div class="bar"><i id="pb"></i></div>
+    <p id="pm">{`0 of ${total} done.`}</p>
+    <button type="button" onclick="window.print()">Print or save as PDF</button>
+    <button type="button" class="ghost" id="clr">Clear all</button>
+    <p class="small" style="color:rgba(255,255,255,.6)">Want HMLR changes to this list as they happen? <a href="/#briefing" style="color:#fff">Get the Contractual Control Alert</a>.</p>
+  </aside>
+</Tool>
+<script is:inline>
+(function(){
+  var K='lc-readiness-v1', f=document.getElementById('cl'), boxes=[].slice.call(f.querySelectorAll('input')), saved={};
+  try{saved=JSON.parse(localStorage.getItem(K)||'{}');}catch(e){}
+  boxes.forEach(function(b){b.checked=!!saved[b.name];});
+  function upd(){var n=boxes.filter(function(b){return b.checked;}).length,p=Math.round(n/boxes.length*100);
+    document.getElementById('pc').textContent=p+'%';document.getElementById('pb').style.width=p+'%';
+    document.getElementById('pm').textContent=n+' of '+boxes.length+' done.'+(p===100?' Ready for 6 April 2027.':p>=60?' Nearly there.':'');
+    var s={};boxes.forEach(function(b){if(b.checked)s[b.name]=1;});try{localStorage.setItem(K,JSON.stringify(s));}catch(e){}}
+  f.addEventListener('change',upd);
+  document.getElementById('clr').addEventListener('click',function(){boxes.forEach(function(b){b.checked=false;});upd();});
+  upd();
+})();
+</script>
