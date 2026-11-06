@@ -1,17 +1,20 @@
 ---
 import Base from './Base.astro';
 import Trust from '../components/Trust.astro';
-interface Props { title: string; description: string; section: string; sectionHref: string; eyebrow?: string; h1: string; lede: string; facts?: [string,string][]; sources?: [string,string][]; updated: string; related?: {href:string;label:string;who?:string}[]; }
-const { title, description, section, sectionHref, eyebrow, h1, lede, facts = [], sources = [], updated, related = [] } = Astro.props;
+interface Props { title: string; description: string; section: string; sectionHref: string; eyebrow?: string; h1: string; lede: string; facts?: [string,string][]; sources?: [string,string][]; faq?: [string,string][]; updated: string; published?: string; related?: {href:string;label:string;who?:string}[]; type?: 'Article'|'NewsArticle'; }
+const { title, description, section, sectionHref, eyebrow, h1, lede, facts = [], sources = [], faq = [], updated, published, related = [], type = 'Article' } = Astro.props;
 const url = new URL(Astro.url.pathname, Astro.site).toString();
-const crumbs = [{name:'LandControl',item:'https://landcontrol.co.uk/'},{name:section,item:new URL(sectionHref,Astro.site).toString()},{name:h1,item:url}];
+const plain = (s: string) => s.replace(/<[^>]+>/g, '');
+const crumbs = [{name:'LandControl',item:'https://landcontrol.co.uk/'},{name:section,item:new URL(sectionHref,Astro.site).toString()},{name:plain(h1),item:url}];
 const breadcrumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":crumbs.map((c,i)=>({"@type":"ListItem",position:i+1,name:c.name,item:c.item}))};
-const article = {"@context":"https://schema.org","@type":"Article",headline:title,description,url,dateModified:updated,inLanguage:"en-GB",author:{"@type":"Organization",name:"LandControl Research",url:"https://landcontrol.co.uk/"},publisher:{"@type":"Organization",name:"LandControl",url:"https://landcontrol.co.uk/"},about:"Contractual control agreements, HM Land Registry, England and Wales"};
+const article = {"@context":"https://schema.org","@type":type,headline:plain(h1).slice(0,110),description,url,datePublished:published ?? updated,dateModified:updated,inLanguage:"en-GB",author:{"@type":"Organization",name:"LandControl Research",url:"https://landcontrol.co.uk/"},publisher:{"@type":"Organization",name:"LandControl",url:"https://landcontrol.co.uk/",logo:{"@type":"ImageObject",url:"https://landcontrol.co.uk/brand/landcontrol-logo-original.png"}},about:"Contractual control agreements, HM Land Registry, England and Wales",citation:sources.map(([t,h])=>({"@type":"CreativeWork",name:t,url:h}))};
+const faqLd = faq.length ? {"@context":"https://schema.org","@type":"FAQPage","mainEntity":faq.map(([q,a])=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))} : null;
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} ogType="article">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)}></script>
     <script type="application/ld+json" set:html={JSON.stringify(article)}></script>
+    {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>}
   </Fragment>
   <header class="wrap hero">
     <div class="grid">
@@ -24,11 +27,16 @@ const article = {"@context":"https://schema.org","@type":"Article",headline:titl
   <section class="wrap band">
     <div class="grid">
       <Trust updated={updated} sources={sources} />
-      <div class="body"><slot /></div>
+      <article class="body prose-md">
+        <slot />
+        {faq.length > 0 && <div class="faq"><h2>Questions people ask</h2>{faq.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div>}
+        <p class="disclaim">LandControl is independent and is not affiliated with HM Land Registry or the UK Government. This page explains the Regulations and published guidance; it is not legal advice. Take advice from a regulated conveyancer on any specific agreement.</p>
+      </article>
       <div class="rail">
         <slot name="rail" />
+        <div class="card red"><p class="eyebrow">Free tools</p><h4>Is it caught, and when is it due?</h4><p>Four tools built on the Regulations and Practice Guide 84.</p><ul class="tl-links"><li><a href="/agreement-checker/">Agreement checker</a></li><li><a href="/deadline-calculator/">Deadline calculator</a></li><li><a href="/transitional-period-checker/">Transitional period checker</a></li><li><a href="/readiness-checklist/">Readiness checklist</a></li></ul></div>
         {sources.length > 0 && <div class="card"><p class="eyebrow">Primary sources</p><ul class="srcs">{sources.map(([t,h]) => <li><a href={h} rel="noopener">{t}</a></li>)}</ul></div>}
-        <div class="card black"><p class="eyebrow">Contractual Control Alert</p><h4>HMLR guidance changes, deadline updates and regulatory developments, as they happen.</h4><a class="btn" href="/#briefing">Subscribe</a></div>
+        <div class="card black"><p class="eyebrow">Contractual Control Alert</p><h4>HMLR guidance changes, deadline updates and regulatory developments, as they happen.</h4><a class="btn" href="/#briefing">Subscribe free</a></div>
       </div>
     </div>
   </section>
@@ -38,4 +46,9 @@ const article = {"@context":"https://schema.org","@type":"Article",headline:titl
 .srcs{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.5rem;font-size:.88rem}
 .srcs a{color:var(--ink);text-decoration-color:var(--rule)}
 .srcs a:hover{color:var(--red)}
+.tl-links{list-style:none;margin:.8rem 0 0;padding:0;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.tl-links a{display:flex;justify-content:space-between;padding:.65rem .8rem;background:var(--card);font-family:var(--display);font-weight:600;font-size:.92rem;text-decoration:none;transition:background .25s,color .25s}
+.tl-links a::after{content:"→";color:var(--red);transition:transform .25s}
+.tl-links a:hover{background:var(--ink);color:var(--paper)}
+.tl-links a:hover::after{transform:translateX(3px)}
 </style>

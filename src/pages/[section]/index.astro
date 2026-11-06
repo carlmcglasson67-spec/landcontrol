@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { SECTIONS } from '../../data/sections';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('guides')).filter((g) => !g.data.draft);
+  return SECTIONS.map((s) => ({
+    params: { section: s.slug },
+    props: {
+      sec: s,
+      items: all
+        .filter((g) => g.id.startsWith(s.slug + '/'))
+        .sort((a, b) => s.slug === 'news'
+          ? (b.data.published ?? b.data.updated).localeCompare(a.data.published ?? a.data.updated)
+          : a.data.order - b.data.order),
+    },
+  }));
+}
+const { sec, items } = Astro.props;
+const fmt = (s: string) => new Date(s).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+const ld = {"@context":"https://schema.org","@type":"CollectionPage",name:sec.title,description:sec.description,url,hasPart:items.map((g:any)=>({"@type":"Article",headline:g.data.h1,url:new URL(`/${g.id}/`,Astro.site).toString()}))};
+const crumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem",position:1,name:"LandControl",item:"https://landcontrol.co.uk/"},{"@type":"ListItem",position:2,name:sec.name,item:url}]};
+---
+<Base title={sec.title} description={sec.description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(ld)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(crumb)}></script>
+  </Fragment>
+  <header class="wrap hero">
+    <div class="grid">
+      <p class="crumb"><a href="/">LandControl</a><span>/</span><span style="color:var(--red)">{sec.name}</span></p>
+      <h1>{sec.h1}</h1>
+      <p class="lede">{sec.lede}</p>
+      <div class="facts"><div><span class="num">{String(items.length).padStart(2,'0')}</span><span>{items.length === 1 ? 'guide' : 'guides'} in this section</span></div><div><span class="num">Sources</span><span>SI 2026/615, HMLR PG 84, MHCLG guidance</span></div><div><span class="num">Reviewed</span><span>Against the primary text, every page dated</span></div></div>
+    </div>
+  </header>
+  <section class="wrap band">
+    <div class="grid">
+      <div class="hub">
+        {items.map((g: any, i: number) => (
+          <a href={`/${g.id}/`} class:list={[{ lead: i === 0 }]}>
+            <span class="n num">{sec.slug === 'news' ? fmt(g.data.published ?? g.data.updated) : String(i + 1).padStart(2, '0')}</span>
+            <strong>{g.data.card ?? g.data.h1}</strong>
+            <span class="d">{g.data.description}</span>
+            <span class="go">Read the guide →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="wrap band">
+    <div class="grid">
+      <div class="head"><p class="eyebrow">Other sections</p><h2>The rest of the regime.</h2></div>
+      <div class="others">
+        {SECTIONS.filter((s) => s.slug !== sec.slug).slice(0, 6).map((s) => <a href={`/${s.slug}/`}><span class="who">{s.eyebrow}</span><strong>{s.name}</strong><span class="go">Open →</span></a>)}
+      </div>
+    </div>
+  </section>
+</Base>

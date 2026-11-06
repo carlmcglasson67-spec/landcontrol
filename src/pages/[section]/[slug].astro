@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import Guide from '../../layouts/Guide.astro';
+import { SECTIONS, sectionBySlug } from '../../data/sections';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('guides')).filter((g) => !g.data.draft);
+  return all
+    .filter((g) => SECTIONS.some((s) => g.id.startsWith(s.slug + '/')))
+    .map((g) => {
+      const [section, slug] = g.id.split('/');
+      return { params: { section, slug }, props: { entry: g, all } };
+    });
+}
+const { entry, all } = Astro.props;
+const { Content } = await render(entry);
+const sec = sectionBySlug(Astro.params.section!)!;
+const d = entry.data;
+const STATIC: Record<string, { label: string; who: string }> = {
+  'professionals/housebuilders': { label: 'Housebuilders and promoters', who: 'Professionals' },
+  'professionals/landowners': { label: 'Landowners', who: 'Professionals' },
+  'professionals/conveyancers': { label: 'Conveyancers', who: 'Professionals' },
+  'professionals/lenders': { label: 'Land buyers, lenders and analysts', who: 'Professionals' },
+};
+const related = d.related
+  .map((id: string) => {
+    const g: any = all.find((x: any) => x.id === id);
+    if (g) return { href: `/${g.id}/`, label: g.data.card ?? g.data.h1, who: sectionBySlug(g.id.split('/')[0])?.name };
+    if (STATIC[id]) return { href: `/${id}/`, ...STATIC[id] };
+    return null;
+  })
+  .filter(Boolean);
+---
+<Guide title={d.title} description={d.description} section={sec.name} sectionHref={`/${sec.slug}/`} eyebrow={d.eyebrow} h1={d.h1} lede={d.lede} facts={d.facts} sources={d.sources} faq={d.faq} updated={d.updated} published={d.published} related={related} type={sec.slug === 'news' ? 'NewsArticle' : 'Article'}>
+  <Content />
+</Guide>
