@@ -52,7 +52,7 @@ nav ul a:hover::after{transform:scaleX(1)}
 nav ul a.cta{margin-left:1rem;height:52px;padding:0 1.4rem;background:var(--ink);color:var(--paper);font-weight:700;align-self:center}
 nav ul a.cta::after{display:none}
 nav ul a.cta:hover{background:var(--red);color:#fff}
-@media(max-width:1000px){nav ul li:not(:last-child){display:none}nav.wrap{height:72px}nav .mark svg{width:32px;height:36px}nav .mark .word{font-size:1.6rem}nav ul a.cta{height:44px;padding:0 1rem;font-size:.9rem;margin-left:0}}
+@media(max-width:1000px){nav ul li:not(.burger-li):not(:has(.cta)){display:none}nav.wrap{height:72px}nav .mark svg{width:32px;height:36px}nav .mark .word{font-size:1.6rem}nav ul a.cta{height:44px;padding:0 1rem;font-size:.9rem;margin-left:0}}
 @media(max-width:420px){nav ul a.cta{font-size:.8125rem;padding:0 .8rem}}
 
 /* hero */
@@ -763,3 +763,26 @@ footer ul{gap:.85rem !important}
 footer .strap{color:#ff3148 !important}
 .hero.home .lede{margin-top:2rem}
 footer .brand>*{grid-column:1/-1 !important}
+
+/* ─── Navigation: current page marker and the mobile sheet ─── */
+nav ul a[aria-current="page"]{color:var(--red)}
+nav ul a[aria-current="page"]::after{transform:scaleX(1)}
+.burger-li{display:none !important}
+.burger{display:grid;place-items:center;width:48px;height:48px;margin-left:.5rem;border:1px solid var(--ink);background:var(--paper);cursor:pointer;color:var(--ink)}
+.burger span{display:block;width:20px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor;transition:transform .3s var(--ease-out),box-shadow .3s}
+.burger[aria-expanded="true"]{background:var(--ink);color:var(--paper)}
+.burger[aria-expanded="true"] span{box-shadow:none;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{content:"";display:block;width:20px;height:2px;background:currentColor;transform:rotate(90deg)}
+.nav-sheet{position:absolute;left:0;right:0;top:100%;background:var(--paper);border-bottom:4px solid var(--red);box-shadow:0 30px 60px -30px rgba(0,0,0,.5);padding:.5rem max(16px,env(safe-area-inset-left,0px)) 1.5rem;animation:sheet .35s var(--ease-out)}
+@keyframes sheet{from{opacity:0;transform:translateY(-8px)}}
+.nav-sheet ol{list-style:none;margin:0;padding:0}
+.nav-sheet a{display:flex;align-items:baseline;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:800;font-stretch:115%;font-size:1.6rem;letter-spacing:-.03em}
+.nav-sheet a .num{font-family:var(--mono);font-size:.8125rem;font-weight:500;color:var(--red);letter-spacing:.08em}
+.nav-sheet a[aria-current="page"]{color:var(--red)}
+.nav-sheet-note{margin-top:1rem;font-family:var(--mono);font-size:.8125rem;color:var(--ink-2)}
+.navbar{position:sticky}
+@media(max-width:1000px){.burger-li{display:flex !important}}
+@media(min-width:1001px){.nav-sheet{display:none !important}}
+@media(max-width:420px){nav ul a.cta{display:none}}
+.nav-sheet-cta{display:flex;align-items:center;justify-content:center;margin-top:1.25rem;min-height:52px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--display);font-weight:700;font-stretch:108%;box-shadow:var(--btn-shadow)}
+.nav-sheet a.nav-sheet-cta{color:#fff;font-size:1.05rem;letter-spacing:-.005em;padding:0 1rem;border:0;justify-content:center;font-weight:700;font-stretch:108%}
