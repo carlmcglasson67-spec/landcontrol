@@ -2,13 +2,19 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base title="LandControl — Development intelligence for the new land market" description="From April 2027 contractual control agreements over registered land must be reported to HM Land Registry. LandControl turns the 2028 public dataset into alerts, opportunities and competitor intelligence." bodyClass="">
-<header class="wrap hero">
+<header class="wrap hero home">
+  <div class="map" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
   <div class="scan" aria-hidden="true"></div>
   <div class="grid">
     <p class="kicker"><span class="live">Regulations in force 6 April 2027</span><span>England &amp; Wales</span><span>Registered land</span><span><a href="/new-era/" style="color:var(--red);text-decoration:none">The new era →</a></span></p>
     <h1>Find the land your competitors <em>haven’t.</em></h1>
     <p class="lede">Know where developers are moving before the planning application appears. From April 2028 HM Land Registry publishes every option, conditional contract and promotion agreement over registered land, monthly. LandControl turns that feed into alerts, opportunities and competitor intelligence your land team opens every Monday.</p>
-    <div class="count"><span class="big num" id="cd">—</span><span class="lab">days until the duty bites</span></div>
+    <div class="count">
+      <div class="clock" role="timer" aria-label="Time until the duty comes into force">
+        <span><b id="cd">—</b><i>Days</i></span><span><b id="ch">--</b><i>Hours</i></span><span><b id="cm">--</b><i>Mins</i></span><span class="sec"><b id="cs">--</b><i>Secs</i></span>
+      </div>
+      <span class="lab num" id="cd-lab">until the duty comes into force: 00:00, 6 April 2027 (UK time)</span>
+    </div>
     <div class="dates">
       <div><span class="num">8 Jun 2026</span><span>Regulations made. Rights granted from here are caught.</span></div>
       <div><span class="num">6 Apr 2027</span><span>Duty in force. HMLR digital service opens.</span></div>
@@ -375,14 +381,26 @@ import Base from '../layouts/Base.astro';
 
   /* countdown */
   var cd=document.getElementById('cd'), left=daysUntil(FORCE);
-  cd.textContent=left>0?left:'0';
-  if(left<=0){cd.nextElementSibling.textContent='the duty is in force';}
+  /* live clock to 00:00 UK time on 6 April 2027 (BST, UTC+1), ticking each second */
+  var FORCE_AT=Date.UTC(2027,3,5,23,0,0);
+  var ch=document.getElementById('ch'), cm=document.getElementById('cm'), cs=document.getElementById('cs');
+  var rmClock=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function pad(n){return (n<10?'0':'')+n;}
+  function clock(){
+    var ms=Math.max(0,FORCE_AT-Date.now()), t=Math.floor(ms/1000);
+    var d=Math.floor(t/86400), h=Math.floor(t%86400/3600), m=Math.floor(t%3600/60), sec=t%60;
+    if(clock.started||rmClock){cd.textContent=d;} clock.started=true;
+    ch.textContent=pad(h); cm.textContent=pad(m); cs.textContent=pad(sec);
+    if(ms===0){document.getElementById('cd-lab').textContent='The duty is in force.'; return;}
+    setTimeout(clock,1000-(Date.now()%1000));
+  }
+  clock();
 
 
   /* motion: count-up and scroll reveal */
   var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!rm){
-    var target=left>0?left:0, t0=null;
+    var target=Math.floor(Math.max(0,FORCE_AT-Date.now())/86400000), t0=null;
     function tick(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1400);var e=1-Math.pow(1-p,3);cd.textContent=Math.round(target*e);if(p<1)requestAnimationFrame(tick);}
     requestAnimationFrame(tick);
     if('IntersectionObserver' in window){

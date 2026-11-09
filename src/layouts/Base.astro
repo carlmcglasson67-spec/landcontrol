@@ -1,6 +1,11 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import '@fontsource-variable/mona-sans/wdth.css';
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
 import '../styles/site.css';
 interface Props { title: string; description: string; bodyClass?: string; noindex?: boolean; ogType?: string; }
 const { title, description, bodyClass = 'sub', noindex = false, ogType = 'website' } = Astro.props;
@@ -27,9 +32,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <meta property="og:site_name" content="LandControl">
 <meta name="theme-color" content="#121212">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"LandControl","url":"https://landcontrol.co.uk/","email":"contact@landcontrol.co.uk","description":"Development intelligence for the new land market: the HMLR contractual control regime explained, with tools, guides and alerts."})}></script>
 <slot name="head" />
 </head>
