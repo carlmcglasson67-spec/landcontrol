@@ -30,7 +30,7 @@ const d = new Date(updated).toLocaleDateString('en-GB',{day:'numeric',month:'lon
     </div>
   </section>
   <slot name="explain" />
-  {faq.length > 0 && <section class="wrap band"><div class="grid"><div class="head"><p class="eyebrow">Questions</p><h2>What people ask about this.</h2></div><div class="faq" style="grid-column:1/span 8;margin:0;padding:0;border:0">{faq.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>}
+  {faq.length > 0 && <section class="wrap band"><div class="grid"><div class="head"><p class="eyebrow">Questions</p><h2>What people ask about this.</h2></div><div class="faq col8" style="margin:0;padding:0;border:0">{faq.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>}
   <section class="wrap band">
     <div class="grid">
       <div class="head"><p class="eyebrow">More free tools</p><h2>The rest of the toolkit.</h2></div>

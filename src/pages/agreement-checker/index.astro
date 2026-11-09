@@ -27,7 +27,7 @@ const faq: [string,string][] = [
   </div>
   <div class="verdict" aria-live="polite">
     <p class="eyebrow" id="vl">Verdict</p>
-    <p class="big" id="vd">Answer question 1</p>
+    <p class="big" id="vd">Start with question 1</p>
     <p id="vw">The verdict updates as you answer.</p>
     <ul class="trail" id="tr"></ul>
     <p class="rule" id="vr"></p>
@@ -61,7 +61,7 @@ const faq: [string,string][] = [
   function run(){
     for(var i=0;i<qs.length;i++){
       var k=qs[i].dataset.q;
-      if(!(k in A)){show(i); if(i===0) verdict('Answer question 1','The verdict updates as you answer.','',false,false); else verdict('So far: in scope','No exclusion yet. Keep going: '+(qs.length-i)+' question'+(qs.length-i>1?'s':'')+' left.','',false,false); return;}
+      if(!(k in A)){show(i); if(i===0) verdict('Start with question 1','The verdict updates as you answer.','',false,false); else verdict('So far: in scope','No exclusion yet. Keep going: '+(qs.length-i)+' question'+(qs.length-i>1?'s':'')+' left.','',false,false); return;}
       var o=outs[k+':'+A[k].v]; if(o){show(i); verdict(o[0],o[1],o[2],false,false); return;}
     }
     show(qs.length-1);

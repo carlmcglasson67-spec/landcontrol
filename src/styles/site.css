@@ -38,22 +38,22 @@ section{border-top:1px solid var(--rule);position:relative}
 
 /* nav */
 .navbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--ink);box-shadow:inset 0 4px 0 var(--red)}
-nav.wrap{display:flex;justify-content:space-between;align-items:center;height:92px;max-width:1480px;margin:0 auto;padding-top:4px}
-nav .mark{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--ink)}
-nav .mark svg{width:40px;height:45px;flex:none}
-nav .mark .word{font-family:var(--display);font-size:2rem;font-weight:400;letter-spacing:-.04em;line-height:1;white-space:nowrap}
-nav .mark .word b{font-weight:800}
-nav ul{display:flex;align-items:center;gap:0;list-style:none;margin:0;padding:0;height:100%}
-nav ul li{height:100%;display:flex;align-items:center}
-nav ul a{font-family:var(--display);font-weight:600;font-size:1rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink);padding:0 1.1rem;height:100%;display:flex;align-items:center;position:relative;transition:color .2s}
-nav ul a::after{content:"";position:absolute;left:1.1rem;right:1.1rem;bottom:0;height:4px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
-nav ul a:hover{color:var(--red)}
-nav ul a:hover::after{transform:scaleX(1)}
-nav ul a.cta{margin-left:1rem;height:52px;padding:0 1.4rem;background:var(--ink);color:var(--paper);font-weight:700;align-self:center}
-nav ul a.cta::after{display:none}
-nav ul a.cta:hover{background:var(--red);color:#fff}
-@media(max-width:1000px){nav ul li:not(.burger-li):not(:has(.cta)){display:none}nav.wrap{height:72px}nav .mark svg{width:32px;height:36px}nav .mark .word{font-size:1.6rem}nav ul a.cta{height:44px;padding:0 1rem;font-size:.9rem;margin-left:0}}
-@media(max-width:420px){nav ul a.cta{font-size:.8125rem;padding:0 .8rem}}
+ .navbar nav.wrap{display:flex;justify-content:space-between;align-items:center;height:92px;max-width:1480px;margin:0 auto;padding-top:4px}
+ .navbar nav .mark{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--ink)}
+ .navbar nav .mark svg{width:40px;height:45px;flex:none}
+ .navbar nav .mark .word{font-family:var(--display);font-size:2rem;font-weight:400;letter-spacing:-.04em;line-height:1;white-space:nowrap}
+ .navbar nav .mark .word b{font-weight:800}
+ .navbar nav ul{display:flex;align-items:center;gap:0;list-style:none;margin:0;padding:0;height:100%}
+ .navbar nav ul li{height:100%;display:flex;align-items:center}
+ .navbar nav ul a{font-family:var(--display);font-weight:600;font-size:1rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink);padding:0 1.1rem;height:100%;display:flex;align-items:center;position:relative;transition:color .2s}
+ .navbar nav ul a::after{content:"";position:absolute;left:1.1rem;right:1.1rem;bottom:0;height:4px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+ .navbar nav ul a:hover{color:var(--red)}
+ .navbar nav ul a:hover::after{transform:scaleX(1)}
+ .navbar nav ul a.cta{margin-left:1rem;height:52px;padding:0 1.4rem;background:var(--ink);color:var(--paper);font-weight:700;align-self:center}
+ .navbar nav ul a.cta::after{display:none}
+ .navbar nav ul a.cta:hover{background:var(--red);color:#fff}
+@media(max-width:1000px){ .navbar nav ul li:not(.burger-li):not(:has(.cta)){display:none} .navbar nav.wrap{height:72px} .navbar nav .mark svg{width:32px;height:36px} .navbar nav .mark .word{font-size:1.6rem} .navbar nav ul a.cta{height:44px;padding:0 1rem;font-size:.9rem;margin-left:0}}
+@media(max-width:420px){ .navbar nav ul a.cta{font-size:.8125rem;padding:0 .8rem}}
 
 /* hero */
 .hero{position:relative;overflow:hidden;padding-block:clamp(3.5rem,8vw,7.5rem) clamp(3rem,6vw,5.5rem);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:4rem 4rem;background-position:center top}
@@ -696,14 +696,14 @@ footer .legal{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:1rem
 .lede{font-size:1.35rem;line-height:1.45}
 .small{font-size:.9375rem}
 .eyebrow{font-weight:500}
-nav .mark .word{font-stretch:112%}
+ .navbar nav .mark .word{font-stretch:112%}
 /* Buttons: every primary action gets a lit top edge, a pressed state and a lift */
-nav ul a.cta,.card .btn,.signup button,.btn,a.btn,button.btn{position:relative;font-family:var(--display);font-stretch:108%;font-weight:700;letter-spacing:-.005em;box-shadow:var(--btn-shadow);transition:transform .18s var(--ease-out),box-shadow .35s var(--ease-out),background .25s,color .25s}
-nav ul a.cta:hover,.card .btn:hover,.signup button:hover,.btn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 0 rgba(0,0,0,.25),0 2px 4px rgba(18,18,18,.2),0 18px 32px -14px rgba(200,16,46,.55)}
-nav ul a.cta:active,.card .btn:active,.signup button:active,.btn:active{transform:translateY(0) scale(.985);transition-duration:.08s}
-nav ul a.cta::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red);transition:width .35s var(--ease-out)}
-nav ul a.cta:hover::before{width:100%;z-index:-1}
-nav ul a.cta{isolation:isolate;overflow:hidden}
+ .navbar nav ul a.cta,.card .btn,.signup button,.btn,a.btn,button.btn{position:relative;font-family:var(--display);font-stretch:108%;font-weight:700;letter-spacing:-.005em;box-shadow:var(--btn-shadow);transition:transform .18s var(--ease-out),box-shadow .35s var(--ease-out),background .25s,color .25s}
+ .navbar nav ul a.cta:hover,.card .btn:hover,.signup button:hover,.btn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 0 rgba(0,0,0,.25),0 2px 4px rgba(18,18,18,.2),0 18px 32px -14px rgba(200,16,46,.55)}
+ .navbar nav ul a.cta:active,.card .btn:active,.signup button:active,.btn:active{transform:translateY(0) scale(.985);transition-duration:.08s}
+ .navbar nav ul a.cta::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red);transition:width .35s var(--ease-out)}
+ .navbar nav ul a.cta:hover::before{width:100%;z-index:-1}
+ .navbar nav ul a.cta{isolation:isolate;overflow:hidden}
 /* Fields: recessed, with a hard red focus rule */
 .calc input,.calc select,.signup input,.tool input,.tool select,input[type=email],input[type=text],input[type=date],select{box-shadow:inset 0 2px 3px rgba(18,18,18,.06);min-height:52px}
 .calc input:focus,.calc select:focus,.signup input:focus{box-shadow:inset 0 2px 3px rgba(18,18,18,.06),0 0 0 3px var(--red-soft),inset 0 -2px 0 var(--red)}
@@ -765,8 +765,8 @@ footer .strap{color:#ff3148 !important}
 footer .brand>*{grid-column:1/-1 !important}
 
 /* ─── Navigation: current page marker and the mobile sheet ─── */
-nav ul a[aria-current="page"]{color:var(--red)}
-nav ul a[aria-current="page"]::after{transform:scaleX(1)}
+ .navbar nav ul a[aria-current="page"]{color:var(--red)}
+ .navbar nav ul a[aria-current="page"]::after{transform:scaleX(1)}
 .burger-li{display:none !important}
 .burger{display:grid;place-items:center;width:48px;height:48px;margin-left:.5rem;border:1px solid var(--ink);background:var(--paper);cursor:pointer;color:var(--ink)}
 .burger span{display:block;width:20px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor;transition:transform .3s var(--ease-out),box-shadow .3s}
@@ -782,7 +782,78 @@ nav ul a[aria-current="page"]::after{transform:scaleX(1)}
 .nav-sheet-note{margin-top:1rem;font-family:var(--mono);font-size:.8125rem;color:var(--ink-2)}
 .navbar{position:sticky}
 @media(max-width:1000px){.burger-li{display:flex !important}}
-@media(min-width:1001px){.nav-sheet{display:none !important}}
-@media(max-width:420px){nav ul a.cta{display:none}}
+@media(max-width:420px){ .navbar nav ul a.cta{display:none}}
 .nav-sheet-cta{display:flex;align-items:center;justify-content:center;margin-top:1.25rem;min-height:52px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--display);font-weight:700;font-stretch:108%;box-shadow:var(--btn-shadow)}
 .nav-sheet a.nav-sheet-cta{color:#fff;font-size:1.05rem;letter-spacing:-.005em;padding:0 1rem;border:0;justify-content:center;font-weight:700;font-stretch:108%}
+
+/* ─── Review fixes ─── */
+/* Gutters: real breathing room at every width */
+.wrap{padding-left:max(clamp(20px,4.5vw,72px),env(safe-area-inset-left,0px));padding-right:max(clamp(20px,4.5vw,72px),env(safe-area-inset-right,0px))}
+.grid{max-width:1560px}
+/* Red text on dark surfaces uses the bright red (5:1+) */
+.site .k,.site .t small,.result .eyebrow,.result .big.red,.card.black .eyebrow,.signup .eyebrow,.doc.after .dh span:last-child,.doc.after .dr span:first-child,.tier.feat .n .pill,.pillars .ex,.why .eyebrow,[data-dark] .eyebrow{color:#ff3148 !important}
+.result .eyebrow::before,.signup .eyebrow::before,.why .eyebrow::before{background:#ff3148 !important}
+.tier.feat .note,.tier.feat small{color:rgba(255,255,255,.65) !important}
+/* No decorative loops: the scan, blink and breathe are gone */
+.hero .scan,.site::after{display:none !important}
+.site .alert,.tier.feat{animation:none !important}
+/* Reading measure and designed reading surfaces */
+.sub .body p,.sub .body li{max-width:68ch}
+.readcard{grid-column:1/span 8;background:var(--card);padding:clamp(1.5rem,4vw,3.5rem);box-shadow:var(--shadow);border-top:4px solid var(--ink)}
+.readcard h3{margin-top:2rem}
+.readcard h3:first-child{margin-top:0}
+.col8{grid-column:1/span 8}
+@media(max-width:900px){.col8,.readcard,.so,.cl,.close .tag{grid-column:1/-1 !important}}
+/* Tables become stacked records on phones */
+@media(max-width:640px){
+  .sub .body table thead{display:none}
+  .sub .body table,.sub .body tbody,.sub .body tr,.sub .body td{display:block;width:100%}
+  .sub .body tr{padding:.9rem 1rem;border-bottom:1px solid var(--rule)}
+  .sub .body td{padding:.15rem 0 !important;border:0 !important}
+  .sub .body td:first-child{font-family:var(--display);font-weight:650;font-size:1.05rem}
+}
+/* Selects: custom chevron, display face values */
+select{appearance:none;-webkit-appearance:none;padding-right:2.6rem !important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' fill='none' stroke='%23c8102e' stroke-width='2'/%3E%3C/svg%3E") !important;background-repeat:no-repeat !important;background-position:right .9rem center !important;background-size:16px !important;font-family:var(--display) !important;font-weight:600 !important;font-stretch:104%}
+/* Enterprise button sits at its natural width */
+.ent .btn,.ent a.btn{justify-self:start;width:auto;padding:0 1.6rem;display:inline-flex;align-items:center;min-height:52px}
+/* Hero fact labels never break */
+.sub .hero .facts div{grid-template-columns:9.5rem 1fr;align-items:baseline}
+.sub .hero .facts div>span:first-child{white-space:nowrap}
+/* First band after a sub-page hero starts closer */
+.sub .hero+section.band,.sub .hero+.trustwrap,.sub header.hero+section{padding-top:clamp(2rem,4vw,3.5rem)}
+/* Cards: links line up at the foot */
+.hub a,.aud>a,.others a{display:flex;flex-direction:column}
+.hub a .go,.aud>a .go,.others a .go{margin-top:auto;padding-top:.8rem}
+.hub .n{text-transform:uppercase;letter-spacing:.14em}
+.tier .p small{display:block;line-height:1.4;margin-top:.3rem}
+/* Small serif reads small: 15px minimum for Newsreader, 13px kept for mono only */
+.small,.aud p,.tier li,.card p,.fields p.d,.tests p,.mods p,.hero .stats span:last-child,.hero .dates span:last-child,.tl .small,footer .desc{font-size:max(.9375rem,1em) !important}
+/* Agreement checker answers: full-width tactile buttons */
+.q .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.6rem}
+.q .opts button{min-height:56px;padding:.8rem 1rem;text-align:left;font-family:var(--display);font-weight:650;font-stretch:104%;font-size:1rem;background:var(--card);color:var(--ink);border:1px solid var(--ink);box-shadow:var(--shadow);cursor:pointer;position:relative;overflow:hidden;transition:transform .18s var(--ease-out),box-shadow .3s,color .3s}
+.q .opts button::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red);transition:width .35s var(--ease-out);z-index:0}
+.q .opts button:hover{transform:translateY(-2px);color:#fff}
+.q .opts button:hover::before{width:100%}
+.q .opts button>*,.q .opts button{z-index:1}
+.q .opts button{isolation:isolate}
+.q .opts button::before{z-index:-1}
+/* Tablet: burger up to 1180px; CTA never wraps */
+.navbar nav ul a.cta{white-space:nowrap}
+@media(max-width:1180px){.navbar nav ul li:not(.burger-li):not(:has(.cta)){display:none}.burger-li{display:flex !important}}
+
+@media(min-width:1181px){.nav-sheet{display:none !important}}
+.nav-sheet a.nav-sheet-cta{align-items:center}
+/* Footer disclaimer in the reading face */
+footer .disc{font-family:var(--body) !important;font-size:.9375rem !important;font-weight:400 !important;line-height:1.55}
+footer .disc strong{font-weight:600}
+/* Sign-up: one engineered row on desktop, full-width stack on phones */
+.signup form{display:grid !important;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) auto;gap:0;max-width:52rem !important}
+.signup form input,.signup form select{min-height:60px;border-radius:0}
+.signup form select{background-color:rgba(255,255,255,.04) !important;color:#fff;border:1px solid rgba(255,255,255,.3);border-right:0;padding:0 1rem}
+.signup form select option{color:#121212}
+.signup form button{min-height:60px;padding:0 1.8rem;white-space:nowrap}
+.signup form>:not(input):not(select):not(button){grid-column:1/-1}
+@media(max-width:700px){.signup form{grid-template-columns:1fr}.signup form input,.signup form select{border-right:1px solid rgba(255,255,255,.3) !important;border-bottom:0}.signup form button{width:100%}}
+/* Example record: the momentum meter stays in the value column */
+.site div.r .score{min-width:0}
+.ent .ent-btn,a.ent-btn{justify-self:start !important;width:auto !important;display:inline-flex !important;align-items:center;justify-content:center;padding:0 1.8rem !important;min-height:52px}
