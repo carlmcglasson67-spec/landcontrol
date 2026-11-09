@@ -1,0 +1,12 @@
+{
+  "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
+  "lastRun": null,
+  "items": [
+    { "date": "2026-06-08", "url": "https://www.legislation.gov.uk/uksi/2026/615", "title": "SI 2026/615 made", "status": "published", "page": "/news/regulations-made/" },
+    { "date": "2026-09-17", "url": "https://hmlandregistry.blog.gov.uk/2026/09/17/help-shape-our-new-contractual-control-service/", "title": "HMLR user research on submission service", "status": "tracker", "page": "/tracker/" },
+    { "date": "2026-09-30", "url": "https://www.gov.uk/guidance/hm-land-registry-new-reporting-rules-for-contractual-control-rights", "title": "HMLR new reporting rules guidance", "status": "tracker", "page": "/tracker/" },
+    { "date": "2026-10-26", "url": "https://www.gov.uk/government/publications/contractual-control-rights-pg-84/practice-guide-84-contractual-control-rights", "title": "Practice guide 84 published", "status": "published", "page": "/news/practice-guide-84-published/" },
+    { "date": "2026-10-26", "url": "https://www.gov.uk/guidance/hm-land-registry-contractual-control-rights-scenarios", "title": "Contractual control rights scenarios", "status": "published", "page": "/hmlr/contractual-control-scenarios/" },
+    { "date": "2026-10-26", "url": "https://www.gov.uk/government/news/new-practice-guide-on-contractual-control-rights-now-available", "title": "HMLR news release on PG 84", "status": "published", "page": "/news/practice-guide-84-published/" }
+  ]
+}
