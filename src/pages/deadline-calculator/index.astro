@@ -41,10 +41,10 @@ const faq: [string,string][] = [
     </label>
     <p class="small">Every answer stays in your browser. Calendar days, counted from the day of the event.</p>
   </div>
-  <div class="verdict" aria-live="polite">
+  <div class="verdict">
     <p class="eyebrow" id="vl">Submit to HMLR by</p>
-    <p class="big red" id="vd">—</p>
-    <p id="vw"></p>
+    <p class="big red" id="vd" aria-live="polite" aria-atomic="true">—</p>
+    <p id="vw" aria-live="polite"></p>
     <p class="rule" id="vr"></p>
     <a class="btn" id="ics" href="#" download="landcontrol-deadline.ics" hidden>Add to calendar</a>
   </div>
@@ -53,10 +53,10 @@ const faq: [string,string][] = [
       <div class="grid">
         <div class="head"><p class="eyebrow">The rules behind it</p><h2>Four clocks, one regime.</h2></div>
         <div class="steps">
-          <div><p class="n">01</p><h4>Transitional grants</h4><p>Granted 8 June 2026 to 5 April 2027: report from 6 April 2027 and by 6 October 2027, with the information correct at the date you submit.</p></div>
-          <div><p class="n">02</p><h4>New grants</h4><p>Granted on or after 6 April 2027: within 60 days of the grant.</p></div>
-          <div><p class="n">03</p><h4>Assignments and variations</h4><p>Within 60 days, from 6 April 2027. This catches agreements signed years ago, too. A variation counts only if it is in writing and changes reportable information.</p></div>
-          <div><p class="n">04</p><h4>Endings</h4><p>Exercise, determination or expiry of a reported right, wholly or partly: within 60 days, saying how it ended.</p></div>
+          <div><p class="n">01</p><h3 class="h4">Transitional grants</h3><p>Granted 8 June 2026 to 5 April 2027: report from 6 April 2027 and before 6 October 2027, with the information correct at the date you submit.</p></div>
+          <div><p class="n">02</p><h3 class="h4">New grants</h3><p>Granted on or after 6 April 2027: within 60 days of the grant.</p></div>
+          <div><p class="n">03</p><h3 class="h4">Assignments and variations</h3><p>Within 60 days, from 6 April 2027. This catches agreements signed years ago, too. A variation counts only if it is in writing and changes reportable information.</p></div>
+          <div><p class="n">04</p><h3 class="h4">Endings</h3><p>Exercise, determination or expiry of a reported right, wholly or partly: within 60 days, saying how it ended.</p></div>
         </div>
         <div class="body prose col8" style="margin-top:2.5rem">
           <p>A fifth trigger sits outside the clocks: if you apply to HM Land Registry for a notice or restriction to protect a right, HMLR will generally not accept the application until the contractual control information has been provided, whenever the right was granted. Full detail in <a href="/compliance/60-day-deadline/">the 60-day rule</a> and <a href="/compliance/transitional-period/">the transitional period</a>, or start from <a href="/contractual-control-agreements/">the complete guide</a>.</p>
@@ -90,20 +90,21 @@ const faq: [string,string][] = [
   function calc(){
     var e=ev.value, o=orig.value;
     $('origWrap').hidden=(e==='grant'); $('alters').hidden=(e!=='vary');
-    if(!dt.value) return;
+    if(!dt.value){ dt.setAttribute('aria-invalid','true'); return set({label:'Date needed',date:'Enter the date of the event',why:'Type or pick the date the agreement was granted, varied or ended to see the deadline.',rule:''}); }
+    dt.removeAttribute('aria-invalid');
     var p=dt.value.split('-'), d=new Date(+p[0],+p[1]-1,+p[2]);
     if(e==='grant'){ o = d<MADE?'pre':d<FORCE?'trans':'post'; }
     if(e==='grant'){
       if(o==='pre') return set({label:'On grant',date:'Not reportable',why:'Granted before the Regulations were made on 8 June 2026, so the grant itself is outside the regime. It becomes reportable if it is assigned, or varied in writing in a way that changes the reportable information, on or after 6 April 2027, or if you apply for a notice or restriction to protect it.',rule:'PG 84 §4.1 · pre-8 June 2026 grants'});
-      if(o==='trans') return set({red:true,due:add(TRANS,-1),label:'Submit to HMLR before',date:fmt(TRANS),why:'Granted in the transitional window (8 June 2026 to 5 April 2027). Information can only be submitted once the service opens on 6 April 2027, and must be in by 6 October 2027. It has to be accurate on the day you submit, so reflect any later variation. Applying for a notice or restriction after 6 April 2027 brings the deadline forward.',rule:'PG 84 §4.2 · transitional deadline · '+lefttxt(TRANS)});
+      if(o==='trans') return set({red:true,due:add(TRANS,-1),label:'Submit to HMLR before',date:fmt(TRANS),why:'Granted in the transitional window (8 June 2026 to 5 April 2027). Information can only be submitted once the service opens on 6 April 2027, and must be in before 6 October 2027. It has to be accurate on the day you submit, so reflect any later variation. Applying for a notice or restriction after 6 April 2027 brings the deadline forward.',rule:'PG 84 §4.2 · transitional deadline · '+lefttxt(TRANS)});
       var g=add(d,60); return set({red:true,due:g,label:'Submit to HMLR by',date:fmt(g),why:'Granted after the Regulations came into force: 60 days from the date of grant, submitted digitally by an individually regulated conveyancer.',rule:'PG 84 §4.1 · '+d.toLocaleDateString('en-GB')+' + 60 days · '+lefttxt(g)});
     }
     if(e==='notice'){
-      if(d<FORCE) return set({label:'Before 6 April 2027',date:'Apply as normal',why:'Information cannot be provided before the service opens on 6 April 2027, so until then you protect the right by notice or restriction in the usual way. Any transitional right still has to be reported by 6 October 2027.',rule:'HMLR scenario 9'});
+      if(d<FORCE) return set({label:'Before 6 April 2027',date:'Apply as normal',why:'Information cannot be provided before the service opens on 6 April 2027, so until then you protect the right by notice or restriction in the usual way. Any transitional right still has to be reported before 6 October 2027.',rule:'HMLR scenario 9'});
       return set({red:true,label:'Provide the information',date:'Before you apply',why:'HMLR will generally not accept an application for a notice or restriction protecting a contractual control right while the information is outstanding, and will ask whether the Regulations have been complied with. This applies whenever the right was granted, including before 8 June 2026.',rule:'PG 84 §4.4 and §9'});
     }
     if(d<FORCE){
-      if(o==='trans'&&e!=='end') return set({red:true,due:TRANS,label:'Not a separate trigger',date:fmt(TRANS),why:'Assignments and variations before 6 April 2027 do not start their own clock. The original grant still has to be reported by 6 October 2027, and what you submit must reflect this change.',rule:'PG 84 §4.2 · '+lefttxt(TRANS)});
+      if(o==='trans'&&e!=='end') return set({red:true,due:add(TRANS,-1),label:'Not a separate trigger',date:fmt(TRANS),why:'Assignments and variations before 6 April 2027 do not start their own clock. The original grant still has to be reported before 6 October 2027, and what you submit must reflect this change.',rule:'PG 84 §4.2 · '+lefttxt(TRANS)});
       if(o==='trans'&&e==='end') return set({label:'Ended before the regime',date:'Check with your conveyancer',why:'The right ended before the service opened. PG 84 asks for information to be accurate at the date it is provided and confirms that a right ending within a reporting period can be confirmed instead; take advice on whether anything is still required for a right that no longer exists.',rule:'PG 84 §4.2 and §4.3'});
       return set({label:'Before 6 April 2027',date:'Not a trigger',why:'Assignments, variations and endings only become reportable events on or after 6 April 2027. A right granted before 8 June 2026 stays outside the regime until an event on or after that date.',rule:'Triggers run from 6 April 2027'});
     }

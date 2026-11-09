@@ -13,7 +13,7 @@ sources:
   - ["HM Land Registry: Contractual control rights scenarios","https://www.gov.uk/guidance/hm-land-registry-contractual-control-rights-scenarios"]
   - ["SI 2026/615: The Provision of Information (Contractual Control) (Registered Land) Regulations 2026","https://www.legislation.gov.uk/uksi/2026/615"]
 faq:
-  - ["Do option agreements have to be registered with HM Land Registry?","From 6 April 2027, an option over registered land in England and Wales that lets the holder require a transfer of the freehold or the grant of a lease of more than 15 years, held for a business or other undertaking, must be reported to HMLR unless an exemption applies. Options granted from 8 June 2026 to 5 April 2027 must be reported before 6 October 2027."]
+  - ["Do option agreements have to be registered with HM Land Registry?","From 6 April 2027, an option over registered land in England and Wales that lets the holder require a transfer of the freehold or the grant of a lease of 15 years or more, held for a business or other undertaking, must be reported to HMLR unless an exemption applies. Options granted from 8 June 2026 to 5 April 2027 must be reported before 6 October 2027."]
   - ["Is a 12-month option exempt?","Only if it cannot last 18 months or more. A 12-month option with a 12-month extension could run for 24 months, so HMLR’s scenarios guidance says the short-term exemption does not apply."]
   - ["Do I have to report when I exercise an option?","Yes, for a reported right. Exercise ends the right, and the grantee must confirm within 60 days how it ended and whether wholly or in part."]
 related: ["agreements/exemptions","compliance/60-day-deadline","agreements/conditional-contracts"]
@@ -26,7 +26,7 @@ Practice guide 84 describes the first category of contractual control right as a
 An option is caught only if every one of the general tests is met:
 
 - it is in a **written contract** (a deed counts);
-- it controls a future **transfer of the freehold, or grant of a lease of more than 15 years**, of **registered land**;
+- it controls a future **transfer of the freehold, or grant of a lease of 15 years or more**, of **registered land**;
 - the grantor is the **registered owner** when it is granted;
 - it is held **for the purposes of an undertaking**, such as a business; and
 - **no exemption** applies.
@@ -43,7 +43,7 @@ The flip side helps with older options. HMLR’s guide gives the example of an o
 
 ## Lease options
 
-An option to take a lease is caught only if that lease would be for more than 15 years. HMLR’s scenario 3 is a 12-year lease with an option to take a further lease. It is not reportable: the relevant term is the lease the option relates to, and the existing term and the further term are not added together.
+An option to take a lease is caught only if that lease would be for 15 years or more. HMLR’s scenario 3 is a 12-year lease with an option to take a further lease. It is not reportable: the relevant term is the lease the option relates to, and the existing term and the further term are not added together.
 
 ## Investment options
 

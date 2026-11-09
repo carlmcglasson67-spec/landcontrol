@@ -2,18 +2,20 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base title="LandControl — Development intelligence for the new land market" description="From April 2027 contractual control agreements over registered land must be reported to HM Land Registry. LandControl turns the 2028 public dataset into alerts, opportunities and competitor intelligence." bodyClass="">
+<Fragment slot="head"><link rel="preload" as="image" type="image/webp" href="/img/map-800.webp" media="(max-width:900px)" fetchpriority="high"><link rel="preload" as="image" type="image/webp" href="/img/map-1600.webp" media="(min-width:901px)" fetchpriority="high"></Fragment>
 <header class="wrap hero home">
   <div class="map" aria-hidden="true"></div><div class="veil" aria-hidden="true"></div>
   <div class="scan" aria-hidden="true"></div>
   <div class="grid">
     <p class="kicker"><span class="live">Regulations in force 6 April 2027</span><span>England &amp; Wales</span><span>Registered land</span><span><a href="/new-era/" style="color:var(--red);text-decoration:none">The new era →</a></span></p>
     <h1>Find the land your competitors <em>haven’t.</em></h1>
-    <p class="lede">Know where developers are moving before the planning application appears. From April 2028 HM Land Registry publishes every option, conditional contract and promotion agreement over registered land, monthly. LandControl turns that feed into alerts, opportunities and competitor intelligence your land team opens every Monday.</p>
+    <p class="lede">Know where developers are moving before the planning application appears. From April 2028 HM Land Registry publishes in-scope options, conditional contracts, pre-emption and promotion rights over registered land, updated at least monthly. LandControl turns that feed into alerts, opportunities and competitor intelligence your land team opens every Monday.</p>
     <div class="count">
       <div class="clock" role="timer" aria-label="Time until the duty comes into force">
         <span><b id="cd">—</b><i>Days</i></span><span><b id="ch">--</b><i>Hours</i></span><span><b id="cm">--</b><i>Mins</i></span><span class="sec"><b id="cs">--</b><i>Secs</i></span>
       </div>
       <span class="lab num" id="cd-lab">until the duty comes into force: 00:00, 6 April 2027 (UK time)</span>
+      <button class="clock-ctl" type="button" id="clock-ctl" aria-pressed="false">Pause clock</button>
     </div>
     <div class="dates">
       <div><span class="num">8 Jun 2026</span><span>Regulations made. Rights granted from here are caught.</span></div>
@@ -22,7 +24,7 @@ import Base from '../layouts/Base.astro';
       <div><span class="num">Apr 2028</span><span>First public dataset, then at least monthly.</span></div>
     </div>
     <div class="stats rv">
-      <div><span class="big num">60</span><span>calendar days to report each event</span></div>
+      <div><span class="big num">60</span><span>days to report each event</span></div>
       <div><span class="big num">4</span><span>right types caught: option, conditional, pre-emption, promotion</span></div>
       <div><span class="big num">1</span><span>regulated conveyancer per submission, no exceptions</span></div>
       <div><span class="big num">12×</span><span>a year the public dataset refreshes, minimum</span></div>
@@ -42,7 +44,7 @@ import Base from '../layouts/Base.astro';
       <div class="prog" id="prog" aria-hidden="true"></div>
       <div><span class="num">8 Jun 2026</span><strong>Made.</strong><p class="small">The regulations have retrospective reach. A right granted on or after this date must be reported once the service opens, even though the duty itself is not yet in force.</p></div>
       <div class="hot"><span class="num">6 Apr 2027</span><strong>In force.</strong><p class="small">New grants, assignments, written variations and exercises from this date each start a 60-calendar-day clock. Submission is digital, through an individually regulated conveyancer.</p></div>
-      <div class="hot"><span class="num">6 Oct 2027</span><strong>Transitional cut-off.</strong><p class="small">Six months after launch. Every in-scope right granted between 8 June 2026 and 5 April 2027 must be on the register by this date.</p></div>
+      <div class="hot"><span class="num">6 Oct 2027</span><strong>Transitional cut-off.</strong><p class="small">Six months after launch. Every in-scope right granted between 8 June 2026 and 5 April 2027 must be on the register before this date.</p></div>
       <div><span class="num">6 Apr 2028</span><strong>Publication.</strong><p class="small">HMLR publishes the contractual control dataset as soon as possible after this date, and at least monthly thereafter. Location, grantee, type, duration, dates.</p></div>
     </div>
   </div>
@@ -95,10 +97,10 @@ import Base from '../layouts/Base.astro';
       <p class="lede">The regime targets control short of ownership. Four checks settle most cases, and a short list of exemptions takes some rights out. The guidance says to read the exemptions restrictively: anything with a development purpose is probably in.</p>
     </div>
     <div class="tests rv">
-      <div><span class="k">Test 1</span><h4>Registered land</h4><p>England and Wales. Registered freehold, or registered leasehold with more than 15 years unexpired when the right is granted. Unregistered land is outside the regime.</p></div>
-      <div><span class="k">Test 2</span><h4>A contractual control right</h4><p>An option, a conditional contract, a pre-emption right, or a right under a promotion agreement that controls how the land is used, developed or disposed of. Absolute or conditional, whole or part of a title.</p></div>
-      <div><span class="k">Test 3</span><h4>Held for an undertaking</h4><p>The grantee holds the right for the purposes of a business, charity or other organised activity. A private individual buying a neighbour’s paddock for themselves is not caught.</p></div>
-      <div><span class="k">Test 4</span><h4>18 months or more</h4><p>The total period of control, including extensions, is at least 18 months. Shorter rights are exempt, which is why 17-month options are about to become popular and why HMLR says it will look at substance.</p></div>
+      <div><span class="k">Test 1</span><h3 class="h4">Registered land</h3><p>England and Wales. Registered freehold, or registered leasehold with 15 years or more unexpired when the right is granted. Unregistered land is outside the regime.</p></div>
+      <div><span class="k">Test 2</span><h3 class="h4">A contractual control right</h3><p>An option, a conditional contract, a pre-emption right, or a right under a promotion agreement that controls how the land is used, developed or disposed of. Absolute or conditional, whole or part of a title.</p></div>
+      <div><span class="k">Test 3</span><h3 class="h4">Held for an undertaking</h3><p>The grantee holds the right for the purposes of a business, charity or other organised activity. A private individual buying a neighbour’s paddock for themselves is not caught.</p></div>
+      <div><span class="k">Test 4</span><h3 class="h4">18 months or more</h3><p>The total period of control, including extensions, is at least 18 months. Shorter rights are exempt, which is why 17-month options are about to become popular and why HMLR says it will look at substance.</p></div>
     </div>
     <div class="two">
       <div>
@@ -116,7 +118,7 @@ import Base from '../layouts/Base.astro';
         <h3>Exempt <span class="pill out">Read narrowly</span></h3>
         <ul class="list out">
           <li><span><strong>Security.</strong> Rights granted solely to secure a loan or other financial instrument, and security for overage owed to a former owner.</span></li>
-          <li><span><strong>Short leases.</strong> Leasehold estates with 15 years or less to run when the right is granted.</span></li>
+          <li><span><strong>Short leases.</strong> Leases with less than 15 years of their term left at the date of the contract.</span></li>
           <li><span><strong>Non-development rights.</strong> Rights granted exclusively for purposes other than development. The guidance warns that a right which in substance relates to future development stays in scope however it is drafted.</span></li>
           <li><span><strong>Short-lived rights.</strong> Total control period under 18 months.</span></li>
           <li><span><strong>Section 106 rights.</strong> Rights relating exclusively to infrastructure, amenities or services tied to a planning permission.</span></li>
@@ -353,7 +355,7 @@ import Base from '../layouts/Base.astro';
     <div class="t">
       <p class="eyebrow">Contractual Control Alert</p>
       <h2>HMLR guidance changes, deadline updates and regulatory developments, as they happen.</h2>
-      <p style="margin-top:1rem;max-width:52ch;color:rgba(255,255,255,.75)">HMLR technical guidance as it lands, the practice guide when it’s published, and first access to the register for in-house land teams before the 6 October 2027 backlog deadline.</p>
+      <p style="margin-top:1rem;max-width:52ch;color:rgba(255,255,255,.75)">HMLR technical guidance as it lands, Practice guide 84 updates as they’re made, and first access to the register for in-house land teams before the 6 October 2027 backlog deadline.</p>
       <form id="signup">
         <label for="email" style="position:absolute;left:-9999px">Work email</label>
         <input type="email" id="email" placeholder="you@firm.co.uk" required autocomplete="email">
@@ -392,9 +394,17 @@ import Base from '../layouts/Base.astro';
     if(clock.started||rmClock){cd.textContent=d;} clock.started=true;
     ch.textContent=pad(h); cm.textContent=pad(m); cs.textContent=pad(sec);
     if(ms===0){document.getElementById('cd-lab').textContent='The duty is in force.'; return;}
-    setTimeout(clock,1000-(Date.now()%1000));
+    if(clock.paused) return;
+    /* reduced motion: no ticking seconds, update once a minute */
+    clock.t=setTimeout(clock,rmClock?60000-(Date.now()%60000):1000-(Date.now()%1000));
   }
+  if(rmClock) document.querySelector('.clock').classList.add('no-sec');
   clock();
+  var cc=document.getElementById('clock-ctl');
+  cc.addEventListener('click',function(){
+    clock.paused=!clock.paused; cc.setAttribute('aria-pressed',String(clock.paused)); cc.textContent=clock.paused?'Resume clock':'Pause clock';
+    if(clock.paused) clearTimeout(clock.t); else clock();
+  });
 
 
   /* motion: count-up and scroll reveal */
@@ -433,7 +443,7 @@ import Base from '../layouts/Base.astro';
     if(e==='grant' && d<MADE){
       out={cls:'ok',label:'No duty on grant',date:'Not reportable',why:'The right was granted before the regulations were made on 8 June 2026, so the grant itself is outside the regime. An assignment, or a written variation that changes the reportable information, on or after 6 April 2027 would be reportable within 60 days, as would applying for a notice or restriction.',rule:'Transitional provisions · pre-8 Jun 2026 grants'};
     } else if(e!=='grant' && d<FORCE){
-      out={cls:'ok',label:'Not a trigger',date:'Not reportable',why:'Assignments, variations and exercises only become reportable events on or after 6 April 2027. '+(older?'An older agreement is caught only by an event on or after that date.':'Check whether the original grant (8 June 2026 onward) needs reporting by 6 October 2027.'),rule:'Trigger events run from 6 Apr 2027'};
+      out={cls:'ok',label:'Not a trigger',date:'Not reportable',why:'Assignments, variations and exercises only become reportable events on or after 6 April 2027. '+(older?'An older agreement is caught only by an event on or after that date.':'Check whether the original grant (8 June 2026 onward) needs reporting before 6 October 2027.'),rule:'Trigger events run from 6 Apr 2027'};
     } else if(e==='grant' && d<FORCE){
       var w=daysUntil(TRANS);
       out={cls:'red',label:'Submit to HMLR before',date:fmt(TRANS),why:'Granted during the transitional window (8 June 2026 to 5 April 2027). The HMLR digital service opens on 6 April 2027 and every transitional right must be submitted within six months of launch.',rule:'Transitional deadline · 6 Oct 2027 · '+(w>=0?w+' days from today':'deadline passed')};

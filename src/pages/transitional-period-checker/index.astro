@@ -16,15 +16,15 @@ const faq: [string,string][] = [
   faq={faq} updated="2026-11-06">
   <div class="tool">
     <label>Date the right was granted<input type="date" id="gd" min="1990-01-01" max="2027-12-31"></label>
-    <div class="q"><p class="qt">Has it been, or will it be, varied in writing or assigned?</p><div class="opts" id="chg"><button data-a="no" aria-pressed="true">No</button><button data-a="before">Yes, before 6 April 2027</button><button data-a="after">Yes, on or after 6 April 2027</button></div></div>
+    <div class="q"><p class="qt" id="qt1">Has it been, or will it be, varied in writing or assigned?</p><div class="opts" id="chg" role="group" aria-labelledby="qt1"><button type="button" data-a="no" aria-pressed="true">No</button><button type="button" data-a="before">Yes, before 6 April 2027</button><button type="button" data-a="after">Yes, on or after 6 April 2027</button></div></div>
     <label id="cdW" hidden>Date of that variation or assignment<input type="date" id="cd" min="2026-01-01" max="2045-12-31"></label>
-    <div class="q"><p class="qt">Will you apply for a notice or restriction to protect it?</p><div class="opts" id="nr"><button data-a="no" aria-pressed="true">No, or already registered</button><button data-a="yes">Yes, after 6 April 2027</button></div></div>
+    <div class="q"><p class="qt" id="qt2">Will you apply for a notice or restriction to protect it?</p><div class="opts" id="nr" role="group" aria-labelledby="qt2"><button type="button" data-a="no" aria-pressed="true">No, or already registered</button><button type="button" data-a="yes">Yes, after 6 April 2027</button></div></div>
     <label id="ndW" hidden>Planned application date<input type="date" id="nd" min="2027-04-06" max="2045-12-31"></label>
   </div>
-  <div class="verdict" aria-live="polite">
+  <div class="verdict">
     <p class="eyebrow" id="vl">Where it sits</p>
-    <p class="big" id="vd">Enter the grant date</p>
-    <p id="vw"></p>
+    <p class="big" id="vd" aria-live="polite" aria-atomic="true">Enter the grant date</p>
+    <p id="vw" aria-live="polite"></p>
     <ul class="trail" id="tr"></ul>
     <p class="rule" id="vr"></p>
   </div>

@@ -32,12 +32,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <meta property="og:site_name" content="LandControl">
 <meta name="theme-color" content="#121212">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"LandControl","url":"https://landcontrol.co.uk/","email":"contact@landcontrol.co.uk","description":"Development intelligence for the new land market: the HMLR contractual control regime explained, with tools, guides and alerts."})}></script>
+<script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Organization","@id":"https://landcontrol.co.uk/#org","name":"LandControl","url":"https://landcontrol.co.uk/","email":"contact@landcontrol.co.uk","description":"Development intelligence for the new land market: the HMLR contractual control regime explained, with tools, guides and alerts."})}></script>
 <slot name="head" />
 </head>
 <body class={bodyClass}>
+<a class="skip" href="#main">Skip to content</a>
 <Nav />
+<main id="main">
 <slot />
+</main>
 <Footer />
 </body>
 </html>

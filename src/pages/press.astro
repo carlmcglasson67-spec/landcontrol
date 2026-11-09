@@ -7,7 +7,7 @@ const quotes = [
   "The raw HMLR dataset will be free. The value is in what it reveals over time: which developers are assembling where, and which rights are quietly running out.",
   "April 2028 is the start, not the finish. A dataset that refreshes monthly is a pipeline, and the organisations that read it first will buy land first.",
 ];
-const schema = {"@context":"https://schema.org","@type":"Organization",name:"LandControl",url:"https://landcontrol.co.uk/",logo:"https://landcontrol.co.uk/brand/landcontrol-mark.svg",email:"contact@landcontrol.co.uk",founder:{"@type":"Person",name:"Carl McGlasson"},contactPoint:{"@type":"ContactPoint",contactType:"Press",email:"contact@landcontrol.co.uk",availableLanguage:"en-GB"}};
+const schema = {"@context":"https://schema.org","@type":"Organization","@id":"https://landcontrol.co.uk/#org",name:"LandControl",url:"https://landcontrol.co.uk/",logo:"https://landcontrol.co.uk/brand/landcontrol-mark.svg",email:"contact@landcontrol.co.uk",founder:{"@type":"Person",name:"Carl McGlasson"},contactPoint:{"@type":"ContactPoint",contactType:"Press",email:"contact@landcontrol.co.uk",availableLanguage:"en-GB"}};
 ---
 <Base title="Press Centre · LandControl" description="Media resources on the HMLR contractual control regime: same-day commentary, founder bio, quotable lines, statistics, regulatory timeline and brand assets.">
   <Fragment slot="head"><script type="application/ld+json" set:html={JSON.stringify(schema)}></script></Fragment>

@@ -34,9 +34,9 @@ const faqLd = faq.length ? {"@context":"https://schema.org","@type":"FAQPage","m
       </article>
       <div class="rail">
         <slot name="rail" />
-        <div class="card red"><p class="eyebrow">Free tools</p><h4>Is it caught, and when is it due?</h4><p>Four tools built on the Regulations and Practice Guide 84.</p><ul class="tl-links"><li><a href="/agreement-checker/">Agreement checker</a></li><li><a href="/deadline-calculator/">Deadline calculator</a></li><li><a href="/transitional-period-checker/">Transitional period checker</a></li><li><a href="/readiness-checklist/">Readiness checklist</a></li></ul></div>
+        <div class="card red"><p class="eyebrow">Free tools</p><h3 class="h4">Is it caught, and when is it due?</h3><p>Four tools built on the Regulations and Practice Guide 84.</p><ul class="tl-links"><li><a href="/agreement-checker/">Agreement checker</a></li><li><a href="/deadline-calculator/">Deadline calculator</a></li><li><a href="/transitional-period-checker/">Transitional period checker</a></li><li><a href="/readiness-checklist/">Readiness checklist</a></li></ul></div>
         {sources.length > 0 && <div class="card"><p class="eyebrow">Primary sources</p><ul class="srcs">{sources.map(([t,h]) => <li><a href={h} rel="noopener">{t}</a></li>)}</ul></div>}
-        <div class="card black"><p class="eyebrow">Contractual Control Alert</p><h4>HMLR guidance changes, deadline updates and regulatory developments, as they happen.</h4><a class="btn" href="/#briefing">Subscribe free</a></div>
+        <div class="card black"><p class="eyebrow">Contractual Control Alert</p><h3 class="h4">HMLR guidance changes, deadline updates and regulatory developments, as they happen.</h3><a class="btn" href="/#briefing">Subscribe free</a></div>
       </div>
     </div>
   </section>

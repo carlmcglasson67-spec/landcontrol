@@ -5,7 +5,7 @@ export default defineConfig({
   site: 'https://landcontrol.co.uk',
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [sitemap({ filter: (p) => !p.includes('/thanks') })],
+  integrations: [sitemap({ filter: (p) => !/\/(thanks|privacy|terms)\/?$/.test(p) })],
   redirects: {
     '/housebuilders': '/professionals/housebuilders/',
     '/landowners': '/professionals/landowners/',
