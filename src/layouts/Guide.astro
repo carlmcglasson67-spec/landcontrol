@@ -43,7 +43,7 @@ const faqLd = faq.length ? {"@context":"https://schema.org","@type":"FAQPage","m
   {related.length > 0 && <section class="wrap band"><div class="grid"><div class="head"><p class="eyebrow">Related</p><h2>Keep reading.</h2></div><div class="others">{related.map(r => <a href={r.href}>{r.who && <span class="who">{r.who}</span>}<strong>{r.label}</strong><span class="go">Read →</span></a>)}</div></div></section>}
 </Base>
 <style>
-.srcs{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.5rem;font-size:.88rem}
+.srcs{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.5rem;font-size:.9375rem}
 .srcs a{color:var(--ink);text-decoration-color:var(--rule)}
 .srcs a:hover{color:var(--red)}
 .tl-links{list-style:none;margin:.8rem 0 0;padding:0;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
