@@ -783,7 +783,7 @@ footer .brand>*{grid-column:1/-1 !important}
 .nav-sheet-note{margin-top:1rem;font-family:var(--mono);font-size:.8125rem;color:var(--ink-2)}
 .navbar{position:sticky}
 @media(max-width:1000px){.burger-li{display:flex !important}}
-@media(max-width:420px){ .navbar nav ul a.cta{display:none}}
+@media(max-width:560px){ .navbar nav ul a.cta{display:none}}
 .nav-sheet-cta{display:flex;align-items:center;justify-content:center;margin-top:1.25rem;min-height:52px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--display);font-weight:700;font-stretch:108%;box-shadow:var(--btn-shadow)}
 .nav-sheet a.nav-sheet-cta{color:var(--paper);font-size:1.05rem;letter-spacing:-.005em;padding:0 1rem;border:0;justify-content:center;font-weight:700;font-stretch:108%}
 
@@ -812,9 +812,11 @@ footer .brand>*{grid-column:1/-1 !important}
   .sub .body tr{padding:.9rem 1rem;border-bottom:1px solid var(--rule)}
   .sub .body td{padding:.15rem 0 !important;border:0 !important}
   .sub .body td:first-child{font-family:var(--display);font-weight:650;font-size:1.05rem}
+  .sub .body td[data-label]{padding:.45rem 0 !important}
+  .sub .body td[data-label]::before{content:attr(data-label);display:block;margin-bottom:.15rem;font-family:var(--mono);font-size:.8125rem;font-weight:500;font-stretch:normal;letter-spacing:.12em;line-height:1.4;text-transform:uppercase;color:var(--ink-2)}
 }
 /* Selects: custom chevron, display face values */
-select{appearance:none;-webkit-appearance:none;padding-right:2.6rem !important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' fill='none' stroke='%23c8102e' stroke-width='2'/%3E%3C/svg%3E") !important;background-repeat:no-repeat !important;background-position:right .9rem center !important;background-size:16px !important;font-family:var(--display) !important;font-weight:600 !important;font-stretch:104%}
+select{appearance:none;-webkit-appearance:none;padding-right:2.6rem !important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' fill='none' stroke='%23c8102e' stroke-width='2'/%3E%3C/svg%3E") !important;background-repeat:no-repeat !important;background-position:right .9rem center !important;background-size:16px !important;font-family:var(--display) !important;font-weight:600 !important;font-stretch:104%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 /* Enterprise button sits at its natural width */
 .ent .btn,.ent a.btn{justify-self:start;width:auto;padding:0 1.6rem;display:inline-flex;align-items:center;min-height:52px}
 /* Hero fact labels never break */
@@ -900,3 +902,11 @@ footer .disc,.p,.ent .p{overflow-wrap:anywhere}
 .tier .p{font-size:clamp(1.75rem,8vw,2.3rem);overflow-wrap:anywhere}
 @media(max-width:560px){.ent{padding:1.5rem 1.25rem}.ent .p{white-space:normal}}
 .verdict .big.red,.verdict .red{color:#ff4a5e}
+
+/* ─── Go-live fixes ─── */
+/* Figures: Mona Sans's tabular set swaps in a slashed zero and a slab-footed 1. That instrument look belongs to the live clock only; prices and headline numbers use the standard figures. */
+.big.num,.n.num,.tier .p,.hero .count .big{font-variant-numeric:normal}
+/* Smallest phones: the closing strapline's longest word pair fits the 320px screen */
+@media(max-width:350px){.close .strap{font-size:2.2rem}}
+/* Two-column tablet layout: an odd last field spans the row instead of leaving an empty cell */
+@media(min-width:481px) and (max-width:800px){.fields div:last-child:nth-child(odd){grid-column:1/-1}}
