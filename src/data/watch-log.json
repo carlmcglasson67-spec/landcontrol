@@ -1,6 +1,6 @@
 {
   "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
-  "lastRun": "2026-11-10",
+  "lastRun": "2026-11-11",
   "items": [
     {
       "date": "2026-06-08",
@@ -103,6 +103,18 @@
       "url": "https://www.gov.uk/government/consultations/restructuring-hm-land-registry-fees/consultation-on-restructuring-hm-land-registry-fees",
       "title": "HMLR fees restructuring consultation (no contractual control fee; closes 22 Dec)",
       "status": "logged"
+    },
+    {
+      "date": "2026-10-21",
+      "url": "https://www.freeths.co.uk/insights-events/legal-articles/2026/hm-land-registry-contractual-control-rights-reporting-further-guidance/",
+      "title": "Freeths briefing: spatial data for part-title rights, regulated conveyancer submission, collecting grantor details at deal stage",
+      "status": "roundup"
+    },
+    {
+      "date": "2026-09-21",
+      "url": "https://www.rwkgoodman.com/info-hub/biz-realest-contractual-control-regulations-an-autumn-update/",
+      "title": "RWK Goodman autumn overview (general, pre-PG 84)",
+      "status": "ignored"
     }
   ]
 }
