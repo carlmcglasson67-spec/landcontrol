@@ -1,6 +1,6 @@
 {
   "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
-  "lastRun": "2026-11-11",
+  "lastRun": "2026-11-12",
   "items": [
     {
       "date": "2026-06-08",
@@ -115,6 +115,12 @@
       "url": "https://www.rwkgoodman.com/info-hub/biz-realest-contractual-control-regulations-an-autumn-update/",
       "title": "RWK Goodman autumn overview (general, pre-PG 84)",
       "status": "ignored"
+    },
+    {
+      "date": "2026-11-12",
+      "url": "https://cms.law/en/media/international/files/legal-briefing-on-contractual-control-agreements-november-2026",
+      "title": "CMS briefing PDF (dated November 2026, day not stated): drafting trend of grantors assisting registration; uncertainty over conditional contracts tied to landlord's works",
+      "status": "roundup"
     }
   ]
 }
