@@ -11,7 +11,7 @@ const sources: [string,string][] = [
 const faq: [string,string][] = [
   ['What is a contractual control agreement?','A written contract that gives someone control over the future sale or long lease of land they do not own: typically an option agreement, a conditional contract, a right of pre-emption, or a promotion agreement that lets the promoter direct or request a sale. From 6 April 2027 the rights in these contracts must be reported to HM Land Registry if they affect registered land in England and Wales.'],
   ['When do the Contractual Control Regulations come into force?','The Provision of Information (Contractual Control) (Registered Land) Regulations 2026 (SI 2026/615) were made on 8 June 2026 and come into force on 6 April 2027. HM Land Registry’s digital submission service opens the same day.'],
-  ['Do agreements signed before April 2027 need to be reported?','Rights granted on or after 8 June 2026 and before 6 April 2027 must be reported by 6 October 2027. Rights granted before 8 June 2026 are not reportable on grant, but become reportable if they are assigned or varied in writing on or after 6 April 2027, or if an application is made for a notice or restriction to protect them.'],
+  ['Do agreements signed before April 2027 need to be reported?','Rights granted on or after 8 June 2026 and before 6 April 2027 must be reported before 6 October 2027. Rights granted before 8 June 2026 are not reportable on grant, but become reportable if they are assigned or varied in writing on or after 6 April 2027, or if an application is made for a notice or restriction to protect them.'],
   ['Who has to report a contractual control right?','The grantee: the party with the benefit of the right, usually the developer or promoter. The submission itself must be made digitally by an individually regulated conveyancer, such as a solicitor, licensed conveyancer or chartered legal executive who is personally regulated.'],
   ['What is the deadline for reporting?','60 days from the event that triggers the duty: the grant, an assignment, a written variation that changes the information, or the right ending. For rights granted in the transitional window (8 June 2026 to 5 April 2027), the deadline is 6 October 2027.'],
   ['What happens if a contractual control right is not reported?','Failing to provide the information without reasonable excuse, or knowingly or recklessly providing false or misleading information, is an offence under section 225 of the Levelling-up and Regeneration Act 2023. HM Land Registry will also not generally enter a notice or restriction protecting the right until the information has been provided.'],
@@ -42,10 +42,10 @@ const faq: [string,string][] = [
   <table>
     <thead><tr><th>Right</th><th>What it does</th><th>Typical agreement</th></tr></thead>
     <tbody>
-      <tr><td><a href="/agreements/option-agreements/">Option</a></td><td>Lets the holder require the owner to transfer the freehold or grant a long lease</td><td>Strategic land option, call option</td></tr>
-      <tr><td><a href="/agreements/conditional-contracts/">Conditional contract</a></td><td>A binding sale or lease that completes only if conditions are met, often planning</td><td>Subject-to-planning purchase</td></tr>
-      <tr><td><a href="/agreements/pre-emption-rights/">Pre-emption</a></td><td>A right of first refusal if the owner decides to sell</td><td>Right of first refusal, pre-emption agreement</td></tr>
-      <tr><td><a href="/agreements/promotion-agreements/">Direct or request a sale</a></td><td>A right to require or request a sale or lease, often to a third-party buyer</td><td>Land promotion agreement</td></tr>
+      <tr><td data-label="Right"><a href="/agreements/option-agreements/">Option</a></td><td data-label="What it does">Lets the holder require the owner to transfer the freehold or grant a long lease</td><td data-label="Typical agreement">Strategic land option, call option</td></tr>
+      <tr><td data-label="Right"><a href="/agreements/conditional-contracts/">Conditional contract</a></td><td data-label="What it does">A binding sale or lease that completes only if conditions are met, often planning</td><td data-label="Typical agreement">Subject-to-planning purchase</td></tr>
+      <tr><td data-label="Right"><a href="/agreements/pre-emption-rights/">Pre-emption</a></td><td data-label="What it does">A right of first refusal if the owner decides to sell</td><td data-label="Typical agreement">Right of first refusal, pre-emption agreement</td></tr>
+      <tr><td data-label="Right"><a href="/agreements/promotion-agreements/">Direct or request a sale</a></td><td data-label="What it does">A right to require or request a sale or lease, often to a third-party buyer</td><td data-label="Typical agreement">Land promotion agreement</td></tr>
     </tbody>
   </table>
   <p>One contract can contain several rights. HMLR’s scenarios guidance is explicit that the Regulations apply to each right separately, so a promotion agreement with a fallback option may need two sets of information.</p>
@@ -54,7 +54,7 @@ const faq: [string,string][] = [
   <p>A right is a contractual control right only if every one of these is true. Our <a href="/agreement-checker/">agreement checker</a> walks through them in order.</p>
   <ol>
     <li><strong>It is in a written contract.</strong> A deed counts. Statutory rights and rights ordered by a court do not.</li>
-    <li><strong>It controls a future transfer or long lease of registered land.</strong> Freehold, or a lease of more than 15 years. Land that is wholly unregistered is outside the regime, as are options over only an easement.</li>
+    <li><strong>It controls a future transfer or long lease of registered land.</strong> Freehold, or a lease of 15 years or more. Land that is wholly unregistered is outside the regime, as are options over only an easement.</li>
     <li><strong>The grantor is the registered owner.</strong> A right granted by someone who is not yet registered as owner is not reportable on grant (HMLR scenario 1), though it can become reportable later.</li>
     <li><strong>It is held for the purposes of an undertaking.</strong> Business, charitable and public-function purposes qualify. A right held for purely personal reasons, such as an option on your own future home, does not.</li>
     <li><strong>No exemption applies.</strong> See below, and read them narrowly: HMLR says they should be.</li>
@@ -79,12 +79,12 @@ const faq: [string,string][] = [
   <table>
     <thead><tr><th>Event</th><th>Deadline</th></tr></thead>
     <tbody>
-      <tr><td>Right granted 8 Jun 2026 to 5 Apr 2027</td><td>By 6 October 2027, reflecting any later changes</td></tr>
-      <tr><td>Right granted on or after 6 Apr 2027</td><td>60 days from the grant</td></tr>
-      <tr><td>Assignment to a new grantee</td><td>60 days, including rights granted before 8 June 2026</td></tr>
-      <tr><td>Written variation that alters the information</td><td>60 days, including rights granted before 8 June 2026</td></tr>
-      <tr><td>Right ends: exercised, determined or expires</td><td>60 days, confirming how and whether wholly or in part</td></tr>
-      <tr><td>Application for a notice or restriction</td><td>Before the application proceeds, whenever the right was granted</td></tr>
+      <tr><td data-label="Event">Right granted 8 Jun 2026 to 5 Apr 2027</td><td data-label="Deadline">Before 6 October 2027, reflecting any later changes</td></tr>
+      <tr><td data-label="Event">Right granted on or after 6 Apr 2027</td><td data-label="Deadline">60 days from the grant</td></tr>
+      <tr><td data-label="Event">Assignment to a new grantee</td><td data-label="Deadline">60 days, including rights granted before 8 June 2026</td></tr>
+      <tr><td data-label="Event">Written variation that alters the information</td><td data-label="Deadline">60 days, including rights granted before 8 June 2026</td></tr>
+      <tr><td data-label="Event">Right ends: exercised, determined or expires</td><td data-label="Deadline">60 days, confirming how and whether wholly or in part</td></tr>
+      <tr><td data-label="Event">Application for a notice or restriction</td><td data-label="Deadline">Before the application proceeds, whenever the right was granted</td></tr>
     </tbody>
   </table>
   <p>Two details matter. First, a right granted before 8 June 2026 is not reportable just because the regime starts; it is the next assignment or variation from 6 April 2027 that catches it. Second, where events overlap, one report can cover several if it is updated before the deadline. Work out any date with the <a href="/deadline-calculator/">deadline calculator</a>, and check a pre-April 2027 agreement with the <a href="/transitional-period-checker/">transitional period checker</a>. More in <a href="/compliance/60-day-deadline/">the 60-day rule</a> and <a href="/compliance/transitional-period/">the transitional period</a>.</p>
@@ -122,8 +122,8 @@ const faq: [string,string][] = [
   <p>The <a href="/readiness-checklist/">readiness checklist</a> turns this into a working list you can print or save.</p>
 </Guide>
 <style>
-.toc{margin:.6rem 0 0;padding-left:1.2rem;display:grid;gap:.35rem;font-size:.9rem}
-.toc li::marker{font-family:var(--mono);color:var(--red);font-size:.8rem}
+.toc{margin:.6rem 0 0;padding-left:1.2rem;display:grid;gap:.35rem;font-size:.9375rem}
+.toc li::marker{font-family:var(--mono);color:var(--red);font-size:.8125rem}
 .toc a{color:var(--ink);text-decoration:none}
 .toc a:hover{color:var(--red)}
 </style>

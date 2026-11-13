@@ -12,7 +12,7 @@ sources:
   - ["HM Land Registry: Practice guide 84, contractual control rights","https://www.gov.uk/government/publications/contractual-control-rights-pg-84/practice-guide-84-contractual-control-rights"]
   - ["MHCLG: Contractual control agreements guidance","https://www.gov.uk/government/publications/contractual-control-agreements/contractual-control-agreements"]
 faq:
-  - ["Is a subject-to-planning contract a contractual control agreement?","Usually. A conditional contract for the sale of registered land, or the grant of a lease of more than 15 years, held by a business or other undertaking, is within the Regulations unless an exemption applies. The government’s guidance confirms that rights conditional on planning permission are covered."]
+  - ["Is a subject-to-planning contract a contractual control agreement?","Usually. A conditional contract for the sale of registered land, or the grant of a lease of 15 years or more, held by a business or other undertaking, is within the Regulations unless an exemption applies. The government’s guidance confirms that rights conditional on planning permission are covered."]
   - ["When is a conditional contract 'exercised' for HMLR purposes?","Practice guide 84 says a conditional contract right is exercised when the disposition required by the contract is made, in other words at completion of the transfer or lease. The grantee must then confirm the ending within 60 days."]
 related: ["agreements/option-agreements","agreements/exemptions","hmlr/information-required"]
 ---
@@ -21,7 +21,7 @@ related: ["agreements/option-agreements","agreements/exemptions","hmlr/informati
 
 The regime is about control short of ownership. A buyer under a conditional contract does not own the land yet, but nobody else can buy it while the contract stands, and the buyer decides whether to push for the conditions to be satisfied. That is exactly the kind of control the government wants to see. The MHCLG guidance confirms that conditional rights are covered, including those conditional on planning permission.
 
-The usual tests apply: a written contract over registered land, granted by the registered owner, for a transfer of the freehold or a lease of more than 15 years, held for the purposes of an undertaking, with no exemption.
+The usual tests apply: a written contract over registered land, granted by the registered owner, for a transfer of the freehold or a lease of 15 years or more, held for the purposes of an undertaking, with no exemption.
 
 ## The short-term exemption still bites
 
