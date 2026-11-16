@@ -1,6 +1,6 @@
 {
   "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
-  "lastRun": "2026-11-15",
+  "lastRun": "2026-11-16",
   "items": [
     {
       "date": "2026-06-08",
@@ -108,7 +108,8 @@
       "date": "2026-10-21",
       "url": "https://www.freeths.co.uk/insights-events/legal-articles/2026/hm-land-registry-contractual-control-rights-reporting-further-guidance/",
       "title": "Freeths briefing: spatial data for part-title rights, regulated conveyancer submission, collecting grantor details at deal stage",
-      "status": "roundup"
+      "status": "roundup",
+      "page": "/news/contractual-control-watch-2026-11-16/"
     },
     {
       "date": "2026-09-21",
@@ -120,19 +121,51 @@
       "date": "2026-11-12",
       "url": "https://cms.law/en/media/international/files/legal-briefing-on-contractual-control-agreements-november-2026",
       "title": "CMS briefing PDF (dated November 2026, day not stated): drafting trend of grantors assisting registration; uncertainty over conditional contracts tied to landlord's works",
-      "status": "roundup"
+      "status": "roundup",
+      "page": "/news/contractual-control-watch-2026-11-16/"
     },
     {
       "date": "2026-11-06",
       "url": "https://localgovernmentlawyer.co.uk/property/313-property-features/102182-land-agreements-and-the-new-contractual-control-information-regime",
       "title": "Local Government Lawyer feature (HB Public Law): contractual control for councils, s106 transfer obligations and nomination rights",
-      "status": "roundup"
+      "status": "roundup",
+      "page": "/news/contractual-control-watch-2026-11-16/"
     },
     {
       "date": "2026-11-12",
       "url": "https://www.realyse.com/blogs/development-land-disclosure-rules-2027-england-wales",
       "title": "REalyse blog refresh (stale pre-Regulations content, vendor marketing)",
       "status": "ignored"
+    },
+    {
+      "date": "2026-11-09",
+      "url": "https://cms.law/en/gbr/legal-updates/legal-briefing-on-contractual-control-agreements",
+      "title": "CMS web summary of November briefing (re-report of known PDF)",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-11-12",
+      "url": "https://www.realyse.com/blogs/land-agreement-disclosure-rules-2027-levelling-up-act",
+      "title": "REalyse blog refresh (stale, says financial terms disclosed; vendor marketing)",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-11-12",
+      "url": "https://www.realyse.com/blogs/land-agreement-disclosure-rules-england-wales-2027",
+      "title": "REalyse blog refresh (no new information; vendor marketing)",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-11-13",
+      "url": "https://www.showhouse.co.uk/land-expert-still-securing-deals-through-cancer-adversity/news/",
+      "title": "Show House profile mentioning two option deals (anecdotal, no terms)",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-10-26",
+      "url": "https://www.gov.uk/government/news/contractual-control-agreements",
+      "title": "HMLR news story (last updated 26 Oct, PG 84 link; no change this week)",
+      "status": "logged"
     }
   ]
 }
