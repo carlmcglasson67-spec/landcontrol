@@ -1,6 +1,6 @@
 {
   "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
-  "lastRun": "2026-11-16",
+  "lastRun": "2026-11-17",
   "items": [
     {
       "date": "2026-06-08",
@@ -166,6 +166,12 @@
       "url": "https://www.gov.uk/government/news/contractual-control-agreements",
       "title": "HMLR news story (last updated 26 Oct, PG 84 link; no change this week)",
       "status": "logged"
+    },
+    {
+      "date": "2026-11-09",
+      "url": "https://www.fhithich.uk/2026/11/09/who-owns-the-view/",
+      "title": "Personal blog on HMLR data-access consultation (no contractual control content)",
+      "status": "ignored"
     }
   ]
 }
