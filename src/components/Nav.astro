@@ -1,6 +1,43 @@
 ---
+const LINKS = [
+  { href: '/contractual-control-agreements/', label: 'Guide' },
+  { href: '/tools/', label: 'Tools' },
+  { href: '/news/', label: 'News' },
+  { href: '/tracker/', label: 'Tracker' },
+  { href: '/professionals/', label: 'Professionals' },
+  { href: '/#products', label: 'Pricing' },
+];
+const path = Astro.url.pathname;
+const current = (href: string) => href !== '/#products' && path.startsWith(href) ? 'page' : undefined;
 ---
-<div class="navbar"><nav class="wrap">
+<div class="navbar"><nav class="wrap" aria-label="Main">
   <a class="mark" href="/" aria-label="LandControl home"><svg viewBox="0 0 60 68" aria-hidden="true"><path d="M30 2 55 16.5v4L30 35 5 20.5v-4z" fill="var(--ink)"/><path d="M5 25.5 29 39.5v26L5 51.5z" fill="var(--ink)"/><path d="M55 25.5 31 39.5v26l24-14z" fill="var(--sage)"/></svg><span class="word"><b>Land</b>Control</span></a>
-  <ul><li><a href="/contractual-control-agreements/">Guide</a></li><li><a href="/tools/">Tools</a></li><li><a href="/news/">News</a></li><li><a href="/tracker/">Tracker</a></li><li><a href="/professionals/">Professionals</a></li><li><a href="/#products">Pricing</a></li><li><a class="cta" href="/#briefing">Contractual Control Alert</a></li></ul>
-</nav></div>
+  <ul>
+    {LINKS.map((l) => <li><a href={l.href} aria-current={current(l.href)}>{l.label}</a></li>)}
+    <li><a class="cta" href="/#briefing">Contractual Control Alert</a></li>
+    <li class="burger-li"><button class="burger" type="button" aria-expanded="false" aria-controls="nav-sheet" aria-label="Open menu"><span></span></button></li>
+  </ul>
+</nav>
+<div id="nav-sheet" class="nav-sheet" hidden>
+  <ol>
+    {LINKS.map((l, i) => <li><a href={l.href} aria-current={current(l.href)}><span class="num">{String(i + 1).padStart(2, '0')}</span>{l.label}</a></li>)}
+  </ol>
+  <a class="nav-sheet-cta" href="/#briefing">Get the Contractual Control Alert</a>
+  <p class="nav-sheet-note">Independent. Not affiliated with HM Land Registry or the UK Government.</p>
+</div>
+</div>
+<script is:inline>
+(function(){
+  var b=document.querySelector('.burger'), sheet=document.getElementById('nav-sheet');
+  if(!b||!sheet) return;
+  function set(open){
+    sheet.hidden=!open; b.setAttribute('aria-expanded',String(open)); b.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.documentElement.classList.toggle('nav-open',open);
+    if(open){var a=sheet.querySelector('a'); a&&a.focus();}
+  }
+  b.addEventListener('click',function(){set(sheet.hidden);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!sheet.hidden){set(false);b.focus();}});
+  document.addEventListener('pointerdown',function(e){if(!sheet.hidden&&!sheet.contains(e.target)&&!b.contains(e.target))set(false);});
+  sheet.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+})();
+</script>

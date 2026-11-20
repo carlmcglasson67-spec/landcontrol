@@ -16,15 +16,15 @@ const faq: [string,string][] = [
   faq={faq} updated="2026-11-06">
   <div class="tool">
     <label>Date the right was granted<input type="date" id="gd" min="1990-01-01" max="2027-12-31"></label>
-    <div class="q"><p class="qt">Has it been, or will it be, varied in writing or assigned?</p><div class="opts" id="chg"><button data-a="no" aria-pressed="true">No</button><button data-a="before">Yes, before 6 April 2027</button><button data-a="after">Yes, on or after 6 April 2027</button></div></div>
+    <div class="q"><p class="qt" id="qt1">Has it been, or will it be, varied in writing or assigned?</p><div class="opts" id="chg" role="group" aria-labelledby="qt1"><button type="button" data-a="no" aria-pressed="true">No</button><button type="button" data-a="before">Yes, before 6 April 2027</button><button type="button" data-a="after">Yes, on or after 6 April 2027</button></div></div>
     <label id="cdW" hidden>Date of that variation or assignment<input type="date" id="cd" min="2026-01-01" max="2045-12-31"></label>
-    <div class="q"><p class="qt">Will you apply for a notice or restriction to protect it?</p><div class="opts" id="nr"><button data-a="no" aria-pressed="true">No, or already registered</button><button data-a="yes">Yes, after 6 April 2027</button></div></div>
+    <div class="q"><p class="qt" id="qt2">Will you apply for a notice or restriction to protect it?</p><div class="opts" id="nr" role="group" aria-labelledby="qt2"><button type="button" data-a="no" aria-pressed="true">No, or already registered</button><button type="button" data-a="yes">Yes, after 6 April 2027</button></div></div>
     <label id="ndW" hidden>Planned application date<input type="date" id="nd" min="2027-04-06" max="2045-12-31"></label>
   </div>
-  <div class="verdict" aria-live="polite">
+  <div class="verdict">
     <p class="eyebrow" id="vl">Where it sits</p>
-    <p class="big" id="vd">Enter the grant date</p>
-    <p id="vw"></p>
+    <p class="big" id="vd" aria-live="polite" aria-atomic="true">Enter the grant date</p>
+    <p id="vw" aria-live="polite"></p>
     <ul class="trail" id="tr"></ul>
     <p class="rule" id="vr"></p>
   </div>
@@ -33,10 +33,10 @@ const faq: [string,string][] = [
       <div class="grid">
         <div class="head"><p class="eyebrow">Why it matters</p><h2>Six months to clear nine months of deals.</h2><p class="lede">Every in-scope right signed in the transitional window lands on the same deadline, through a brand-new service, via a limited pool of individually regulated conveyancers. The firms that have their data ready on 6 April 2027 will file in a day; the rest will queue.</p></div>
         <div class="steps">
-          <div><p class="n">01</p><h4>Count them now</h4><p>Pull every option, conditional contract, pre-emption and promotion agreement signed since 8 June 2026.</p></div>
-          <div><p class="n">02</p><h4>Track the changes</h4><p>What you submit must be accurate on the day you submit. Log every variation since signing.</p></div>
-          <div><p class="n">03</p><h4>Watch notice applications</h4><p>Need to register a notice after 6 April 2027? Report first. That deadline beats October.</p></div>
-          <div><p class="n">04</p><h4>Book the conveyancer</h4><p>Agree now who files each right, and when. Read <a href="/compliance/transitional-period/" style="color:inherit">the full transitional guide</a>.</p></div>
+          <div><p class="n">01</p><h3 class="h4">Count them now</h3><p>Pull every option, conditional contract, pre-emption and promotion agreement signed since 8 June 2026.</p></div>
+          <div><p class="n">02</p><h3 class="h4">Track the changes</h3><p>What you submit must be accurate on the day you submit. Log every variation since signing.</p></div>
+          <div><p class="n">03</p><h3 class="h4">Watch notice applications</h3><p>Need to register a notice after 6 April 2027? Report first. That deadline beats October.</p></div>
+          <div><p class="n">04</p><h3 class="h4">Book the conveyancer</h3><p>Agree now who files each right, and when. Read <a href="/compliance/transitional-period/" style="color:inherit">the full transitional guide</a>.</p></div>
         </div>
       </div>
     </section>
