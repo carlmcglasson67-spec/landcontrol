@@ -1,6 +1,6 @@
 {
   "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
-  "lastRun": "2026-11-19",
+  "lastRun": "2026-11-20",
   "items": [
     {
       "date": "2026-06-08",
@@ -177,6 +177,18 @@
       "date": "2026-11-16",
       "url": "https://hmlandregistry.blog.gov.uk/2026/11/16/a-simple-update-that-can-help-protect-your-property-from-fraud/",
       "title": "HMLR blog on fraud protection and contact details (no contractual control content)",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-11-18",
+      "url": "https://www.dacbeachcroft.com/en/What-we-think/Contractual-controls-practical-steps-for-developers-and-landowners-following-HMLRs-new-guidance",
+      "title": "DAC Beachcroft post-PG 84 checklist: involve surveyors early so spatial file matches agreement plan; variations/assignments/terminations most easily missed; following guidance not itself a reasonable-excuse defence",
+      "status": "roundup"
+    },
+    {
+      "date": "2026-11-20",
+      "url": "https://hmlandregistry.blog.gov.uk/",
+      "title": "HMLR blog 20 Nov: estate agents and local land charges (no contractual control content)",
       "status": "ignored"
     }
   ]
