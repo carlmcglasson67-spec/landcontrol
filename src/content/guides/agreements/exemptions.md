@@ -57,7 +57,7 @@ Separately from the exemptions, some rights fail the basic tests:
 
 - statutory rights and court-ordered rights (not a written contract);
 - options over an easement or other right rather than the land;
-- contracts for leases of 15 years or less, and transfers of leases with 15 years or less left;
+- contracts for leases of less than 15 years, and transfers of leases with less than 15 years left;
 - rights over land that is wholly unregistered;
 - rights held for purely personal purposes, until assigned to a business;
 - rights granted by someone who was not yet the registered owner, until something else triggers reporting.

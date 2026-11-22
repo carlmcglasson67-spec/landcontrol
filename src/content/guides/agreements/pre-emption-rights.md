@@ -21,7 +21,7 @@ related: ["agreements/option-agreements","agreements/promotion-agreements","agre
 
 A pre-emption right freezes the market for a site: no other buyer gets a clean shot while it exists. Practice guide 84 lists it as one of the four categories of contractual control right, alongside options, conditional contracts and rights to direct or request a sale.
 
-The general tests apply in full. The right must be in writing, over registered land, granted by the registered owner, relating to a future transfer of the freehold or a lease of more than 15 years, held for the purposes of an undertaking, and not exempt.
+The general tests apply in full. The right must be in writing, over registered land, granted by the registered owner, relating to a future transfer of the freehold or a lease of 15 years or more, held for the purposes of an undertaking, and not exempt.
 
 ## Where pre-emptions sit in real deals
 
