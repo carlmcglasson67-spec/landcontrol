@@ -1,6 +1,6 @@
 {
   "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
-  "lastRun": "2026-11-22",
+  "lastRun": "2026-11-23",
   "items": [
     {
       "date": "2026-06-08",
@@ -17,7 +17,7 @@
       "page": "/tracker/"
     },
     {
-      "date": "2026-09-30",
+      "date": "2026-09-29",
       "url": "https://www.gov.uk/guidance/hm-land-registry-new-reporting-rules-for-contractual-control-rights",
       "title": "HMLR new reporting rules guidance",
       "status": "tracker",
@@ -189,6 +189,18 @@
       "date": "2026-11-20",
       "url": "https://hmlandregistry.blog.gov.uk/",
       "title": "HMLR blog 20 Nov: estate agents and local land charges (no contractual control content)",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-11-23",
+      "url": "https://placenorthwest.co.uk/barratt-redrow-to-acquire-44-acres-in-sandbach",
+      "title": "Place North West: Barratt Redrow exchanges with Wain Estates on Sandbach site (no option or terms detail)",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-11-18",
+      "url": "https://www.gov.uk/government/organisations/land-registry",
+      "title": "HMLR Portal guidance refreshes 18 Nov (reply to requisition, getting started): no contractual control content",
       "status": "ignored"
     }
   ]
