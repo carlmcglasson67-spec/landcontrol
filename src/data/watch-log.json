@@ -1,6 +1,6 @@
 {
   "_about": "LandControl daily watch log. Every source the daily scan has seen, so nothing is covered twice. Not served on the site. Status: published | tracker | roundup | logged | ignored.",
-  "lastRun": "2026-11-23",
+  "lastRun": "2026-11-24",
   "items": [
     {
       "date": "2026-06-08",
@@ -201,6 +201,12 @@
       "date": "2026-11-18",
       "url": "https://www.gov.uk/government/organisations/land-registry",
       "title": "HMLR Portal guidance refreshes 18 Nov (reply to requisition, getting started): no contractual control content",
+      "status": "ignored"
+    },
+    {
+      "date": "2026-11-24",
+      "url": "https://hmlandregistry.blog.gov.uk/2026/11/24/enabling-estate-agents-to-speed-up-transactions/",
+      "title": "HMLR blog 24 Nov: guest post on estate agents and legal packs (no contractual control content)",
       "status": "ignored"
     }
   ]
